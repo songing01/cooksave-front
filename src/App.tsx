@@ -1,11 +1,12 @@
-import { FontBlue, FontBold } from "./style/font.style";
+import Greeting from "@pages/Greeting";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    //폰트 스타일 테스트
-    <FontBlue>
-      <FontBold size="200px">hi</FontBold>
-    </FontBlue>
+    <Routes>
+      {/* 시작페이지 */}
+      <Route path="greeting" element={<Greeting />} />
+    </Routes>
   );
 }
 
