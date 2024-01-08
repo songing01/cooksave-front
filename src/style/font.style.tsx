@@ -6,7 +6,7 @@ type FontProps = {
 };
 
 const FontBold = styled.p<FontProps>`
-  margin: 0 auto 0 auto;
+  margin: 0 0;
   text-align: center;
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -16,7 +16,7 @@ const FontBold = styled.p<FontProps>`
 `;
 
 const FontMedium = styled.p<FontProps>`
-  margin: 0 auto 0 auto;
+  margin: 0 0;
   text-align: center;
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -26,7 +26,7 @@ const FontMedium = styled.p<FontProps>`
 `;
 
 const FontRegular = styled.p<FontProps>`
-  margin: 0 auto 0 auto;
+  margin: 0 0;
   text-align: center;
   font-family: "Noto Sans KR";
   font-style: normal;
