@@ -1,7 +1,12 @@
-import React from "react";
+import { FontBlue, FontBold } from "./style/font.style";
 
 function App() {
-  return <h1>hello</h1>;
+  return (
+    //폰트 스타일 테스트
+    <FontBlue>
+      <FontBold size="200px">hi</FontBold>
+    </FontBlue>
+  );
 }
 
 export default App;
