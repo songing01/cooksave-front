@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import textLogo from "@assets/common/textLogo.png";
-import { FontBold, FontGray } from "@style/font.style";
+import { FontBold } from "@style/font.style";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -14,9 +14,10 @@ const LogoHeader = ({ title }: Props) => {
   return (
     <Div>
       <Img src={textLogo} onClick={() => navigate("/")} />
-      <FontBold size="12px">
-        <FontGray>{title}</FontGray>
-      </FontBold>
+
+      <div className="title">
+        <FontBold size="12px">{title}</FontBold>
+      </div>
     </Div>
   );
 };
@@ -30,6 +31,10 @@ const Div = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  .title {
+    color: #7d7d7d;
+  }
 `;
 
 const Img = styled.img`

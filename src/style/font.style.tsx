@@ -32,14 +32,4 @@ const FontRegular = styled.p<FontProps>`
   font-size: ${props => props.size || "12px"};
 `;
 
-const FontBlue = styled.div`
-  color: #004c92;
-`;
-const FontGray = styled.div`
-  color: #7d7d7d;
-`;
-const FontWhite = styled.div`
-  color: #ffffff;
-`;
-
-export { FontBold, FontMedium, FontRegular, FontBlue, FontGray, FontWhite };
+export { FontBold, FontMedium, FontRegular };
