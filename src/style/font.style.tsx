@@ -12,7 +12,6 @@ const FontBold = styled.p<FontProps>`
   font-style: normal;
   font-weight: 700;
   font-size: ${props => props.size || "12px"};
-  line-height: normal;
 `;
 
 const FontMedium = styled.p<FontProps>`
@@ -22,7 +21,6 @@ const FontMedium = styled.p<FontProps>`
   font-style: normal;
   font-weight: 500;
   font-size: ${props => props.size || "12px"};
-  line-height: normal;
 `;
 
 const FontRegular = styled.p<FontProps>`
@@ -32,7 +30,6 @@ const FontRegular = styled.p<FontProps>`
   font-style: normal;
   font-weight: 400;
   font-size: ${props => props.size || "12px"};
-  line-height: normal;
 `;
 
 const FontBlue = styled.div`
