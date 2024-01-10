@@ -29,6 +29,8 @@ const Div = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
 
+  background-color: #ffffff;
+
   img {
     width: 30px;
     height: 30px;
