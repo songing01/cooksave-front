@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
 import icon1 from "@assets/ingredients/icon1.png";
+import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
 
-const Item = () => {
+type Props = {
+  isEditing: boolean;
+};
+
+const Item = ({ isEditing }: Props) => {
   return (
     <Div>
       <img className="icon" src={icon1} />
@@ -20,9 +25,19 @@ const Item = () => {
         </div>
       </Detail>
 
-      <Count>
-        <FontBold size="12px">1</FontBold>
-      </Count>
+      <CountWrapper>
+        {isEditing && (
+          <FontRegular size="20px" className="minus">
+            -
+          </FontRegular>
+        )}
+        <Count>
+          <FontBold size="12px">1</FontBold>
+        </Count>
+        {isEditing && <FontRegular size="20px">+</FontRegular>}
+      </CountWrapper>
+
+      {isEditing && <DeleteBtn src={deletebtn} />}
     </Div>
   );
 };
@@ -30,15 +45,16 @@ const Item = () => {
 export default Item;
 
 const Div = styled.div`
+  position: relative;
   width: 356px;
   height: 81px;
   border-radius: 6px;
   background: #edf7ff;
   box-sizing: border-box;
-  padding: 13px;
-
+  padding: 13px 9px 13px 13px;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
+  gap: 8px;
   align-items: center;
 
   .icon {
@@ -69,4 +85,26 @@ const Count = styled.div`
   background-color: #fff;
 
   line-height: 27px;
+`;
+
+const CountWrapper = styled.div`
+  width: 58px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+
+  .minus {
+    margin-bottom: 5px;
+  }
+`;
+
+const DeleteBtn = styled.img`
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(1px 2px 5.9px rgba(0, 0, 0, 0.15));
+
+  position: absolute;
+  top: -7px;
+  right: 6px;
 `;

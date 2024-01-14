@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import Item from "../Item/Item";
 
-const List = () => {
+type Props = {
+  isEditing: boolean;
+};
+
+const List = ({ isEditing }: Props) => {
   return (
     <Div>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item /> <Item />
-      <Item />
-      <Item />
-      <Item />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
+      <Item isEditing={isEditing} />
     </Div>
   );
 };

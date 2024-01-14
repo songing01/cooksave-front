@@ -18,7 +18,7 @@ const Main = () => {
         <img src={pencil} />
       </EditBtn>
 
-      <List />
+      <List isEditing={false} />
 
       <Footer>
         <UnderLinedBtn text="로그아웃" />
