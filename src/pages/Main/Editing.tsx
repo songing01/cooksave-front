@@ -44,7 +44,7 @@ const Div = styled.div`
     width: 100%;
     position: fixed; //하단 고정
     bottom: 0px;
-    padding-bottom: 14px;
+    padding: 30px;
     display: flex;
     justify-content: center;
     background-color: #fff;
