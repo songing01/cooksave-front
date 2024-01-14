@@ -3,15 +3,24 @@ import styled from "styled-components";
 import icon1 from "@assets/ingredients/icon1.png";
 import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
+import IconList from "./IconList";
+import { useState } from "react";
 
 type Props = {
   isEditing: boolean;
 };
 
 const Item = ({ isEditing }: Props) => {
+  const [isOpenList, setIsOpenList] = useState(false);
   return (
     <Div>
-      <img className="icon" src={icon1} />
+      <img
+        className="icon"
+        src={icon1}
+        onClick={() => {
+          setIsOpenList(!isOpenList);
+        }}
+      />
 
       <Detail>
         <div className="name">
@@ -38,6 +47,17 @@ const Item = ({ isEditing }: Props) => {
       </CountWrapper>
 
       {isEditing && <DeleteBtn src={deletebtn} />}
+
+      {/* 리스트에서 아이콘 선택 */}
+      {isEditing && isOpenList && (
+        <div className="icon-list">
+          <IconList
+            onClick={() => {
+              setIsOpenList(!isOpenList);
+            }}
+          />
+        </div>
+      )}
     </Div>
   );
 };
@@ -59,6 +79,12 @@ const Div = styled.div`
 
   .icon {
     width: 50px;
+  }
+
+  .icon-list {
+    position: absolute;
+    left: 70px;
+    z-index: 1;
   }
 `;
 
