@@ -4,6 +4,7 @@ import SelfCreate from "@pages/Create/SelfCreate";
 import Greeting from "@pages/Greeting";
 import Editing from "@pages/Main/Editing";
 import Main from "@pages/Main/Main";
+import Recipes from "@pages/Recipe/Recipes";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
 
       {/* 식재료 등록 페이지 */}
       <Route path="/create/self" element={<SelfCreate />} />
+
+      {/* 레시피 관련 페이지 */}
+      <Route path="/recipes" element={<Recipes />} />
     </Routes>
   );
 }
