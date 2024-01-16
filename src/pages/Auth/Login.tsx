@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 import LongBtn from "@components/Buttons/LongBtn";
 import UnderLinedBtn from "@components/Buttons/UnderLinedBtn";
-import LogoHeader from "@components/Header/LogoHeader";
+
 import Form from "@components/Auth/Form";
+import Header from "@components/Header/Header";
 
 const Login = () => {
   const navigate = useNavigate();
 
   return (
     <Div>
-      <LogoHeader />
+      <Header isBack={false} />
 
       <div className="form">
         <Form isLogin={true} />

@@ -1,4 +1,3 @@
-import LogoHeader from "@components/Header/LogoHeader";
 import List from "@components/Ingredients/List/List";
 import styled from "styled-components";
 
@@ -7,6 +6,7 @@ import NavBar from "@components/NavBar/NavBar";
 import CreateBtn from "@components/Buttons/CreateBtn";
 import UnderLinedBtn from "@components/Buttons/UnderLinedBtn";
 import { useNavigate } from "react-router-dom";
+import Header from "@components/Header/Header";
 
 //식재료 내역을 확안하는 메인페이지
 
@@ -15,7 +15,7 @@ const Main = () => {
 
   return (
     <>
-      <LogoHeader title="나의 식재료 보유 현황" />
+      <Header isBack={false} title="나의 식재료 보유 현황" />
 
       <EditBtn>
         <img src={pencil} onClick={() => navigate("/edit")} />

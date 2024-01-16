@@ -1,6 +1,6 @@
 import FitBtn from "@components/Buttons/FitBtn";
 import LongBtn from "@components/Buttons/LongBtn";
-import LogoHeader from "@components/Header/LogoHeader";
+import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ const Editing = () => {
 
   return (
     <Div>
-      <LogoHeader title="식재료 수정/삭제" />
+      <Header isBack={false} title="식재료 수정/삭제" />
 
       <EditBtn>
         <FitBtn text="수정 취소" onClick={() => navigate("/")} />

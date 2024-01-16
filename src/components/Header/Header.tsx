@@ -1,19 +1,25 @@
 import styled from "styled-components";
 
 import textLogo from "@assets/common/textLogo.png";
+import back from "@assets/common/back.png";
 import { FontBold } from "@style/font.style";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
+  isBack: boolean;
   title?: string;
 };
 
-const LogoHeader = ({ title }: Props) => {
+const Header = ({ isBack, title }: Props) => {
   const navigate = useNavigate();
 
   return (
     <Div>
-      <Img src={textLogo} onClick={() => navigate("/")} />
+      {!isBack ? (
+        <Logo src={textLogo} onClick={() => navigate("/")} />
+      ) : (
+        <BackButton src={back} onClick={() => navigate(-1)} />
+      )}
 
       <div className="title">
         <FontBold size="12px">{title}</FontBold>
@@ -22,7 +28,7 @@ const LogoHeader = ({ title }: Props) => {
   );
 };
 
-export default LogoHeader;
+export default Header;
 
 const Div = styled.div`
   width: 100%;
@@ -37,8 +43,13 @@ const Div = styled.div`
   }
 `;
 
-const Img = styled.img`
+const Logo = styled.img`
   width: 118px;
+  height: 17.51px;
+  flex-shrink: 0;
+`;
+
+const BackButton = styled.img`
   height: 17.51px;
   flex-shrink: 0;
 `;
