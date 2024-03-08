@@ -93,6 +93,7 @@ const Div = styled.div`
     align-items: start;
     gap: 10px;
     width: 100%;
+    margin-bottom: 50px;
 
     .youtube {
       width: 95%;
