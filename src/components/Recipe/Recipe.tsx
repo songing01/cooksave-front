@@ -37,7 +37,8 @@ const Recipe = ({ isSaved }: Props) => {
 export default Recipe;
 
 const Div = styled.div`
-  width: 356px;
+  width: 90%;
+  box-sizing: border-box;
   height: 81px;
   flex-shrink: 0;
   border-radius: 6px;

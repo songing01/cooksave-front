@@ -5,6 +5,7 @@ import Greeting from "@pages/Greeting";
 import Editing from "@pages/Main/Editing";
 import Main from "@pages/Main/Main";
 import Detail from "@pages/Recipe/Detail";
+import IngredientList from "@pages/Recipe/IngredientList";
 import Recipes from "@pages/Recipe/Recipes";
 import { Route, Routes } from "react-router-dom";
 
@@ -28,6 +29,7 @@ function App() {
       {/* 레시피 관련 페이지 */}
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipes/1" element={<Detail />} />
+      <Route path="/recipes/1/ingredients" element={<IngredientList />} />
     </Routes>
   );
 }

@@ -17,7 +17,7 @@ const Editing = () => {
       </EditBtn>
 
       <div className="margin">
-        <List isEditing={true} />
+        <List isEditing={true} isDeletable={true} />
       </div>
 
       <div className="bottom">
@@ -37,6 +37,7 @@ const Div = styled.div`
   align-items: center;
 
   .margin {
+    width: 100%;
     margin-bottom: 120px;
   }
 

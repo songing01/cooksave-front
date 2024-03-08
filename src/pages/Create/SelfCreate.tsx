@@ -55,6 +55,7 @@ const Div = styled.div`
 
   .margin {
     margin-bottom: 120px;
+    width: 100%;
   }
 
   .bottom {

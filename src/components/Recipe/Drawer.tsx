@@ -23,7 +23,10 @@ const Drawer = () => {
         </div>
 
         <div className="my-ingredients">
-          <FontBold size="16px">내가 가진 재료</FontBold>
+          <FontBold size="16px" style={{ paddingLeft: "20px" }}>
+            내가 가진 재료
+          </FontBold>
+
           <List isEditing={false} />
         </div>
 
@@ -37,8 +40,9 @@ const Drawer = () => {
           ></iframe>
         </div>
       </div>
-
-      <LongBtn text="이 레시피로 할게요!" />
+      <Bottom>
+        <LongBtn text="이 레시피로 할게요!" />
+      </Bottom>
     </Div>
   );
 };
@@ -51,8 +55,8 @@ const Div = styled.div`
   width: 100%;
   max-width: 481px;
   height: 70%;
-  padding: 20px;
-  box-sizing: border-box;
+  /* padding: 20px;
+  box-sizing: border-box; */
   flex-shrink: 0;
 
   flex-direction: column;
@@ -67,6 +71,7 @@ const Div = styled.div`
   box-shadow: 0px -20px 10px 0px rgba(138, 138, 138, 0.35);
 
   .scrollable-area {
+    width: 100%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -75,12 +80,16 @@ const Div = styled.div`
   }
 
   .main-ingredients {
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: start;
   }
 
   .my-ingredients {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -94,6 +103,8 @@ const Div = styled.div`
     gap: 10px;
     width: 100%;
     margin-bottom: 50px;
+    padding-left: 20px;
+    box-sizing: border-box;
 
     .youtube {
       width: 95%;
@@ -106,8 +117,20 @@ const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+
   img {
     width: 23px;
     height: 23px;
   }
+`;
+
+const Bottom = styled.div`
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
