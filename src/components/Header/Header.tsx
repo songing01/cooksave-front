@@ -50,6 +50,7 @@ const Logo = styled.img`
 `;
 
 const BackButton = styled.img`
-  height: 17.51px;
+  width: 26px;
+  height: 26px;
   flex-shrink: 0;
 `;
