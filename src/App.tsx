@@ -4,6 +4,7 @@ import SelfCreate from "@pages/Create/SelfCreate";
 import Greeting from "@pages/Greeting";
 import Editing from "@pages/Main/Editing";
 import Main from "@pages/Main/Main";
+import Confirmation from "@pages/Recipe/Confirmation";
 import Detail from "@pages/Recipe/Detail";
 import IngredientList from "@pages/Recipe/IngredientList";
 import Recipes from "@pages/Recipe/Recipes";
@@ -30,6 +31,7 @@ function App() {
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipes/1" element={<Detail />} />
       <Route path="/recipes/1/ingredients" element={<IngredientList />} />
+      <Route path="/recipes/1/confirmation" element={<Confirmation />} />
     </Routes>
   );
 }
