@@ -19,7 +19,11 @@ const Confirmation = ({ isHistory }: Props) => {
       </div>
 
       <ConfirmationTable />
-      <DeleteBtn>{isHistory && <img src={trashcan} />}</DeleteBtn>
+      {isHistory && (
+        <DeleteBtn>
+          <img src={trashcan} />
+        </DeleteBtn>
+      )}
 
       {!isHistory && (
         <div className="bottom">
