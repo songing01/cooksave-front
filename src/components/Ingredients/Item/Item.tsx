@@ -98,7 +98,6 @@ const Div = styled.div`
 `;
 
 const Detail = styled.div`
-  width: 216px;
   height: 57px;
 
   display: flex;
