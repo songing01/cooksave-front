@@ -59,6 +59,6 @@ const Div = styled.div`
 const EditBtn = styled.div`
   display: flex;
   justify-content: end;
-  width: 356px; // 아래 리스트 아이템과 같은 너비
+  width: 90%; // 아래 리스트 아이템과 같은 너비
   margin: 11.5px auto 15.5px;
 `;
