@@ -14,26 +14,30 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
   const navigate = useNavigate();
   return (
     <Div>
-      <Img src="" />
+      <div className="left-container">
+        <Img src="" />
 
-      <Detail
-        onClick={() => {
-          !isHistory ? navigate("/recipes/1") : navigate("/history/1");
-        }}
-      >
-        <div className="name">
-          <FontMedium size="16px">제육볶음</FontMedium>
-        </div>
-        {!isHistory ? (
-          <div className="gray">
-            <FontMedium size="13px">보유재료: 돼지고기, 양파, 마늘</FontMedium>
+        <Detail
+          onClick={() => {
+            !isHistory ? navigate("/recipes/1") : navigate("/history/1");
+          }}
+        >
+          <div className="name">
+            <FontMedium size="16px">제육볶음</FontMedium>
           </div>
-        ) : (
-          <div className="gray">
-            <FontMedium size="13px">총 사용 금액: 8900원</FontMedium>
-          </div>
-        )}
-      </Detail>
+          {!isHistory ? (
+            <div className="gray">
+              <FontMedium size="13px">
+                보유재료: 돼지고기, 양파, 마늘
+              </FontMedium>
+            </div>
+          ) : (
+            <div className="gray">
+              <FontMedium size="13px">총 사용 금액: 8900원</FontMedium>
+            </div>
+          )}
+        </Detail>
+      </div>
 
       <Btns>
         {!isHistory ? (
@@ -73,6 +77,12 @@ const Div = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: space-between;
+
+  .left-container {
+    display: flex;
+    gap: 15px;
+  }
 `;
 
 const Img = styled.img`
@@ -82,7 +92,6 @@ const Img = styled.img`
 `;
 
 const Detail = styled.div`
-  width: 243px;
   height: 57px;
 
   display: flex;

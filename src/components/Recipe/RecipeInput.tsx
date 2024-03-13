@@ -19,7 +19,7 @@ const RecipeInput = () => {
 export default RecipeInput;
 
 const Div = styled.div`
-  width: 356px;
+  width: 90%;
   height: 67px;
   margin: 0 auto;
   border-radius: 6px;

@@ -40,7 +40,7 @@ const Div = styled.div`
   }
 
   .text {
-    width: 356px;
+    width: 90%;
     margin: 16.5px auto 13px;
     gap: 3px;
     display: flex;
