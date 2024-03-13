@@ -32,10 +32,14 @@ function App() {
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipes/1" element={<Detail />} />
       <Route path="/recipes/1/ingredients" element={<IngredientList />} />
-      <Route path="/recipes/1/confirmation" element={<Confirmation />} />
+      <Route
+        path="/recipes/1/confirmation"
+        element={<Confirmation isHistory={false} />}
+      />
 
       {/* 통계 관련 페이지 */}
       <Route path="/statistics/23-1" element={<Monthly />} />
+      <Route path="/history/1" element={<Confirmation isHistory={true} />} />
     </Routes>
   );
 }
