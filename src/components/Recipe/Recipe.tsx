@@ -5,10 +5,11 @@ import arrow from "@assets/recipe/arrow.png";
 import styled from "styled-components";
 
 type Props = {
-  isSaved: boolean;
+  isSaved?: boolean;
+  isHistory?: boolean;
 };
 
-const Recipe = ({ isSaved }: Props) => {
+const Recipe = ({ isSaved, isHistory }: Props) => {
   return (
     <Div>
       <Img src="" />
@@ -23,10 +24,16 @@ const Recipe = ({ isSaved }: Props) => {
       </Detail>
 
       <Btns>
-        {isSaved ? (
-          <img className="save" src={saved} />
+        {!isHistory ? (
+          isSaved ? (
+            <img className="save" src={saved} />
+          ) : (
+            <img className="save" src={unsaved} />
+          )
         ) : (
-          <img className="save" src={unsaved} />
+          <div className="date">
+            <FontMedium style={{ color: "#7a7a7a" }}>23/12/02</FontMedium>
+          </div>
         )}
         <img className="arrow" src={arrow} />
       </Btns>
@@ -53,6 +60,7 @@ const Div = styled.div`
 const Img = styled.img`
   width: 50px;
   height: 50px;
+  flex-shrink: 0;
 `;
 
 const Detail = styled.div`
@@ -72,11 +80,13 @@ const Detail = styled.div`
 const Btns = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
+
   gap: 15px;
 
   .save {
     width: 23px;
+    margin-right: 3px;
   }
 
   .arrow {

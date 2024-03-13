@@ -2,21 +2,19 @@ import React from "react";
 import Recipe from "./Recipe";
 import styled from "styled-components";
 
-const RecipeList = () => {
+type Props = {
+  isHistory?: boolean;
+};
+
+const RecipeList = ({ isHistory }: Props) => {
   return (
     <List>
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
-      <Recipe isSaved={true} />
-      <Recipe isSaved={false} />
+      <Recipe isSaved={true} isHistory={isHistory} />
+      <Recipe isSaved={false} isHistory={isHistory} />
+      <Recipe isSaved={true} isHistory={isHistory} />
+      <Recipe isSaved={false} isHistory={isHistory} />
+      <Recipe isSaved={true} isHistory={isHistory} />
+      <Recipe isSaved={false} isHistory={isHistory} />
     </List>
   );
 };

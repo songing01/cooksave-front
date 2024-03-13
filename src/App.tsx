@@ -8,6 +8,7 @@ import Confirmation from "@pages/Recipe/Confirmation";
 import Detail from "@pages/Recipe/Detail";
 import IngredientList from "@pages/Recipe/IngredientList";
 import Recipes from "@pages/Recipe/Recipes";
+import Monthly from "@pages/Statistics/Monthly";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
       <Route path="/recipes/1" element={<Detail />} />
       <Route path="/recipes/1/ingredients" element={<IngredientList />} />
       <Route path="/recipes/1/confirmation" element={<Confirmation />} />
+
+      {/* 통계 관련 페이지 */}
+      <Route path="/statistics/23-1" element={<Monthly />} />
     </Routes>
   );
 }
