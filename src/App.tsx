@@ -8,6 +8,7 @@ import Confirmation from "@pages/Recipe/Confirmation";
 import Detail from "@pages/Recipe/Detail";
 import IngredientList from "@pages/Recipe/IngredientList";
 import Recipes from "@pages/Recipe/Recipes";
+import Annual from "@pages/Statistics/Annual";
 import Monthly from "@pages/Statistics/Monthly";
 import { Route, Routes } from "react-router-dom";
 
@@ -40,6 +41,7 @@ function App() {
       {/* 통계 관련 페이지 */}
       <Route path="/statistics/23-1" element={<Monthly />} />
       <Route path="/history/1" element={<Confirmation isHistory={true} />} />
+      <Route path="/statistics" element={<Annual />} />
     </Routes>
   );
 }
