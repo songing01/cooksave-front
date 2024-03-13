@@ -4,14 +4,16 @@ import analysis_icon from "@assets/navbar/analysis_icon.png";
 import main_icon from "@assets/navbar/main_icon.png";
 import recipe_icon from "@assets/navbar/recipe_icon.png";
 import save_icon from "@assets/navbar/save_icon.png";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <Div>
-      <img src={main_icon} />
-      <img src={recipe_icon} />
-      <img src={analysis_icon} />
-      <img src={save_icon} />
+      <img src={main_icon} onClick={() => navigate("/")} />
+      <img src={recipe_icon} onClick={() => navigate("/recipes")} />
+      <img src={analysis_icon} onClick={() => navigate("/statistics/23-1")} />
+      <img src={save_icon} onClick={() => navigate("/recipes/save")} />
     </Div>
   );
 };

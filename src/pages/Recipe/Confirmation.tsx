@@ -4,12 +4,14 @@ import Header from "@components/Header/Header";
 import ConfirmationTable from "@components/Recipe/ConfirmationTable";
 import trashcan from "@assets/recipe/trashcan.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   isHistory: boolean;
 };
 
 const Confirmation = ({ isHistory }: Props) => {
+  const navigate = useNavigate();
   return (
     <Div>
       <Header isBack={true} />
@@ -27,7 +29,10 @@ const Confirmation = ({ isHistory }: Props) => {
 
       {!isHistory && (
         <div className="bottom">
-          <LongBtn text="이대로 만들게요" />
+          <LongBtn
+            text="이대로 만들게요"
+            onClick={() => navigate("/statistics/23-1")}
+          />
         </div>
       )}
     </Div>

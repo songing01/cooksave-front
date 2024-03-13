@@ -1,11 +1,17 @@
 import arrow from "@assets/recipe/arrow.png";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const RecipeInput = () => {
+  const navigate = useNavigate();
   return (
     <Div>
       <input placeholder="레시피명을 입력하세요" />
-      <img className="arrow" src={arrow} />
+      <img
+        className="arrow"
+        src={arrow}
+        onClick={() => navigate("/recipes/1")}
+      />
     </Div>
   );
 };

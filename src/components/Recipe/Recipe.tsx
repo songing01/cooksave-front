@@ -3,6 +3,7 @@ import unsaved from "@assets/recipe/unsaved.png";
 import saved from "@assets/recipe/saved.png";
 import arrow from "@assets/recipe/arrow.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   isSaved?: boolean;
@@ -10,11 +11,16 @@ type Props = {
 };
 
 const Recipe = ({ isSaved, isHistory }: Props) => {
+  const navigate = useNavigate();
   return (
     <Div>
       <Img src="" />
 
-      <Detail>
+      <Detail
+        onClick={() => {
+          navigate("/recipes/1");
+        }}
+      >
         <div className="name">
           <FontMedium size="16px">제육볶음</FontMedium>
         </div>
@@ -35,7 +41,13 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
             <FontMedium style={{ color: "#7a7a7a" }}>23/12/02</FontMedium>
           </div>
         )}
-        <img className="arrow" src={arrow} />
+        <img
+          className="arrow"
+          src={arrow}
+          onClick={() => {
+            navigate("/recipes/1");
+          }}
+        />
       </Btns>
     </Div>
   );

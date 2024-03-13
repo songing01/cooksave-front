@@ -5,8 +5,10 @@ import { FontBold, FontMedium } from "@style/font.style";
 import styled from "styled-components";
 
 import share from "@assets/recipe/share.png";
+import { useNavigate } from "react-router-dom";
 
 const Drawer = () => {
+  const navigate = useNavigate();
   return (
     <Div>
       <Top>
@@ -41,7 +43,10 @@ const Drawer = () => {
         </div>
       </div>
       <Bottom>
-        <LongBtn text="이 레시피로 할게요!" />
+        <LongBtn
+          text="이 레시피로 할게요!"
+          onClick={() => navigate("/recipes/1/ingredients")}
+        />
       </Bottom>
     </Div>
   );

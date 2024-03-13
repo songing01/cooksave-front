@@ -21,7 +21,12 @@ const Editing = () => {
       </div>
 
       <div className="bottom">
-        <LongBtn text="수정 완료" />
+        <LongBtn
+          text="수정 완료"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
       </div>
     </Div>
   );

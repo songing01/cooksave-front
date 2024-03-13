@@ -4,9 +4,11 @@ import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
 import { FontBold } from "@style/font.style";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const IngredientList = () => {
+  const navigate = useNavigate();
   return (
     <Div>
       <Header isBack={true} />
@@ -16,7 +18,10 @@ const IngredientList = () => {
       <div className="margin" style={{ height: "90px" }} />
 
       <div className="bottom">
-        <LongBtn text="선택 완료" />
+        <LongBtn
+          text="선택 완료"
+          onClick={() => navigate("/recipes/1/confirmation")}
+        />
       </div>
     </Div>
   );

@@ -5,8 +5,10 @@ import btn from "@assets/statistics/btn.png";
 import { FontBold } from "@style/font.style";
 import DonutChart from "./DonutChart";
 import TextContainer from "./TextContainer";
+import { useNavigate } from "react-router-dom";
 
 const MonthlyCard = () => {
+  const navigate = useNavigate();
   return (
     <Div>
       <Clip src={clip} />
@@ -23,7 +25,11 @@ const MonthlyCard = () => {
       </Mid>
 
       <Bottom>
-        <FontBold size="12px" style={{ color: "#004c92" }}>
+        <FontBold
+          size="12px"
+          style={{ color: "#004c92" }}
+          onClick={() => navigate("/statistics")}
+        >
           전체 통계 &nbsp; <img className="btn" src={btn} />
         </FontBold>
       </Bottom>
