@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 import { FontBold } from "@style/font.style";
 import RecipeList from "@components/Recipe/RecipeList";
+import NavBar from "@components/NavBar/NavBar";
 
 const Monthly = () => {
   return (
@@ -26,6 +27,8 @@ const Monthly = () => {
         </FontBold>
         <RecipeList isHistory={true} />
       </History>
+
+      <NavBar />
     </Div>
   );
 };
@@ -52,6 +55,7 @@ const Btn = styled.div`
 
 const History = styled.div`
   width: 100%;
+  margin-bottom: 60px;
   .title {
     display: flex;
     margin: 20px 0px 10px 5%;
