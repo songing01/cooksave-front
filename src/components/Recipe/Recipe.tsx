@@ -18,15 +18,21 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
 
       <Detail
         onClick={() => {
-          navigate("/recipes/1");
+          !isHistory ? navigate("/recipes/1") : navigate("/history/1");
         }}
       >
         <div className="name">
           <FontMedium size="16px">제육볶음</FontMedium>
         </div>
-        <div className="ingredients">
-          <FontMedium size="13px">보유재료: 돼지고기, 양파, 마늘</FontMedium>
-        </div>
+        {!isHistory ? (
+          <div className="gray">
+            <FontMedium size="13px">보유재료: 돼지고기, 양파, 마늘</FontMedium>
+          </div>
+        ) : (
+          <div className="gray">
+            <FontMedium size="13px">총 사용 금액: 8900원</FontMedium>
+          </div>
+        )}
       </Detail>
 
       <Btns>
@@ -45,7 +51,7 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
           className="arrow"
           src={arrow}
           onClick={() => {
-            navigate("/recipes/1");
+            !isHistory ? navigate("/recipes/1") : navigate("/history/1");
           }}
         />
       </Btns>
@@ -84,7 +90,7 @@ const Detail = styled.div`
   align-items: start;
   gap: 2px;
 
-  .ingredients {
+  .gray {
     color: #7d7d7d;
   }
 `;
