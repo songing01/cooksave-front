@@ -19,7 +19,12 @@ const Login = () => {
       </div>
 
       <div className="bottom">
-        <LongBtn text={"로그인"} />
+        <LongBtn
+          text={"로그인"}
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <UnderLinedBtn
           text={"회원가입"}
           onClick={() => navigate("/auth/sign-up")}
