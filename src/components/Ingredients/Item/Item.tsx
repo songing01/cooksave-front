@@ -15,25 +15,27 @@ const Item = ({ isEditing, isDeletable }: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
   return (
     <Div>
-      <img
-        className="icon"
-        src={icon1}
-        onClick={() => {
-          setIsOpenList(!isOpenList);
-        }}
-      />
+      <div className="left-container">
+        <img
+          className="icon"
+          src={icon1}
+          onClick={() => {
+            setIsOpenList(!isOpenList);
+          }}
+        />
 
-      <Detail>
-        <div className="name">
-          <FontMedium size="16px">청정원 깐 마늘 200g 1팩</FontMedium>
-        </div>
-        <div className="price">
-          <FontMedium size="13px">2000원</FontMedium>
-        </div>
-        <div className="date">
-          <FontRegular size="10px">등록일 : 2023.11.03 </FontRegular>
-        </div>
-      </Detail>
+        <Detail>
+          <div className="name">
+            <FontMedium size="16px">청정원 깐 마늘 200g 1팩</FontMedium>
+          </div>
+          <div className="price">
+            <FontMedium size="13px">2000원</FontMedium>
+          </div>
+          <div className="date">
+            <FontRegular size="10px">등록일 : 2023.11.03 </FontRegular>
+          </div>
+        </Detail>
+      </div>
 
       <CountWrapper>
         {isEditing && (
@@ -75,9 +77,14 @@ const Div = styled.div`
   box-sizing: border-box;
   padding: 13px 9px 13px 13px;
   display: flex;
-  //justify-content: space-between;
-  gap: 8px;
   align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .left-container {
+    display: flex;
+    gap: 15px;
+  }
 
   .icon {
     width: 50px;
