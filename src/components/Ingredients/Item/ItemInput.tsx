@@ -8,19 +8,20 @@ const ItemInput = () => {
   const [isOpenList, setIsOpenList] = useState(false);
   return (
     <Div>
-      <img
-        className="icon"
-        src={icon1}
-        onClick={() => {
-          setIsOpenList(!isOpenList);
-        }}
-      />
+      <div className="left-container">
+        <img
+          className="icon"
+          src={icon1}
+          onClick={() => {
+            setIsOpenList(!isOpenList);
+          }}
+        />
+        <Detail>
+          <input className="name" placeholder="재료명을 입력하세요" />
 
-      <Detail>
-        <input className="name" placeholder="재료명을 입력하세요" />
-
-        <input className="price" placeholder="가격을 입력하세요" />
-      </Detail>
+          <input className="price" placeholder="가격을 입력하세요" />
+        </Detail>
+      </div>
 
       <CountWrapper>
         <FontRegular size="20px" className="minus">
@@ -50,7 +51,7 @@ export default ItemInput;
 
 const Div = styled.div`
   position: relative;
-  width: 356px;
+  width: 90%;
   height: 81px;
   border-radius: 6px;
   background: #edf7ff;
@@ -59,6 +60,7 @@ const Div = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: space-between;
 
   .icon {
     width: 50px;
@@ -70,10 +72,14 @@ const Div = styled.div`
     left: 70px;
     z-index: 1;
   }
+
+  .left-container {
+    display: flex;
+    gap: 15px;
+  }
 `;
 
 const Detail = styled.div`
-  width: 216px;
   height: 57px;
 
   display: flex;

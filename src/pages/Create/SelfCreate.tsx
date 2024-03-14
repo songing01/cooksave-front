@@ -43,10 +43,11 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .btn {
-    width: 356px;
+    width: 90%;
     margin: 11px auto 25px;
     display: flex;
     flex-direction: column;
