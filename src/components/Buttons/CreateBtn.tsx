@@ -3,22 +3,27 @@ import styled from "styled-components";
 import plus from "@assets/main/plus.png";
 import { FontBold } from "@style/font.style";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateBtn = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <>
       {isOpen && (
         <List>
-          <FontBold size="12px" onClick={() => setIsOpen(!isOpen)}>
+          <FontBold size="12px" onClick={() => navigate("/create/self")}>
             직접 등록
           </FontBold>
           <div className="line" />
-          <FontBold size="12px" onClick={() => setIsOpen(!isOpen)}>
+          <FontBold size="12px" onClick={() => navigate("/create/ocr")}>
             텍스트 인식 등록
           </FontBold>
           <div className="line" />
-          <FontBold size="12px" onClick={() => setIsOpen(!isOpen)}>
+          <FontBold
+            size="12px"
+            onClick={() => navigate("/create/object-detection")}
+          >
             사물 인식 등록
           </FontBold>
         </List>
