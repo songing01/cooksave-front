@@ -81,7 +81,6 @@ const Div = styled.div`
 
 const Detail = styled.div`
   height: 57px;
-
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -94,6 +93,7 @@ const Detail = styled.div`
   }
 
   .price {
+    width: 90%;
     color: #7d7d7d;
 
     font-family: Noto Sans KR;
@@ -104,6 +104,8 @@ const Detail = styled.div`
   }
 
   .name {
+    width: 90%;
+
     font-family: Noto Sans KR;
     font-size: 16px;
     font-style: normal;
