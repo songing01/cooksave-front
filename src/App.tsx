@@ -1,5 +1,7 @@
 import Login from "@pages/Auth/Login";
 import SignUp from "@pages/Auth/SignUp";
+import AICreate from "@pages/Create/AICreate";
+import OCR from "@pages/Create/AICreate";
 import SelfCreate from "@pages/Create/SelfCreate";
 import Greeting from "@pages/Greeting";
 import Editing from "@pages/Main/Editing";
@@ -29,6 +31,11 @@ function App() {
 
       {/* 식재료 등록 페이지 */}
       <Route path="/create/self" element={<SelfCreate />} />
+      <Route path="/create/ocr" element={<AICreate isOCR={true} />} />
+      <Route
+        path="/create/object-detection"
+        element={<AICreate isOCR={false} />}
+      />
 
       {/* 레시피 관련 페이지 */}
       <Route path="/recipes" element={<Recipes />} />
