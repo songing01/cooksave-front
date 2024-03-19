@@ -1,5 +1,6 @@
 import Login from "@pages/Auth/Login";
 import SignUp from "@pages/Auth/SignUp";
+import ChatRoom from "@pages/Chat/ChatRoom";
 import AICreate from "@pages/Create/AICreate";
 import OCR from "@pages/Create/AICreate";
 import SelfCreate from "@pages/Create/SelfCreate";
@@ -51,6 +52,8 @@ function App() {
       <Route path="/statistics/23-1" element={<Monthly />} />
       <Route path="/history/1" element={<Confirmation isHistory={true} />} />
       <Route path="/statistics" element={<Annual />} />
+
+      <Route path="/chat" element={<ChatRoom />} />
     </Routes>
   );
 }
