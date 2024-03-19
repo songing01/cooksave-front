@@ -39,7 +39,7 @@ const Div = styled.div`
   justify-content: space-between;
 
   .title {
-    color: #7d7d7d;
+    color: var(--grey2);
   }
 `;
 

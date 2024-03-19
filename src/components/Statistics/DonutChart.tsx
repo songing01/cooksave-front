@@ -25,7 +25,7 @@ const OuterCircle = styled.div`
   flex-shrink: 0;
   border-radius: 100%;
 
-  background: conic-gradient(#004c92 86%, #fff 0%);
+  background: conic-gradient(var(--blue2) 86%, #fff 0%);
 
   filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
 

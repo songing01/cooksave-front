@@ -64,7 +64,7 @@ const Bar = styled.div`
 `;
 
 const Line = styled.div`
-  background: #7d7d7d;
+  background: var(--grey2);
   width: 100%;
   height: 1px;
 `;

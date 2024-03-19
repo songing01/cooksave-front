@@ -78,7 +78,7 @@ const Div = styled.div`
   gap: 5px;
   flex-shrink: 0;
   border-radius: 10px;
-  border: 1px solid #004c92;
+  border: 1px solid var(--blue2);
   background: #fff;
   overflow-y: scroll;
   overflow-x: hidden;

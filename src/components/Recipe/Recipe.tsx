@@ -71,7 +71,7 @@ const Div = styled.div`
   height: 81px;
   flex-shrink: 0;
   border-radius: 6px;
-  background: #edf7ff;
+  background: var(--grey1);
   box-sizing: border-box;
   padding: 13px 9px 13px 13px;
   display: flex;
@@ -100,7 +100,7 @@ const Detail = styled.div`
   gap: 2px;
 
   .gray {
-    color: #7d7d7d;
+    color: var(--grey2);
   }
 `;
 

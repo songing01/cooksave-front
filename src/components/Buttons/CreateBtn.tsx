@@ -70,7 +70,7 @@ const List = styled.div`
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
-  color: #004c92;
+  color: var(--blue2);
 
   .line {
     width: 100%;

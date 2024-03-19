@@ -17,7 +17,7 @@ const UnderLinedBtn = ({ text, onClick }: Props) => {
 export default UnderLinedBtn;
 
 const Div = styled.div`
-  color: #7d7d7d;
+  color: var(--grey2);
   font-family: Inter;
   text-decoration-line: underline;
 `;

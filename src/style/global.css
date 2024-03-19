@@ -5,3 +5,12 @@ body {
   padding: 0;
   font-size: 12px;
 }
+
+:root {
+  --blue1: #edf7ff;
+  --blue2: #004c92;
+  --grey1: #f6f6f6;
+  --grey2: #7d7d7d;
+
+  font-family: Noto Sans Kr;
+}

@@ -18,7 +18,7 @@ export default FitBtn;
 const Btn = styled.div`
   flex-shrink: 0;
   border-radius: 5px;
-  background: #004c92;
+  background: var(--blue2);
   color: #ffffff;
   width: fit-content;
   padding: 3px 7px;

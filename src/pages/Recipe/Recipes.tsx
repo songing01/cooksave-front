@@ -48,6 +48,6 @@ const Div = styled.div`
     align-items: start;
   }
   .gray {
-    color: #7d7d7d;
+    color: var(--grey2);
   }
 `;

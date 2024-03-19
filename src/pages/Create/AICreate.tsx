@@ -78,7 +78,7 @@ const Example = styled.div`
     width: 90%;
     display: flex;
     justify-content: end;
-    color: #7d7d7d;
+    color: var(--grey2);
   }
 `;
 

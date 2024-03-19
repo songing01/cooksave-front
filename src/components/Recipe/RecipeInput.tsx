@@ -23,7 +23,7 @@ const Div = styled.div`
   height: 67px;
   margin: 0 auto;
   border-radius: 6px;
-  background: #edf7ff;
+  background: var(--grey1);
   padding: 0 13px;
   box-sizing: border-box;
   display: flex;
@@ -33,7 +33,7 @@ const Div = styled.div`
   input {
     outline: none;
     border: none;
-    background-color: #edf7ff;
+    background-color: var(--grey1);
 
     font-family: Noto Sans KR;
     font-size: 16px;

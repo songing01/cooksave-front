@@ -73,7 +73,7 @@ const Div = styled.div`
   box-sizing: border-box;
   height: 81px;
   border-radius: 6px;
-  background: #edf7ff;
+  background: var(--grey1);
   box-sizing: border-box;
   padding: 13px 9px 13px 13px;
   display: flex;
@@ -107,7 +107,7 @@ const Detail = styled.div`
 
   .price,
   .date {
-    color: #7d7d7d;
+    color: var(--grey2);
   }
 `;
 

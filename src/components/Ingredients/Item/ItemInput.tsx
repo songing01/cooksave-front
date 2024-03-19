@@ -54,7 +54,7 @@ const Div = styled.div`
   width: 90%;
   height: 81px;
   border-radius: 6px;
-  background: #edf7ff;
+  background: var(--grey1);
   box-sizing: border-box;
   padding: 13px 9px 13px 13px;
   display: flex;
@@ -89,12 +89,12 @@ const Detail = styled.div`
   input {
     border: none;
     outline: none;
-    background-color: #edf7ff;
+    background-color: var(--grey1);
   }
 
   .price {
     width: 90%;
-    color: #7d7d7d;
+    color: var(--grey2);
 
     font-family: Noto Sans KR;
     font-size: 13px;

@@ -54,7 +54,7 @@ const EditBtn = styled.div`
 const Footer = styled.div`
   width: 100%;
   margin: 60px 0;
-  color: #7d7d7d;
+  color: var(--grey2);
 `;
 
 const FloatingBtn = styled.div`

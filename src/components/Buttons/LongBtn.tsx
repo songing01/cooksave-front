@@ -21,7 +21,7 @@ const Btn = styled.div`
   height: 46px;
   flex-shrink: 0;
   border-radius: 8px;
-  background-color: #004c92;
+  background-color: var(--blue2);
   color: #ffffff;
 
   display: flex;
