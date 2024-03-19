@@ -117,6 +117,7 @@ const Btns = styled.div`
   }
 
   .arrow {
-    width: 30px;
+    width: 20px;
+    margin-right: 5px;
   }
 `;

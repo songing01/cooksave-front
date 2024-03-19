@@ -42,6 +42,7 @@ const Div = styled.div`
   }
 
   .arrow {
-    width: 30px;
+    width: 25px;
+    margin-right: 5px;
   }
 `;
