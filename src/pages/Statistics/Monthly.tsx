@@ -6,10 +6,12 @@ import styled from "styled-components";
 import { FontBold } from "@style/font.style";
 import RecipeList from "@components/Recipe/RecipeList";
 import NavBar from "@components/NavBar/NavBar";
+import ChatbotBtn from "@components/Chat/ChatbotBtn";
 
 const Monthly = () => {
   return (
     <Div>
+      <ChatbotBtn />
       <Header isBack={false} title="나의 절약 내역" />
 
       <MonthlyCard />

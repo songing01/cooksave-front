@@ -1,3 +1,4 @@
+import ChatbotBtn from "@components/Chat/ChatbotBtn";
 import Header from "@components/Header/Header";
 import NavBar from "@components/NavBar/NavBar";
 import RecipeInput from "@components/Recipe/RecipeInput";
@@ -8,6 +9,7 @@ import styled from "styled-components";
 const Recipes = () => {
   return (
     <Div>
+      <ChatbotBtn />
       <Header isBack={false} title="당신을 위한 추천 레시피" />
 
       <div className="text">

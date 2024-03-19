@@ -26,6 +26,7 @@ const Send = styled.img`
 `;
 
 const Div = styled.div`
+  max-width: 481px;
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;

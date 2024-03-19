@@ -14,6 +14,7 @@ const ChatHeader = () => {
 export default ChatHeader;
 
 const Div = styled.div`
+  max-width: 481px;
   width: 100%;
   background: var(--blue3);
 
