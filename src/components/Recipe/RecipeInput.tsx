@@ -35,7 +35,6 @@ const Div = styled.div`
     border: none;
     background-color: var(--grey1);
 
-    font-family: Noto Sans KR;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

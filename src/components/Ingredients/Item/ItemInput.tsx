@@ -96,7 +96,6 @@ const Detail = styled.div`
     width: 90%;
     color: var(--grey2);
 
-    font-family: Noto Sans KR;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -106,7 +105,6 @@ const Detail = styled.div`
   .name {
     width: 90%;
 
-    font-family: Noto Sans KR;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
