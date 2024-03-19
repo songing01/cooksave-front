@@ -1,7 +1,7 @@
 import { FontMedium, FontRegular } from "@style/font.style";
 import unsaved from "@assets/recipe/unsaved.png";
 import saved from "@assets/recipe/saved.png";
-import arrow from "@assets/recipe/arrow.png";
+import arrow from "@assets/recipe/arrow.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 

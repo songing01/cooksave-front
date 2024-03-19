@@ -1,4 +1,4 @@
-import arrow from "@assets/recipe/arrow.png";
+import arrow from "@assets/recipe/arrow.svg";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
