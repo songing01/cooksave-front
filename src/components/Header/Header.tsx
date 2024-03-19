@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import textLogo from "@assets/common/textLogo.png";
-import back from "@assets/common/back.png";
+import back from "@assets/common/back.svg";
 import { FontBold } from "@style/font.style";
 import { useNavigate } from "react-router-dom";
 
