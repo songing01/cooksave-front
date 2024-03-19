@@ -64,7 +64,7 @@ const Table = styled.table`
   width: 90%;
   box-sizing: border-box;
   border-radius: 10px;
-  background: #edf7ff;
+  background: var(--grey1);
   border-collapse: collapse;
 
   tr {
