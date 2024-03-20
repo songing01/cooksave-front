@@ -20,7 +20,7 @@ const Input = () => {
   };
 
   const handleSend = () => {
-    if (content != "" && isLoading === false) {
+    if (content !== "" && isLoading === false) {
       setIsLoading(true);
       setChatList((prev: ChatItem[]) => [
         ...prev,
@@ -44,13 +44,23 @@ const Input = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
     <Div>
       <InputField
         placeholder="메세지를 입력하세요"
         onChange={handleChange}
         value={content}
+        onKeyDown={handleKeyDown}
+        autoFocus
       />
+
       <Send src={send} onClick={handleSend} />
     </Div>
   );
