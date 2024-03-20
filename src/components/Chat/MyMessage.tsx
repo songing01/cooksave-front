@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const MyMessage = () => {
+type Props = {
+  content: string;
+};
+
+const MyMessage = ({ content }: Props) => {
   return (
     <Div>
       <div className="wrapper">
-        <div className="text">
-          질문질문질문질문질문 질문질문질문질문
-          질문질문질문질문질문질문질문질문질문질문질문질문질문질질문질문
-          질문질문 문질문질문질문질문 질문질문질문질문질문질문질문
-        </div>
+        <div className="text">{content}</div>
       </div>
     </Div>
   );
@@ -23,7 +23,7 @@ const Div = styled.div`
   justify-content: end;
 
   .wrapper {
-    width: 249px;
+    max-width: 249px;
     border-radius: 12px;
     box-sizing: border-box;
     background: var(--blue3);

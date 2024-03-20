@@ -1,11 +1,57 @@
 import styled from "styled-components";
 import send from "@assets/chat/send.svg";
+import { useEffect, useState } from "react";
+import { sendMessage } from "@services/api/chat";
+import { chatListState, chatLoadingState } from "../../services/store/chat";
+import { useRecoilState } from "recoil";
 
 const Input = () => {
+  const [content, setContent] = useState("");
+  const [chatList, setChatList] = useRecoilState(chatListState);
+  const [isLoading, setIsLoading] = useRecoilState(chatLoadingState);
+
+  type ChatItem = {
+    role: string;
+    content: string;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setContent(e.target.value);
+  };
+
+  const handleSend = () => {
+    if (content != "" && isLoading === false) {
+      setIsLoading(true);
+      setChatList((prev: ChatItem[]) => [
+        ...prev,
+        { role: "user", content: content },
+      ]);
+      setContent("");
+
+      sendMessage(content)
+        .then(res => {
+          setChatList((prev: ChatItem[]) => [
+            ...prev,
+            { role: "assistant", content: res.choices[0].message.content },
+          ]);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  };
+
   return (
     <Div>
-      <InputField placeholder="메세지를 입력하세요" />
-      <Send src={send} />
+      <InputField
+        placeholder="메세지를 입력하세요"
+        onChange={handleChange}
+        value={content}
+      />
+      <Send src={send} onClick={handleSend} />
     </Div>
   );
 };

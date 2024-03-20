@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import chatbot from "@assets/chat/chatbot.svg";
 import { FontMedium } from "@style/font.style";
+import loading from "@assets/chat/loading.gif";
 
-const BotMessage = () => {
+type Props = {
+  content?: string;
+  isLoading: boolean;
+};
+
+const BotMessage = ({ content, isLoading }: Props) => {
   return (
     <Div>
       <div className="profile">
@@ -15,9 +21,11 @@ const BotMessage = () => {
           <FontMedium size="14px"> 쿠쿠</FontMedium>
         </div>
         <div className="text">
-          답변 내용답변 내용답변 내용답변 내용답변 내용답변 내용답변 내용답변
-          내용답변 내용답변 내용답변 내용답변 내용답변 내용답변 내용답변
-          내용답변 내용답변 내용답변 내용답변 내용
+          {isLoading ? (
+            <img src={loading} alt="loading" className="loading" />
+          ) : (
+            content
+          )}
         </div>
       </div>
     </Div>
@@ -57,10 +65,19 @@ const Div = styled.div`
   }
 
   .text {
-    width: 249px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 249px;
     border-radius: 12px;
     box-sizing: border-box;
     background: var(--grey1);
     padding: 10px;
+
+    .loading {
+      height: 40px;
+      padding: 0px 20px;
+    }
   }
 `;

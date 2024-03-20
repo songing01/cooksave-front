@@ -1,6 +1,7 @@
 import ChatHeader from "@components/Chat/ChatHeader";
 import Input from "@components/Chat/Input";
 import MessageContainer from "@components/Chat/MessageContainer";
+
 import styled from "styled-components";
 
 const ChatRoom = () => {
@@ -10,7 +11,7 @@ const ChatRoom = () => {
 
       <MessageContainer />
 
-      <StyledInput />
+      <Input />
     </Div>
   );
 };
@@ -23,5 +24,3 @@ const Div = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-const StyledInput = styled(Input)``;
