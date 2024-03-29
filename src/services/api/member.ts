@@ -2,9 +2,9 @@ import client from "./client";
 import SignUp from "@pages/Auth/SignUp";
 
 //회원가입
-type SignUp = { username: string; password: string; passwordCheck: string };
+type Body = { username: string; password: string; passwordCheck?: string };
 
-export const postMemberSignup = async (body: SignUp) => {
+export const postMemberSignup = async (body: Body) => {
   try {
     const response = await client.post(`/members/signup`, body);
     return Promise.resolve(response);
@@ -14,12 +14,7 @@ export const postMemberSignup = async (body: SignUp) => {
 };
 
 //로그인
-type Login = {
-  username: string;
-  password: string;
-};
-
-export const postMemberLogin = async (body: Login) => {
+export const postMemberLogin = async (body: Body) => {
   try {
     const response = await client.post(`/members/signup`, body);
     return Promise.resolve(response);

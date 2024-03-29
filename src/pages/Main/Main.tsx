@@ -7,11 +7,19 @@ import CreateBtn from "@components/Buttons/CreateBtn";
 import UnderLinedBtn from "@components/Buttons/UnderLinedBtn";
 import { useNavigate } from "react-router-dom";
 import Header from "@components/Header/Header";
+import { useEffect, useState } from "react";
+import { getIngredients } from "@services/api/ingredients";
 
 //식재료 내역을 확안하는 메인페이지
-
 const Main = () => {
   const navigate = useNavigate();
+  const [list, setList] = useState();
+
+  useEffect(() => {
+    getIngredients()
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <>

@@ -6,20 +6,53 @@ import UnderLinedBtn from "@components/Buttons/UnderLinedBtn";
 
 import Form from "@components/Auth/Form";
 import Header from "@components/Header/Header";
+import { useState } from "react";
+import { postMemberSignup } from "@services/api/member";
+
+export type SignUpInputs = {
+  id: string;
+  password: string;
+  passwordCheck?: string;
+};
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [inputs, setInputs] = useState<SignUpInputs>({
+    id: "",
+    password: "",
+    passwordCheck: "",
+  });
+
+  const requestSignup = () => {
+    const { id, password, passwordCheck } = inputs;
+    if (
+      id !== "" &&
+      password !== "" &&
+      passwordCheck !== "" &&
+      password === passwordCheck
+    ) {
+      postMemberSignup({
+        username: inputs.id,
+        password: inputs.password,
+        passwordCheck: inputs.passwordCheck,
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+
+    return;
+  };
 
   return (
     <Div>
       <Header isBack={false} />
 
       <div className="form">
-        <Form isLogin={false} />
+        <Form isLogin={false} inputs={inputs} setInputs={setInputs} />
       </div>
 
       <div className="bottom">
-        <LongBtn text={"회원가입"} />
+        <LongBtn text={"회원가입"} onClick={requestSignup} />
         <UnderLinedBtn
           text={"이미 계정이 있나요?"}
           onClick={() => navigate("/auth/login")}

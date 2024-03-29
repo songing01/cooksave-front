@@ -2,11 +2,22 @@ import FitBtn from "@components/Buttons/FitBtn";
 import LongBtn from "@components/Buttons/LongBtn";
 import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
+import { getIngredients } from "@services/api/ingredients";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Editing = () => {
   const navigate = useNavigate();
+  const [initialList, setInitialList] = useState();
+  const [finalList, setFinalList] = useState();
+
+  useEffect(() => {
+    //기존 목록 겟
+    getIngredients()
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <Div>

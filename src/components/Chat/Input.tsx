@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import send from "@assets/chat/send.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { sendMessage } from "@services/api/chat";
 import { chatListState, chatLoadingState } from "../../services/store/chat";
 import { useRecoilState } from "recoil";
