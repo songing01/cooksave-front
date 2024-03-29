@@ -2,7 +2,6 @@ import Login from "@pages/Auth/Login";
 import SignUp from "@pages/Auth/SignUp";
 import ChatRoom from "@pages/Chat/ChatRoom";
 import AICreate from "@pages/Create/AICreate";
-import OCR from "@pages/Create/AICreate";
 import SelfCreate from "@pages/Create/SelfCreate";
 import Greeting from "@pages/Greeting";
 import Editing from "@pages/Main/Editing";
@@ -24,7 +23,7 @@ function App() {
 
       {/* Auth 관련 페이지 */}
       <Route path="auth/login" element={<Login />} />
-      <Route path="auth/sign-up" element={<SignUp />} />
+      <Route path="auth/signup" element={<SignUp />} />
 
       {/* 메인 페이지 */}
       <Route path="/" element={<Main />} />
