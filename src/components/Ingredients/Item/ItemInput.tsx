@@ -4,8 +4,37 @@ import IconList from "./IconList";
 import { FontBold, FontRegular } from "@style/font.style";
 import { useState } from "react";
 
-const ItemInput = () => {
+type Props = {
+  initialInput?: Inputs;
+};
+
+type Inputs = {
+  name: string;
+  price: number | undefined;
+  count: number;
+};
+
+const ItemInput = ({
+  initialInput = { name: "", price: undefined, count: 1 },
+}: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
+  const [inputs, setInputs] = useState<Inputs>(initialInput);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    const nextInputs = {
+      ...inputs,
+      [name]: value,
+    };
+
+    setInputs(nextInputs);
+  };
+
+  const handlePlus = () => {};
+
+  const handleMinus = () => {};
+
   return (
     <Div>
       <div className="left-container">
@@ -16,21 +45,39 @@ const ItemInput = () => {
             setIsOpenList(!isOpenList);
           }}
         />
-        <Detail>
-          <input className="name" placeholder="재료명을 입력하세요" />
 
-          <input className="price" placeholder="가격을 입력하세요" />
+        <Detail>
+          <input
+            name="name"
+            className="name"
+            placeholder="재료명을 입력하세요"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+
+          <input
+            type="number"
+            name="price"
+            className="price"
+            placeholder="가격을 입력하세요"
+            value={inputs.price}
+            onChange={handleChange}
+          />
         </Detail>
       </div>
 
       <CountWrapper>
-        <FontRegular size="20px" className="minus">
-          -
-        </FontRegular>
+        <div className="minus" onClick={handleMinus}>
+          <FontRegular size="20px">-</FontRegular>
+        </div>
+
         <Count>
-          <FontBold size="12px">1</FontBold>
+          <FontBold size="12px">{inputs.count}</FontBold>
         </Count>
-        <FontRegular size="20px">+</FontRegular>
+
+        <div className="plus" onClick={handlePlus}>
+          <FontRegular size="20px">+</FontRegular>
+        </div>
       </CountWrapper>
 
       {/* 리스트에서 아이콘 선택 */}
@@ -90,6 +137,7 @@ const Detail = styled.div`
     border: none;
     outline: none;
     background-color: var(--grey1);
+    font-family: Noto Sans KR;
   }
 
   .price {
