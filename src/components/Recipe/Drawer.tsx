@@ -29,7 +29,7 @@ const Drawer = () => {
             내가 가진 재료
           </FontBold>
 
-          <List isEditing={false} />
+          <List isEditing={false} isDeletable={false} />
         </div>
 
         <div className="video">

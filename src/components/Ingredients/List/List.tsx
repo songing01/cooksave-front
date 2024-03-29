@@ -3,7 +3,7 @@ import Item from "../Item/Item";
 
 type Props = {
   isEditing: boolean;
-  isDeletable?: boolean;
+  isDeletable: boolean;
 };
 
 const List = ({ isEditing, isDeletable }: Props) => {

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 type Props = {
   isEditing: boolean;
-  isDeletable?: boolean;
+  isDeletable: boolean;
 };
 
 const Item = ({ isEditing, isDeletable }: Props) => {
@@ -49,7 +49,7 @@ const Item = ({ isEditing, isDeletable }: Props) => {
         {isEditing && <FontRegular size="20px">+</FontRegular>}
       </CountWrapper>
 
-      {isEditing && isDeletable && <DeleteBtn src={deletebtn} />}
+      {isDeletable && <DeleteBtn src={deletebtn} />}
 
       {/* 리스트에서 아이콘 선택 */}
       {isEditing && isOpenList && (
