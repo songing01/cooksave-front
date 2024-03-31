@@ -5,7 +5,7 @@ import ItemInput from "@components/Ingredients/Item/ItemInput";
 import List from "@components/Ingredients/List/List";
 import { postIngredientsTyping } from "@services/api/ingredients";
 import { newListState } from "@services/store/ingredients";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
@@ -40,9 +40,13 @@ const SelfCreate = () => {
       .then(res => {
         alert("등록이 완료되었습니다.");
         navigate("/");
+        setNewList([]);
       })
       .catch(err => alert("등록 오류"));
   };
+  useEffect(() => {
+    console.log(newList);
+  }, []);
   return (
     <Div>
       <Header isBack={true} title="식재료 등록" />
@@ -56,7 +60,12 @@ const SelfCreate = () => {
       </div>
 
       <div className="margin">
-        <List isEditing={false} isDeletable={true} list={newList} />
+        <List
+          isEditing={true}
+          isDeletable={true}
+          list={newList}
+          isIconEditable={true}
+        />
       </div>
 
       <div className="bottom">

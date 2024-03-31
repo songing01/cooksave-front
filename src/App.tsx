@@ -39,10 +39,15 @@ function App() {
 
       {/* 레시피 관련 페이지 */}
       <Route path="/recipes" element={<Recipes />} />
-      <Route path="/recipes/1" element={<Detail />} />
-      <Route path="/recipes/1/ingredients" element={<IngredientList />} />
+      <Route path="/recipes/:name/ingredients" element={<IngredientList />} />
       <Route
-        path="/recipes/1/confirmation"
+        path="/recipes/:name/confirmation"
+        element={<Confirmation isHistory={false} />}
+      />
+      <Route path="/recipes/:id" element={<Detail />} />
+      <Route path="/recipes/:id/ingredients" element={<IngredientList />} />
+      <Route
+        path="/recipes/:id/confirmation"
         element={<Confirmation isHistory={false} />}
       />
       <Route path="/recipes/save" element={<SavedRecipes />} />

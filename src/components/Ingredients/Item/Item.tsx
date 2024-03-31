@@ -4,21 +4,41 @@ import icon1 from "@assets/ingredients/icon1.png";
 import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
 import { IconList, icons } from "./IconList";
-import { useState } from "react";
-import { TypeIngredient } from "type/ingredients";
+import { useEffect, useState } from "react";
+
 import { useRecoilState } from "recoil";
 import { newListState } from "@services/store/ingredients";
 
 type Props = {
+  isIconEditable: boolean;
   isEditing: boolean;
   isDeletable: boolean;
   item: any;
   index: any;
+  initialList: any[];
 };
 
-const Item = ({ isEditing, isDeletable, item, index }: Props) => {
+const Item = ({
+  isIconEditable,
+  isEditing,
+  isDeletable,
+  item,
+  index,
+  initialList,
+}: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
   const [newList, setNewList] = useRecoilState(newListState);
+
+  useEffect(() => {
+    //첫 렌더링 시 초기화
+    setNewList(initialList);
+  }, []);
+
+  const { iconId, name, price, date, amount } = item;
+
+  //수정완료 전 화면에 보여줄 값
+  const [tempAmount, setTempAmount] = useState(amount);
+  const [tempItem, setTempItem] = useState(item);
 
   const deleteNewItem = () => {
     let arr = [...newList];
@@ -26,47 +46,42 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
     setNewList(arr);
   };
 
-  // const handlePlus = () => {
-  //   const nextInputs = {
-  //     ...inputs,
-  //     amount: amount + 0.25,
-  //   };
+  const handlePlus = () => {
+    let arr = [...newList];
+    arr.splice(index, 1, { ...arr[index], amount: arr[index].amount + 0.25 });
+    setNewList(arr);
+    setTempAmount((prev: number) => prev + 0.25); //수정완료 전 화면에 보여줄 값
+  };
 
-  //   setInputs(nextInputs);
-  // };
-
-  // const handleMinus = () => {
-  //   if (amount === 0.25) return;
-
-  //   const nextInputs = {
-  //     ...inputs,
-  //     amount: amount - 0.25,
-  //   };
-
-  //   setInputs(nextInputs);
-  // };
+  const handleMinus = () => {
+    if (newList[index].amount === 0.25) return;
+    let arr = [...newList];
+    arr.splice(index, 1, { ...arr[index], amount: arr[index].amount - 0.25 });
+    setNewList(arr);
+    setTempAmount((prev: number) => prev - 0.25); //수정완료 전 화면에 보여줄 값
+  };
 
   return (
     <Div>
       <div className="left-container">
         <img
           className="icon"
-          src={icons[item.iconId - 1]}
+          src={icons[tempItem.iconId - 1]}
           onClick={() => {
-            setIsOpenList(!isOpenList);
+            isIconEditable && setIsOpenList(!isOpenList);
           }}
         />
 
         <Detail>
           <div className="name">
-            <FontMedium size="16px">{item.name}</FontMedium>
+            <FontMedium size="16px">{name}</FontMedium>
           </div>
           <div className="price">
-            <FontMedium size="13px">{item.price}</FontMedium>
+            <FontMedium size="13px">{price}</FontMedium>
           </div>
           {item.date && (
             <div className="date">
-              <FontRegular size="10px">등록일 :{item.date} </FontRegular>
+              <FontRegular size="10px">등록일 :{date} </FontRegular>
             </div>
           )}
         </Detail>
@@ -74,17 +89,17 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
 
       <CountWrapper>
         {isEditing && (
-          <div onClick={() => {}}>
+          <div onClick={handleMinus}>
             <FontRegular size="20px" className="minus">
               -
             </FontRegular>
           </div>
         )}
         <Count>
-          <FontBold size="12px">{item.amount}</FontBold>
+          <FontBold size="12px">{tempAmount}</FontBold>
         </Count>
         {isEditing && (
-          <div className="plus" onClick={() => {}}>
+          <div className="plus" onClick={handlePlus}>
             <FontRegular size="20px">+</FontRegular>
           </div>
         )}
@@ -93,12 +108,12 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
       {isDeletable && <DeleteBtn src={deletebtn} onClick={deleteNewItem} />}
 
       {/* 리스트에서 아이콘 선택 */}
-      {isEditing && isOpenList && (
+      {isIconEditable && isOpenList && (
         <div className="icon-list">
           <IconList
             setIsOpenList={setIsOpenList}
-
-            //추후작업
+            inputs={tempItem}
+            setInputs={setTempItem}
           />
         </div>
       )}

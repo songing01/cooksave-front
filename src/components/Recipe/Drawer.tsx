@@ -29,7 +29,12 @@ const Drawer = () => {
             내가 가진 재료
           </FontBold>
 
-          <List isEditing={false} isDeletable={false} list={[]} />
+          <List
+            isEditing={false}
+            isDeletable={false}
+            list={[]}
+            isIconEditable={false}
+          />
         </div>
 
         <div className="video">

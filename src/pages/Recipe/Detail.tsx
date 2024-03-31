@@ -1,5 +1,6 @@
 import Header from "@components/Header/Header";
 import Drawer from "@components/Recipe/Drawer";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Detail = () => {

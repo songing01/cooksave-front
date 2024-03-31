@@ -109,7 +109,7 @@ export const postRecipeInput = async (body: InputIngredientList) => {
 
 //제공된 레시피
 export const postRecipe = async (
-  recipe_id: string,
+  recipe_id: number,
   body: InputIngredientList,
 ) => {
   try {

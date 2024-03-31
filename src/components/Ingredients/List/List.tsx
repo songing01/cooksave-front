@@ -5,18 +5,21 @@ type Props = {
   isEditing: boolean;
   isDeletable: boolean;
   list: any[];
+  isIconEditable: boolean;
 };
 
-const List = ({ isEditing, isDeletable, list }: Props) => {
+const List = ({ isEditing, isDeletable, list, isIconEditable }: Props) => {
   return (
     <Div>
       {list.map((item, index) => {
         return (
           <Item
+            isIconEditable={isIconEditable}
             isEditing={isEditing}
             isDeletable={isDeletable}
             item={item}
             index={index}
+            initialList={list} //편집시 기본값
           />
         );
       })}

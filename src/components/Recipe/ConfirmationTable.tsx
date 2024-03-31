@@ -1,25 +1,12 @@
 import { FontBold, FontMedium } from "@style/font.style";
 import React from "react";
 import styled from "styled-components";
+import { TypeIngredient } from "type/ingredients";
 
-const ConfirmationTable = () => {
-  const list = [
-    {
-      name: "도드람 제주 한돈 삼겹살 500g",
-      count: 0.5,
-      price: 8000,
-    },
-    {
-      name: "도드람 제주 한돈 삼겹살 500g",
-      count: 0.5,
-      price: 8000,
-    },
-    {
-      name: "도드람 제주 한돈 삼겹살 50aj sdnojna son0 g",
-      count: 0.5,
-      price: 8000,
-    },
-  ];
+type Props = {
+  list: TypeIngredient[];
+};
+const ConfirmationTable = ({ list }: Props) => {
   return (
     <Table>
       <thead>
@@ -45,7 +32,7 @@ const ConfirmationTable = () => {
                 </FontMedium>
               </td>
               <td>
-                <FontMedium size="14px">{item.count}</FontMedium>
+                <FontMedium size="14px">{item.amount}</FontMedium>
               </td>
               <td>
                 <FontMedium size="14px">{item.price}</FontMedium>

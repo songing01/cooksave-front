@@ -9,15 +9,17 @@ import { useNavigate } from "react-router-dom";
 import Header from "@components/Header/Header";
 import { useEffect, useState } from "react";
 import { getIngredients } from "@services/api/ingredients";
+import { useRecoilState } from "recoil";
+import { myListState } from "@services/store/ingredients";
 
 //식재료 내역을 확안하는 메인페이지
 const Main = () => {
   const navigate = useNavigate();
-  const [list, setList] = useState();
+  const [myList, setMyList] = useRecoilState(myListState);
 
   useEffect(() => {
     getIngredients()
-      .then(res => console.log(res))
+      .then(res => setMyList(res.data))
       .catch(err => console.log(err));
   }, []);
 
@@ -29,7 +31,12 @@ const Main = () => {
         <img src={pencil} onClick={() => navigate("/edit")} />
       </EditBtn>
 
-      <List isEditing={false} isDeletable={false} list={[]} />
+      <List
+        isEditing={false}
+        isDeletable={false}
+        list={myList}
+        isIconEditable={false}
+      />
 
       <Footer>
         <UnderLinedBtn text="로그아웃" />

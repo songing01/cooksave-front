@@ -1,16 +1,25 @@
 import arrow from "@assets/recipe/arrow.svg";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const RecipeInput = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
   return (
     <Div>
-      <input placeholder="레시피명을 입력하세요" />
+      <input
+        placeholder="레시피명을 입력하세요"
+        onChange={handleChange}
+        value={name}
+      />
       <img
         className="arrow"
         src={arrow}
-        onClick={() => navigate("/recipes/1")}
+        onClick={() => navigate(`/recipes/${name}/ingredients`)}
       />
     </Div>
   );
