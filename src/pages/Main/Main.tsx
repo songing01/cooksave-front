@@ -29,7 +29,7 @@ const Main = () => {
         <img src={pencil} onClick={() => navigate("/edit")} />
       </EditBtn>
 
-      <List isEditing={false} isDeletable={false} />
+      <List isEditing={false} isDeletable={false} list={[]} />
 
       <Footer>
         <UnderLinedBtn text="로그아웃" />

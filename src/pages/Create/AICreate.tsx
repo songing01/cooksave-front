@@ -7,7 +7,7 @@ import example2 from "@assets/create/od-eg.png";
 import { FontBold, FontMedium } from "@style/font.style";
 import { useRef, useState } from "react";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
-
+import { Ingredient } from "type/ingredients";
 type Props = {
   isOCR: boolean;
 };
@@ -17,6 +17,12 @@ const AICreate = ({ isOCR }: Props) => {
   const [previewImg, setPreviewImg] = useState<string | ArrayBuffer | null>(
     null,
   );
+  const [inputs, setInputs] = useState<Ingredient>({
+    iconId: 1,
+    name: "",
+    price: 0,
+    amount: 1,
+  });
 
   const imgRef = useRef<HTMLInputElement>(null);
 
@@ -95,13 +101,7 @@ const AICreate = ({ isOCR }: Props) => {
               <FontBold size="18px">인식 결과</FontBold>
             </div>
             <div className="result-container">
-              <ItemInput
-                initialInput={{
-                  name: "세척 사과 대과 1개입",
-                  price: 3000,
-                  count: 1,
-                }}
-              />
+              <ItemInput inputs={inputs} setInputs={setInputs} />
             </div>
           </Result>
         </>

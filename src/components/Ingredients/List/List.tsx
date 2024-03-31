@@ -4,21 +4,22 @@ import Item from "../Item/Item";
 type Props = {
   isEditing: boolean;
   isDeletable: boolean;
+  list: any[];
 };
 
-const List = ({ isEditing, isDeletable }: Props) => {
+const List = ({ isEditing, isDeletable, list }: Props) => {
   return (
     <Div>
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
-      <Item isEditing={isEditing} isDeletable={isDeletable} />
+      {list.map((item, index) => {
+        return (
+          <Item
+            isEditing={isEditing}
+            isDeletable={isDeletable}
+            item={item}
+            index={index}
+          />
+        );
+      })}
     </Div>
   );
 };

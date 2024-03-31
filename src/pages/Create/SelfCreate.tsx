@@ -3,25 +3,48 @@ import LongBtn from "@components/Buttons/LongBtn";
 import Header from "@components/Header/Header";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
 import List from "@components/Ingredients/List/List";
+import { newListState } from "@services/store/ingredients";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { Ingredient } from "type/ingredients";
 
 //식재료를 직접 등록하는 페이지
 const SelfCreate = () => {
+  const [newList, setNewList] = useRecoilState(newListState);
+  const [inputs, setInputs] = useState<Ingredient>({
+    iconId: 1,
+    name: "",
+    price: 0,
+    amount: 1,
+  });
+
+  const addNewItem = () => {
+    if (inputs.name === "" || inputs.price === undefined || inputs.amount === 0)
+      return;
+
+    setNewList((prev: Ingredient[]) => [...prev, inputs]);
+    setInputs({
+      iconId: 1,
+      name: "",
+      price: 0,
+      amount: 1,
+    });
+  };
   return (
     <Div>
       <Header isBack={true} title="식재료 등록" />
 
       <div className="input">
-        <ItemInput />
+        <ItemInput inputs={inputs} setInputs={setInputs} />
       </div>
 
       <div className="btn">
-        <FitBtn text="추가하기" />
+        <FitBtn text="추가하기" onClick={addNewItem} />
       </div>
 
       <div className="margin">
-        <List isEditing={true} />
+        <List isEditing={false} isDeletable={true} list={newList} />
       </div>
 
       <div className="bottom">

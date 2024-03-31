@@ -3,22 +3,16 @@ import styled from "styled-components";
 import IconList from "./IconList";
 import { FontBold, FontRegular } from "@style/font.style";
 import { useState } from "react";
+import { Ingredient } from "type/ingredients";
 
 type Props = {
-  initialInput?: Inputs;
+  inputs: Ingredient;
+  setInputs: React.Dispatch<React.SetStateAction<Ingredient>>;
 };
 
-type Inputs = {
-  name: string;
-  price: number | undefined;
-  count: number;
-};
-
-const ItemInput = ({
-  initialInput = { name: "", price: undefined, count: 1 },
-}: Props) => {
+const ItemInput = ({ inputs, setInputs }: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
-  const [inputs, setInputs] = useState<Inputs>(initialInput);
+  const { iconId, name, price, amount } = inputs;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -51,7 +45,7 @@ const ItemInput = ({
             name="name"
             className="name"
             placeholder="재료명을 입력하세요"
-            value={inputs.name}
+            value={name}
             onChange={handleChange}
           />
 
@@ -60,7 +54,7 @@ const ItemInput = ({
             name="price"
             className="price"
             placeholder="가격을 입력하세요"
-            value={inputs.price}
+            value={price || "가격을 입력하세요"}
             onChange={handleChange}
           />
         </Detail>
@@ -72,7 +66,7 @@ const ItemInput = ({
         </div>
 
         <Count>
-          <FontBold size="12px">{inputs.count}</FontBold>
+          <FontBold size="12px">{amount}</FontBold>
         </Count>
 
         <div className="plus" onClick={handlePlus}>

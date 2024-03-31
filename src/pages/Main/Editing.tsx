@@ -28,7 +28,7 @@ const Editing = () => {
       </EditBtn>
 
       <div className="margin">
-        <List isEditing={true} isDeletable={true} />
+        <List isEditing={true} isDeletable={true} list={[]} />
       </div>
 
       <div className="bottom">

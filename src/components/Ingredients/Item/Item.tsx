@@ -5,14 +5,24 @@ import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
 import IconList from "./IconList";
 import { useState } from "react";
+import { Ingredient } from "type/ingredients";
+import { useRecoilState } from "recoil";
+import { newListState } from "@services/store/ingredients";
 
 type Props = {
   isEditing: boolean;
   isDeletable: boolean;
+  item: any;
+  index: any;
 };
 
-const Item = ({ isEditing, isDeletable }: Props) => {
+const Item = ({ isEditing, isDeletable, item, index }: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
+  const [newList, setNewList] = useRecoilState(newListState);
+
+  const deleteNewItem = () => {
+    setNewList((prev: Ingredient[]) => prev.splice(index, 1));
+  };
   return (
     <Div>
       <div className="left-container">
@@ -26,14 +36,16 @@ const Item = ({ isEditing, isDeletable }: Props) => {
 
         <Detail>
           <div className="name">
-            <FontMedium size="16px">청정원 깐 마늘 200g 1팩</FontMedium>
+            <FontMedium size="16px">{item.name}</FontMedium>
           </div>
           <div className="price">
-            <FontMedium size="13px">2000원</FontMedium>
+            <FontMedium size="13px">{item.price}</FontMedium>
           </div>
-          <div className="date">
-            <FontRegular size="10px">등록일 : 2023.11.03 </FontRegular>
-          </div>
+          {item.date && (
+            <div className="date">
+              <FontRegular size="10px">등록일 :{item.date} </FontRegular>
+            </div>
+          )}
         </Detail>
       </div>
 
@@ -44,12 +56,12 @@ const Item = ({ isEditing, isDeletable }: Props) => {
           </FontRegular>
         )}
         <Count>
-          <FontBold size="12px">1</FontBold>
+          <FontBold size="12px">{item.amount}</FontBold>
         </Count>
         {isEditing && <FontRegular size="20px">+</FontRegular>}
       </CountWrapper>
 
-      {isDeletable && <DeleteBtn src={deletebtn} />}
+      {isDeletable && <DeleteBtn src={deletebtn} onClick={deleteNewItem} />}
 
       {/* 리스트에서 아이콘 선택 */}
       {isEditing && isOpenList && (

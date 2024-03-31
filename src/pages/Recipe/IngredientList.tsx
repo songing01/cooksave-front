@@ -14,7 +14,7 @@ const IngredientList = () => {
       <Header isBack={true} />
       <GuideText text="사용할 재료와 수량을 선택하세요" />
 
-      <List isEditing={true} isDeletable={false} />
+      <List isEditing={true} isDeletable={false} list={[]} />
       <div className="margin" style={{ height: "90px" }} />
 
       <div className="bottom">
