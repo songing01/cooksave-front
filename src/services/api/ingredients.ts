@@ -1,5 +1,5 @@
 import client from "./client";
-import { Ingredient } from "type/ingredients";
+import { TypeIngredient } from "type/ingredients";
 
 //식재료 목록 조회
 export const getIngredients = async () => {
@@ -12,7 +12,7 @@ export const getIngredients = async () => {
 };
 
 //식재료 직접 등록
-export const postIngredientsTyping = async (body: Array<Ingredient>) => {
+export const postIngredientsTyping = async (body: Array<TypeIngredient>) => {
   try {
     const response = await client.post(`/ingredients/typing`, body);
     return Promise.resolve(response);

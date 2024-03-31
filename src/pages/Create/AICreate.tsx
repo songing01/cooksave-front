@@ -7,7 +7,7 @@ import example2 from "@assets/create/od-eg.png";
 import { FontBold, FontMedium } from "@style/font.style";
 import { useRef, useState } from "react";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
-import { Ingredient } from "type/ingredients";
+import { TypeIngredient } from "type/ingredients";
 type Props = {
   isOCR: boolean;
 };
@@ -17,7 +17,7 @@ const AICreate = ({ isOCR }: Props) => {
   const [previewImg, setPreviewImg] = useState<string | ArrayBuffer | null>(
     null,
   );
-  const [inputs, setInputs] = useState<Ingredient>({
+  const [inputs, setInputs] = useState<TypeIngredient>({
     iconId: 1,
     name: "",
     price: 0,

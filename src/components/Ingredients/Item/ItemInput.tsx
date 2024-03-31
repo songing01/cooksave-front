@@ -1,13 +1,13 @@
 import icon1 from "@assets/ingredients/icon1.png";
 import styled from "styled-components";
-import IconList from "./IconList";
+import { IconList, icons } from "./IconList";
 import { FontBold, FontRegular } from "@style/font.style";
 import { useState } from "react";
-import { Ingredient } from "type/ingredients";
+import { TypeIngredient } from "type/ingredients";
 
 type Props = {
-  inputs: Ingredient;
-  setInputs: React.Dispatch<React.SetStateAction<Ingredient>>;
+  inputs: TypeIngredient;
+  setInputs: React.Dispatch<React.SetStateAction<TypeIngredient>>;
 };
 
 const ItemInput = ({ inputs, setInputs }: Props) => {
@@ -25,16 +25,32 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
     setInputs(nextInputs);
   };
 
-  const handlePlus = () => {};
+  const handlePlus = () => {
+    const nextInputs = {
+      ...inputs,
+      amount: amount + 0.25,
+    };
 
-  const handleMinus = () => {};
+    setInputs(nextInputs);
+  };
+
+  const handleMinus = () => {
+    if (amount === 0.25) return;
+
+    const nextInputs = {
+      ...inputs,
+      amount: amount - 0.25,
+    };
+
+    setInputs(nextInputs);
+  };
 
   return (
     <Div>
       <div className="left-container">
         <img
           className="icon"
-          src={icon1}
+          src={iconId && icons[iconId - 1]}
           onClick={() => {
             setIsOpenList(!isOpenList);
           }}
@@ -78,9 +94,9 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
       {isOpenList && (
         <div className="icon-list">
           <IconList
-            onClick={() => {
-              setIsOpenList(!isOpenList);
-            }}
+            setIsOpenList={setIsOpenList}
+            inputs={inputs}
+            setInputs={setInputs}
           />
         </div>
       )}

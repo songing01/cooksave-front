@@ -3,9 +3,9 @@ import styled from "styled-components";
 import icon1 from "@assets/ingredients/icon1.png";
 import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
-import IconList from "./IconList";
+import { IconList } from "./IconList";
 import { useState } from "react";
-import { Ingredient } from "type/ingredients";
+import { TypeIngredient } from "type/ingredients";
 import { useRecoilState } from "recoil";
 import { newListState } from "@services/store/ingredients";
 
@@ -21,8 +21,31 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
   const [newList, setNewList] = useRecoilState(newListState);
 
   const deleteNewItem = () => {
-    setNewList((prev: Ingredient[]) => prev.splice(index, 1));
+    let arr = [...newList];
+    arr.splice(index, 1);
+    setNewList(arr);
   };
+
+  // const handlePlus = () => {
+  //   const nextInputs = {
+  //     ...inputs,
+  //     amount: amount + 0.25,
+  //   };
+
+  //   setInputs(nextInputs);
+  // };
+
+  // const handleMinus = () => {
+  //   if (amount === 0.25) return;
+
+  //   const nextInputs = {
+  //     ...inputs,
+  //     amount: amount - 0.25,
+  //   };
+
+  //   setInputs(nextInputs);
+  // };
+
   return (
     <Div>
       <div className="left-container">
@@ -51,14 +74,20 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
 
       <CountWrapper>
         {isEditing && (
-          <FontRegular size="20px" className="minus">
-            -
-          </FontRegular>
+          <div onClick={() => {}}>
+            <FontRegular size="20px" className="minus">
+              -
+            </FontRegular>
+          </div>
         )}
         <Count>
           <FontBold size="12px">{item.amount}</FontBold>
         </Count>
-        {isEditing && <FontRegular size="20px">+</FontRegular>}
+        {isEditing && (
+          <div className="plus" onClick={() => {}}>
+            <FontRegular size="20px">+</FontRegular>
+          </div>
+        )}
       </CountWrapper>
 
       {isDeletable && <DeleteBtn src={deletebtn} onClick={deleteNewItem} />}
@@ -67,9 +96,9 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
       {isEditing && isOpenList && (
         <div className="icon-list">
           <IconList
-            onClick={() => {
-              setIsOpenList(!isOpenList);
-            }}
+            setIsOpenList={setIsOpenList}
+
+            //추후작업
           />
         </div>
       )}

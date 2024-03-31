@@ -3,10 +3,24 @@ import Header from "@components/Header/Header";
 import NavBar from "@components/NavBar/NavBar";
 import RecipeInput from "@components/Recipe/RecipeInput";
 import RecipeList from "@components/Recipe/RecipeList";
+import { getRecipes } from "@services/api/recipes";
 import { FontMedium } from "@style/font.style";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { TypeRecipe } from "type/recipe";
 
 const Recipes = () => {
+  const [list, setList] = useState<TypeRecipe[]>();
+  const requestList = () => {
+    getRecipes()
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    requestList();
+  }, []);
+
   return (
     <Div>
       <ChatbotBtn />
@@ -26,7 +40,7 @@ const Recipes = () => {
       </div>
 
       <div className="margin">
-        <RecipeList />
+        <RecipeList list={list} isHistory={false} />
       </div>
 
       <NavBar />

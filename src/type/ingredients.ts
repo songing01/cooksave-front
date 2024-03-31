@@ -1,4 +1,4 @@
-export type Ingredient = {
+export type TypeIngredient = {
   iconId?: number;
   name: string;
   price: number;

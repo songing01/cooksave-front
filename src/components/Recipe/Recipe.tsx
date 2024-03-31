@@ -12,6 +12,7 @@ type Props = {
 
 const Recipe = ({ isSaved, isHistory }: Props) => {
   const navigate = useNavigate();
+
   return (
     <Div>
       <div className="left-container">

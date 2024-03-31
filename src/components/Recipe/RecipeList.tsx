@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Recipe from "./Recipe";
 import styled from "styled-components";
+import { getRecipes } from "@services/api/recipes";
+import { TypeRecipe } from "type/recipe";
 
 type Props = {
-  isHistory?: boolean;
+  isHistory: boolean;
+  list?: TypeRecipe[];
 };
 
-const RecipeList = ({ isHistory }: Props) => {
+const RecipeList = ({ isHistory, list }: Props) => {
   return (
     <List>
-      <Recipe isSaved={true} isHistory={isHistory} />
-      <Recipe isSaved={false} isHistory={isHistory} />
-      <Recipe isSaved={true} isHistory={isHistory} />
-      <Recipe isSaved={false} isHistory={isHistory} />
-      <Recipe isSaved={true} isHistory={isHistory} />
-      <Recipe isSaved={false} isHistory={isHistory} />
+      {list &&
+        list.map((item: TypeRecipe) => {
+          return <Recipe isSaved={item.heart} isHistory={isHistory} />;
+        })}
     </List>
   );
 };

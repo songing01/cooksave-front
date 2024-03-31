@@ -3,33 +3,45 @@ import LongBtn from "@components/Buttons/LongBtn";
 import Header from "@components/Header/Header";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
 import List from "@components/Ingredients/List/List";
+import { postIngredientsTyping } from "@services/api/ingredients";
 import { newListState } from "@services/store/ingredients";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { Ingredient } from "type/ingredients";
+import { TypeIngredient } from "type/ingredients";
 
 //식재료를 직접 등록하는 페이지
 const SelfCreate = () => {
   const [newList, setNewList] = useRecoilState(newListState);
-  const [inputs, setInputs] = useState<Ingredient>({
+  const [inputs, setInputs] = useState<TypeIngredient>({
     iconId: 1,
     name: "",
     price: 0,
     amount: 1,
   });
+  const navigate = useNavigate();
 
   const addNewItem = () => {
     if (inputs.name === "" || inputs.price === undefined || inputs.amount === 0)
       return;
 
-    setNewList((prev: Ingredient[]) => [...prev, inputs]);
+    setNewList((prev: TypeIngredient[]) => [...prev, inputs]);
     setInputs({
       iconId: 1,
       name: "",
       price: 0,
       amount: 1,
     });
+  };
+
+  const requestSelfCreate = () => {
+    postIngredientsTyping(newList)
+      .then(res => {
+        alert("등록이 완료되었습니다.");
+        navigate("/");
+      })
+      .catch(err => alert("등록 오류"));
   };
   return (
     <Div>
@@ -48,7 +60,7 @@ const SelfCreate = () => {
       </div>
 
       <div className="bottom">
-        <LongBtn text="등록 완료" />
+        <LongBtn text="등록 완료" onClick={requestSelfCreate} />
       </div>
     </Div>
   );
