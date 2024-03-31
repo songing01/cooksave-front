@@ -1,4 +1,5 @@
 import client from "./client";
+import { Ingredient } from "type/ingredients";
 
 //식재료 목록 조회
 export const getIngredients = async () => {
@@ -11,13 +12,6 @@ export const getIngredients = async () => {
 };
 
 //식재료 직접 등록
-type Ingredient = {
-  iconId: number;
-  name: string;
-  price: number;
-  amount: number;
-};
-
 export const postIngredientsTyping = async (body: Array<Ingredient>) => {
   try {
     const response = await client.post(`/ingredients/typing`, body);

@@ -1,4 +1,5 @@
 import client from "./client";
+import { Ingredient } from "type/ingredients";
 
 //레시피 북마크
 export const postRecipesHeart = async (recipe_id: number) => {
@@ -90,12 +91,6 @@ export const patchRecipeInput = async (
 };
 
 //레시피 요리 내역 저장
-type Ingredient = {
-  name: string;
-  amount: number;
-  price: number;
-};
-
 type InputIngredientList = {
   name?: string;
   total: number;
