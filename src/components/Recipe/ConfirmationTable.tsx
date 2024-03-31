@@ -25,19 +25,23 @@ const ConfirmationTable = ({ list }: Props) => {
       <tbody>
         {list.map(item => {
           return (
-            <tr>
-              <td className="name-container">
-                <FontMedium className="name" size="14px">
-                  {item.name}
-                </FontMedium>
-              </td>
-              <td>
-                <FontMedium size="14px">{item.amount}</FontMedium>
-              </td>
-              <td>
-                <FontMedium size="14px">{item.price}</FontMedium>
-              </td>
-            </tr>
+            item.amount !== 0 && (
+              <tr>
+                <td className="name-container">
+                  <FontMedium className="name" size="14px">
+                    {item.name}
+                  </FontMedium>
+                </td>
+                <td>
+                  <FontMedium size="14px">{item.amount}</FontMedium>
+                </td>
+                <td>
+                  <FontMedium size="14px">
+                    {item.price * item.amount}
+                  </FontMedium>
+                </td>
+              </tr>
+            )
           );
         })}
       </tbody>

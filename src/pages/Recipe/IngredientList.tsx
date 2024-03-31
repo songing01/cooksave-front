@@ -3,15 +3,24 @@ import GuideText from "@components/Common/GuideText";
 import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
 import { myListState } from "@services/store/ingredients";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { TypeIngredient } from "type/ingredients";
 
 const IngredientList = () => {
   const navigate = useNavigate();
   const { name } = useParams();
-  const [myList, setMyList] = useRecoilState(myListState);
+  const myList = useRecoilValue(myListState);
+  const [intialList, setInitialList] = useState([]) as any[];
+
+  useEffect(() => {
+    //수량을 0으로 초기화
+    myList.map((el: TypeIngredient) =>
+      setInitialList((prev: any[]) => [...prev, { ...el, amount: 0 }]),
+    );
+  }, []);
 
   return (
     <Div>
@@ -21,7 +30,7 @@ const IngredientList = () => {
       <List
         isEditing={true}
         isDeletable={false}
-        list={myList}
+        list={intialList}
         isIconEditable={false}
       />
       <div className="margin" style={{ height: "90px" }} />

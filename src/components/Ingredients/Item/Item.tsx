@@ -1,6 +1,4 @@
 import styled from "styled-components";
-
-import icon1 from "@assets/ingredients/icon1.png";
 import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
 import { IconList, icons } from "./IconList";
@@ -54,7 +52,11 @@ const Item = ({
   };
 
   const handleMinus = () => {
-    if (newList[index].amount === 0.25) return;
+    if (isDeletable && newList[index].amount === 0.25) {
+      return;
+    } else if (!isDeletable && newList[index].amount === 0) {
+      return;
+    }
     let arr = [...newList];
     arr.splice(index, 1, { ...arr[index], amount: arr[index].amount - 0.25 });
     setNewList(arr);
