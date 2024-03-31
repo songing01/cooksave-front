@@ -44,9 +44,7 @@ const SelfCreate = () => {
       })
       .catch(err => alert("등록 오류"));
   };
-  useEffect(() => {
-    console.log(newList);
-  }, []);
+
   return (
     <Div>
       <Header isBack={true} title="식재료 등록" />
