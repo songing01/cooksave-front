@@ -25,7 +25,9 @@ import icon21 from "@assets/ingredients/icon21.png";
 import icon22 from "@assets/ingredients/icon22.png";
 import icon23 from "@assets/ingredients/icon23.png";
 
-const icons = [
+import { TypeIngredient } from "type/ingredients";
+
+export const icons = [
   icon1,
   icon2,
   icon3,
@@ -52,20 +54,36 @@ const icons = [
 ];
 
 type Props = {
-  onClick: () => void;
+  setIsOpenList: React.Dispatch<React.SetStateAction<boolean>>;
+  inputs?: TypeIngredient;
+  setInputs?: React.Dispatch<React.SetStateAction<TypeIngredient>>;
 };
 
-const IconList = ({ onClick }: Props) => {
+export const IconList = ({ setIsOpenList, inputs, setInputs }: Props) => {
+  const changeIcon = (index: any) => {
+    if (inputs === undefined) return;
+
+    const nextInputs: TypeIngredient = {
+      ...inputs,
+      iconId: Number(index + 1),
+    };
+
+    setInputs?.(nextInputs);
+    setIsOpenList(false);
+  };
+
   return (
     <Div>
-      {icons.map(el => {
-        return <Icon src={el} onClick={onClick} />;
+      {icons.map((el, index) => {
+        return (
+          <div onClick={() => changeIcon(index)}>
+            <Icon src={el} />
+          </div>
+        );
       })}
     </Div>
   );
 };
-
-export default IconList;
 
 const Div = styled.div`
   display: flex;
