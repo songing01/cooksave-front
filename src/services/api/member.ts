@@ -1,8 +1,7 @@
 import client from "./client";
-import SignUp from "@pages/Auth/SignUp";
 
 //회원가입
-type Body = { username: string; password: string; passwordCheck?: string };
+type Body = { cooksaveId: string; password: string; passwordCheck?: string };
 
 export const postMemberSignup = async (body: Body) => {
   try {
@@ -16,7 +15,7 @@ export const postMemberSignup = async (body: Body) => {
 //로그인
 export const postMemberLogin = async (body: Body) => {
   try {
-    const response = await client.post(`/members/signup`, body);
+    const response = await client.post(`/members/login`, body);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);

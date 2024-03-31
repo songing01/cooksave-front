@@ -25,6 +25,10 @@ const SignUp = () => {
 
   const requestSignup = () => {
     const { id, password, passwordCheck } = inputs;
+    if (password !== passwordCheck) {
+      alert("비밀번호를 재확인하세요");
+      return;
+    }
     if (
       id !== "" &&
       password !== "" &&
@@ -32,12 +36,15 @@ const SignUp = () => {
       password === passwordCheck
     ) {
       postMemberSignup({
-        username: inputs.id,
+        cooksaveId: inputs.id,
         password: inputs.password,
         passwordCheck: inputs.passwordCheck,
       })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        .then(res => {
+          alert(res.data);
+          navigate("/auth/login");
+        })
+        .catch(err => alert("회원가입 오류 \n 이미 존재하는 아이디입니다."));
     }
 
     return;

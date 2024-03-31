@@ -26,9 +26,14 @@ const Login = () => {
     const { id, password } = inputs;
 
     if (id !== "" && password !== "") {
-      postMemberLogin({ username: inputs.id, password: inputs.password })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+      postMemberLogin({ cooksaveId: inputs.id, password: inputs.password })
+        .then(res => {
+          localStorage.setItem("token", res.data.accessToken);
+          //토큰 저장 후 홈 이동
+          navigate("/");
+          window.location.reload();
+        })
+        .catch(err => alert("로그인 실패 \n 로그인 정보를 다시 확인하세요."));
     }
 
     return;
@@ -46,7 +51,7 @@ const Login = () => {
         <LongBtn text={"로그인"} onClick={requestLogin} />
         <UnderLinedBtn
           text={"회원가입"}
-          onClick={() => navigate("/auth/sign-up")}
+          onClick={() => navigate("/auth/signup")}
         />
       </div>
     </Div>
