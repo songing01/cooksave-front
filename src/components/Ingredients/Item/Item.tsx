@@ -3,7 +3,7 @@ import styled from "styled-components";
 import icon1 from "@assets/ingredients/icon1.png";
 import deletebtn from "@assets/main/deletebtn.png";
 import { FontBold, FontMedium, FontRegular } from "@style/font.style";
-import { IconList } from "./IconList";
+import { IconList, icons } from "./IconList";
 import { useState } from "react";
 import { TypeIngredient } from "type/ingredients";
 import { useRecoilState } from "recoil";
@@ -51,7 +51,7 @@ const Item = ({ isEditing, isDeletable, item, index }: Props) => {
       <div className="left-container">
         <img
           className="icon"
-          src={icon1}
+          src={icons[item.iconId - 1]}
           onClick={() => {
             setIsOpenList(!isOpenList);
           }}
