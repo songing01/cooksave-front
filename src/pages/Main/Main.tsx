@@ -16,10 +16,15 @@ import { myListState } from "@services/store/ingredients";
 const Main = () => {
   const navigate = useNavigate();
   const [myList, setMyList] = useRecoilState(myListState);
+  const [list, setList] = useState();
 
   useEffect(() => {
+    console.log("리렌더");
     getIngredients()
-      .then(res => setMyList(res.data))
+      .then(res => {
+        setMyList(res.data);
+        setList(res.data); //로컬스토리지 새로고침 전 업데이트 된 list를 보여주기 위해 list로 상태관리
+      })
       .catch(err => console.log(err));
   }, []);
 
@@ -34,7 +39,7 @@ const Main = () => {
       <List
         isEditing={false}
         isDeletable={false}
-        list={myList}
+        list={list}
         isIconEditable={false}
       />
 

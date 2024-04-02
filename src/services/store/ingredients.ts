@@ -10,6 +10,7 @@ const { persistAtom } = recoilPersist({
 export const newListState = atom({
   key: "newListState",
   default: [] as any,
+  effects_UNSTABLE: [persistAtom],
 });
 
 //내가 가진 식재료 전체목록

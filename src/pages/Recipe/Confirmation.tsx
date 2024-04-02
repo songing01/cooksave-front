@@ -8,7 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { newListState } from "@services/store/ingredients";
 import { useEffect, useState } from "react";
-import { postRecipe, postRecipeInput } from "@services/api/recipes";
+import {
+  patchRecipeIngredients,
+  postRecipe,
+  postRecipeInput,
+} from "@services/api/recipes";
 import { TypeIngredient } from "../../type/ingredients";
 
 type Props = {
@@ -37,25 +41,36 @@ const Confirmation = ({ isHistory }: Props) => {
       postRecipeInput({
         name: name,
         total: total,
-        ingredients: newList, //바꿔야함
+        list: newList, //바꿔야함
       })
-        .then(res => console.log(res))
+        .then(res => {
+          //수량차감
+          patchRecipeIngredients({ list: newList }).then(res => {
+            alert("요리 내역이 저장되었습니다.");
+            navigate("/statistics/23-1");
+            setNewList([]);
+          });
+        })
         .catch(err => console.log(err));
     } else {
       //제공된 레시피일 경우
       postRecipe(Number(id), {
         total: total,
-        ingredients: newList, //바꿔야함
+        list: newList, //바꿔야함
       })
-        .then(res => console.log(res))
+        .then(res => {
+          patchRecipeIngredients({ recipeId: Number(id), list: newList }).then(
+            res => {
+              alert("요리 내역이 저장되었습니다.");
+              navigate("/statistics/23-1");
+              setNewList([]);
+            },
+          );
+        })
         .catch(err => console.log(err));
     }
 
     //수량차감 패치 요청 추가
-
-    //성공시 이동 & newList 초기화
-    //navigate("/statistics/23-1");
-    //setNewList([]);
   };
   return (
     <Div>

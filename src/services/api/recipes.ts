@@ -51,39 +51,33 @@ export const getRecipesDetail = async (recipe_id: number) => {
   }
 };
 
-//레시피 선택을 통한 식재료 수정 (history 반영 O)
-type RecipeIngredientPatch = {
-  ingredientId: number;
-  amount: number;
+type RecipeIngredient = {
+  recipeId?: number;
+  list: TypeIngredient[];
 };
 
-export const patchIngredients = async (
-  recipe_id: number,
-  body: Array<RecipeIngredientPatch>,
-) => {
+//레시피 선택 / 직접생성 을 통한 식재료 수정 (history 반영 O)
+export const patchRecipeIngredients = async (data: RecipeIngredient) => {
+  let param = "";
+  if (data.recipeId) {
+    param = String(data.recipeId);
+  } else {
+    param = "input";
+  }
+  //서버에 보낼 데이터 형태 조정
+  let ingredients = [] as any[];
+
+  data.list.map((el: TypeIngredient, index) => {
+    if (el.ingredientId) {
+      ingredients[index] = { ingredientId: el.ingredientId, amount: el.amount };
+    }
+  });
+
   try {
     const response = await client.patch(
-      `/recipes/${recipe_id}/ingredients`,
-      body,
+      `/recipes/${param}/ingredients`,
+      ingredients,
     );
-    return Promise.resolve(response);
-  } catch (error) {
-    return Promise.reject(error);
-  }
-};
-
-//레시피 직접 생성을 통한 식재료 수정 (history 반영 O)
-type RecipeInputPatch = {
-  ingredientId: number;
-  amount: number;
-};
-
-export const patchRecipeInput = async (
-  recipe_id: number,
-  body: Array<RecipeInputPatch>,
-) => {
-  try {
-    const response = await client.patch(`/recipes/input/ingredients`, body);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
@@ -94,13 +88,25 @@ export const patchRecipeInput = async (
 type InputIngredientList = {
   name?: string;
   total: number;
-  ingredients: TypeIngredient[];
+  list: TypeIngredient[];
 };
 
 //직접 생성한 레시피
-export const postRecipeInput = async (body: InputIngredientList) => {
+export const postRecipeInput = async (data: InputIngredientList) => {
+  const { name, total } = data;
+  let ingredients = [] as TypeIngredient[];
+
+  //서버에 전송할 데이터 형태 조정
+  data.list.map((el: TypeIngredient, index) => {
+    ingredients[index] = { name: el.name, amount: el.amount, price: el.price };
+  });
+
   try {
-    const response = await client.post(`/recipes/input/ingredients`, body);
+    const response = await client.post(`/recipes/input/ingredients`, {
+      name: name,
+      total: total,
+      ingredients: ingredients,
+    });
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
@@ -110,13 +116,21 @@ export const postRecipeInput = async (body: InputIngredientList) => {
 //제공된 레시피
 export const postRecipe = async (
   recipe_id: number,
-  body: InputIngredientList,
+  data: InputIngredientList,
 ) => {
+  const { total } = data;
+  let ingredients = [] as TypeIngredient[];
+
+  //서버에 전송할 데이터 형태 조정
+  data.list.map((el: TypeIngredient, index) => {
+    ingredients[index] = { name: el.name, amount: el.amount, price: el.price };
+  });
+
   try {
-    const response = await client.post(
-      `/recipes/${recipe_id}/ingredients`,
-      body,
-    );
+    const response = await client.post(`/recipes/${recipe_id}/ingredients`, {
+      total: total,
+      ingredients: ingredients,
+    });
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
