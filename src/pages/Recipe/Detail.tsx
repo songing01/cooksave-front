@@ -1,18 +1,28 @@
 import Header from "@components/Header/Header";
 import Drawer from "@components/Recipe/Drawer";
+import { getRecipesDetail } from "@services/api/recipes";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { TypeRecipe } from "type/recipe";
 
 const Detail = () => {
+  const { id } = useParams();
+  const [detail, setDetail] = useState<TypeRecipe>();
+
+  useEffect(() => {
+    id && getRecipesDetail(Number(id)).then(res => setDetail(res.data));
+  }, []);
+
   return (
     <Div>
       <Header isBack={true} />
 
       <Img>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKfOtp1oPwBSMufz7Nlrvku-6bs71vDe5_bg&usqp=CAU" />
+        <img src={detail?.image} />
       </Img>
 
-      <Drawer />
+      {detail && id && <Drawer detail={detail} recipeId={Number(id)} />}
     </Div>
   );
 };

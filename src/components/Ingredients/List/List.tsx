@@ -4,11 +4,11 @@ import Item from "../Item/Item";
 type Props = {
   isEditing: boolean;
   isDeletable: boolean;
-  list: any[];
+  list?: any[];
   isIconEditable: boolean;
 };
 
-const List = ({ isEditing, isDeletable, list, isIconEditable }: Props) => {
+const List = ({ isEditing, isDeletable, list = [], isIconEditable }: Props) => {
   return (
     <Div>
       {list.map((item, index) => {

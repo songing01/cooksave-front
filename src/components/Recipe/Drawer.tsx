@@ -1,27 +1,30 @@
 import LongBtn from "@components/Buttons/LongBtn";
-import Item from "@components/Ingredients/Item/Item";
 import List from "@components/Ingredients/List/List";
 import { FontBold, FontMedium } from "@style/font.style";
 import styled from "styled-components";
 
 import share from "@assets/recipe/share.png";
 import { useNavigate } from "react-router-dom";
+import { TypeRecipe } from "type/recipe";
 
-const Drawer = () => {
+type Props = {
+  detail: TypeRecipe;
+  recipeId: number;
+};
+const Drawer = ({ detail, recipeId }: Props) => {
   const navigate = useNavigate();
+  const { name, mainIng, ingredients, video } = detail;
   return (
     <Div>
       <Top>
-        <FontBold size="20px">제육볶음</FontBold>
+        <FontBold size="20px">{name}</FontBold>
         <img src={share} />
       </Top>
 
       <div className="scrollable-area">
         <div className="main-ingredients">
           <FontBold size="16px">주요 재료</FontBold>
-          <FontMedium size="16px">
-            돼지고기 200g, 대파, 마늘, 양파 등
-          </FontMedium>
+          <FontMedium size="16px">{mainIng}</FontMedium>
         </div>
 
         <div className="my-ingredients">
@@ -32,7 +35,7 @@ const Drawer = () => {
           <List
             isEditing={false}
             isDeletable={false}
-            list={[]}
+            list={ingredients}
             isIconEditable={false}
           />
         </div>
@@ -41,7 +44,7 @@ const Drawer = () => {
           <FontBold size="16px">관련 영상</FontBold>
           <iframe
             className="youtube"
-            src="https://www.youtube.com/embed/spjIN3vPVVY?si=xTN91D6lwGDoKTHy"
+            src={video}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           ></iframe>
@@ -50,7 +53,7 @@ const Drawer = () => {
       <Bottom>
         <LongBtn
           text="이 레시피로 할게요!"
-          onClick={() => navigate("/recipes/1/ingredients")}
+          onClick={() => navigate(`/recipes/${recipeId}/ingredients`)}
         />
       </Bottom>
     </Div>
@@ -138,7 +141,7 @@ const Top = styled.div`
 
 const Bottom = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;

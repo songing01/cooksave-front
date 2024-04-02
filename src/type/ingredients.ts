@@ -4,4 +4,5 @@ export type TypeIngredient = {
   name: string;
   price: number;
   amount: number;
+  createdAt?: string;
 };
