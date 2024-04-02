@@ -11,15 +11,23 @@ import { TypeIngredient } from "type/ingredients";
 
 const IngredientList = () => {
   const navigate = useNavigate();
-  const { name } = useParams();
+  const { name, id } = useParams();
+  let param: string;
+  if (name) {
+    param = name; //직접 입력 레시피
+  } else {
+    param = String(id); //제공된 레시피
+  }
   const myList = useRecoilValue(myListState);
   const [intialList, setInitialList] = useState([]) as any[];
+  const [maxAmountList, setMaxAmountList] = useState([]) as any[];
 
   useEffect(() => {
     //수량을 0으로 초기화
-    myList.map((el: TypeIngredient) =>
-      setInitialList((prev: any[]) => [...prev, { ...el, amount: 0 }]),
-    );
+    myList.map((el: TypeIngredient) => {
+      setMaxAmountList((prev: any[]) => [...prev, { amount: el.amount }]);
+      setInitialList((prev: any[]) => [...prev, { ...el, amount: 0 }]);
+    });
   }, []);
 
   return (
@@ -31,6 +39,7 @@ const IngredientList = () => {
         isEditing={true}
         isDeletable={false}
         list={intialList}
+        maxAmountList={maxAmountList}
         isIconEditable={false}
       />
       <div className="margin" style={{ height: "90px" }} />
@@ -38,7 +47,7 @@ const IngredientList = () => {
       <div className="bottom">
         <LongBtn
           text="선택 완료"
-          onClick={() => navigate("/recipes/1/confirmation")}
+          onClick={() => navigate(`/recipes/${param}/confirmation`)}
         />
       </div>
     </Div>

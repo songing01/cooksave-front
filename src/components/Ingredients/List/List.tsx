@@ -6,9 +6,16 @@ type Props = {
   isDeletable: boolean;
   list?: any[];
   isIconEditable: boolean;
+  maxAmountList?: any[];
 };
 
-const List = ({ isEditing, isDeletable, list = [], isIconEditable }: Props) => {
+const List = ({
+  isEditing,
+  isDeletable,
+  list = [],
+  isIconEditable,
+  maxAmountList,
+}: Props) => {
   return (
     <Div>
       {list.map((item, index) => {
@@ -20,6 +27,7 @@ const List = ({ isEditing, isDeletable, list = [], isIconEditable }: Props) => {
             item={item}
             index={index}
             initialList={list} //편집시 기본값
+            maxAmount={maxAmountList && maxAmountList[index].amount}
           />
         );
       })}

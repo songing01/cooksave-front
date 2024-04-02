@@ -14,6 +14,7 @@ type Props = {
   item: any;
   index: any;
   initialList: any[];
+  maxAmount?: number | undefined;
 };
 
 const Item = ({
@@ -23,6 +24,7 @@ const Item = ({
   item,
   index,
   initialList,
+  maxAmount,
 }: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
   const [newList, setNewList] = useRecoilState(newListState);
@@ -45,6 +47,8 @@ const Item = ({
   };
 
   const handlePlus = () => {
+    if (newList[index].amount === maxAmount) return;
+
     let arr = [...newList];
     arr.splice(index, 1, { ...arr[index], amount: arr[index].amount + 0.25 });
     setNewList(arr);
