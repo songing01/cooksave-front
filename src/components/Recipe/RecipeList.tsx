@@ -6,15 +6,21 @@ import { TypeRecipe } from "type/recipe";
 
 type Props = {
   isHistory: boolean;
-  list?: TypeRecipe[];
+  list: TypeRecipe[];
 };
 
 const RecipeList = ({ isHistory, list }: Props) => {
   return (
     <List>
       {list &&
-        list.map((item: TypeRecipe) => {
-          return <Recipe isSaved={item.heart} isHistory={isHistory} />;
+        list.map((recipe: TypeRecipe) => {
+          return (
+            <Recipe
+              recipe={recipe}
+              isHistory={isHistory}
+              key={recipe.recipeId}
+            />
+          );
         })}
     </List>
   );

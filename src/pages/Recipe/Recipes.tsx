@@ -13,7 +13,10 @@ const Recipes = () => {
   const [list, setList] = useState<TypeRecipe[]>();
   const requestList = () => {
     getRecipes()
-      .then(res => console.log(res))
+      .then(res => {
+        setList(res.data);
+        console.log(res.data);
+      })
       .catch(err => console.log(err));
   };
 
@@ -40,7 +43,7 @@ const Recipes = () => {
       </div>
 
       <div className="margin">
-        <RecipeList list={list} isHistory={false} />
+        {list && <RecipeList list={list} isHistory={false} />}
       </div>
 
       <NavBar />

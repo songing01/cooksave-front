@@ -27,7 +27,7 @@ const Monthly = () => {
         <FontBold size="16px" className="title">
           요리 내역
         </FontBold>
-        <RecipeList isHistory={true} />
+        <RecipeList isHistory={true} list={[]} />
       </History>
 
       <NavBar />

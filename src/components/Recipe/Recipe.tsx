@@ -4,33 +4,58 @@ import saved from "@assets/recipe/saved.png";
 import arrow from "@assets/recipe/arrow.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { TypeRecipe } from "type/recipe";
+import { deleteRecipesHeart, postRecipesHeart } from "@services/api/recipes";
+import { useState } from "react";
 
 type Props = {
-  isSaved?: boolean;
+  recipe: TypeRecipe;
   isHistory?: boolean;
 };
 
-const Recipe = ({ isSaved, isHistory }: Props) => {
+const Recipe = ({ recipe, isHistory }: Props) => {
+  const { recipeId, name, heart, image, mainIng } = recipe;
   const navigate = useNavigate();
+  const [isHeart, setIsHeart] = useState(heart);
+
+  const requestHeart = () => {
+    recipeId &&
+      postRecipesHeart(recipeId)
+        .then(res => {
+          setIsHeart(true);
+          console.log(res);
+        })
+        .catch(err => console.log(err));
+  };
+
+  const cancelHeart = () => {
+    recipeId &&
+      deleteRecipesHeart(recipeId)
+        .then(res => {
+          setIsHeart(false);
+          console.log(res);
+        })
+        .catch(err => console.log(err));
+  };
 
   return (
     <Div>
       <div className="left-container">
-        <Img src="" />
+        <Img src={image} />
 
         <Detail
           onClick={() => {
-            !isHistory ? navigate("/recipes/1") : navigate("/history/1");
+            !isHistory
+              ? navigate(`/recipes/${recipeId}`)
+              : navigate("/history/1");
           }}
         >
           <div className="name">
-            <FontMedium size="16px">제육볶음</FontMedium>
+            <FontMedium size="16px">{name}</FontMedium>
           </div>
           {!isHistory ? (
             <div className="gray">
-              <FontMedium size="13px">
-                보유재료: 돼지고기, 양파, 마늘
-              </FontMedium>
+              <FontMedium size="13px">주요재료: {mainIng}</FontMedium>
             </div>
           ) : (
             <div className="gray">
@@ -42,10 +67,14 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
 
       <Btns>
         {!isHistory ? (
-          isSaved ? (
-            <img className="save" src={saved} />
+          isHeart ? (
+            <div onClick={cancelHeart}>
+              <img className="save" src={saved} />
+            </div>
           ) : (
-            <img className="save" src={unsaved} />
+            <div onClick={requestHeart}>
+              <img className="save" src={unsaved} />
+            </div>
           )
         ) : (
           <div className="date">
@@ -56,7 +85,9 @@ const Recipe = ({ isSaved, isHistory }: Props) => {
           className="arrow"
           src={arrow}
           onClick={() => {
-            !isHistory ? navigate("/recipes/1") : navigate("/history/1");
+            !isHistory
+              ? navigate(`/recipes/${recipeId}`)
+              : navigate("/history/1");
           }}
         />
       </Btns>
@@ -81,6 +112,7 @@ const Div = styled.div`
   justify-content: space-between;
 
   .left-container {
+    width: 90%;
     display: flex;
     gap: 15px;
   }
@@ -94,6 +126,10 @@ const Img = styled.img`
 
 const Detail = styled.div`
   height: 57px;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   display: flex;
   flex-direction: column;

@@ -37,7 +37,7 @@ const Confirmation = ({ isHistory }: Props) => {
       postRecipeInput({
         name: name,
         total: total,
-        ingredients: newList,
+        ingredients: newList, //바꿔야함
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
@@ -45,11 +45,14 @@ const Confirmation = ({ isHistory }: Props) => {
       //제공된 레시피일 경우
       postRecipe(Number(id), {
         total: total,
-        ingredients: newList,
+        ingredients: newList, //바꿔야함
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
     }
+
+    //수량차감 패치 요청 추가
+
     //성공시 이동 & newList 초기화
     //navigate("/statistics/23-1");
     //setNewList([]);
