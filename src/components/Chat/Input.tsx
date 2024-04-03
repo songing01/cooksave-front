@@ -44,7 +44,7 @@ const Input = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSend();
@@ -57,7 +57,7 @@ const Input = () => {
         placeholder="메세지를 입력하세요"
         onChange={handleChange}
         value={content}
-        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
         autoFocus
       />
 
