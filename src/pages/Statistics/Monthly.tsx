@@ -1,37 +1,42 @@
 import Header from "@components/Header/Header";
 import MonthlyCard from "@components/Statistics/MonthlyCard";
 import grayBtn from "@assets/statistics/btn-gray.png";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FontBold } from "@style/font.style";
 import RecipeList from "@components/Recipe/RecipeList";
 import NavBar from "@components/NavBar/NavBar";
 import ChatbotBtn from "@components/Chat/ChatbotBtn";
+import Modal from "@components/Statistics/Modal";
 
 const Monthly = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
-    <Div>
-      <ChatbotBtn />
-      <Header isBack={false} title="나의 절약 내역" />
+    <>
+      {showModal && <Modal setShowModal={setShowModal} initialBudget={30000} />}
+      <Div>
+        <ChatbotBtn />
+        <Header isBack={false} title="나의 절약 내역" />
 
-      <MonthlyCard />
+        <MonthlyCard />
 
-      <Btn>
-        <FontBold size="14px" style={{ color: "#7a7a7a" }}>
-          예산 수정
-        </FontBold>
-        <img className="btn" src={grayBtn} />
-      </Btn>
+        <Btn onClick={() => setShowModal(true)}>
+          <FontBold size="14px" style={{ color: "#7a7a7a" }}>
+            예산 수정
+          </FontBold>
+          <img className="btn" src={grayBtn} />
+        </Btn>
 
-      <History>
-        <FontBold size="16px" className="title">
-          요리 내역
-        </FontBold>
-        <RecipeList isHistory={true} list={[]} />
-      </History>
+        <History>
+          <FontBold size="16px" className="title">
+            요리 내역
+          </FontBold>
+          <RecipeList isHistory={true} list={[]} />
+        </History>
 
-      <NavBar />
-    </Div>
+        <NavBar />
+      </Div>
+    </>
   );
 };
 
