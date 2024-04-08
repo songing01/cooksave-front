@@ -16,6 +16,7 @@ const Monthly = () => {
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
   const [list, setList] = useState();
+  const [budget, setBudget] = useState(0);
   const [refresh, setRefresh] = useState(0);
 
   const { date } = useParams();
@@ -26,13 +27,20 @@ const Monthly = () => {
         .then(res => {
           setData(res.data);
           setList(res.data.highlightHistoryDtoList);
+          setBudget(res.data.budget);
         })
         .catch(err => console.log(err));
   }, [refresh]);
 
   return (
     <>
-      {showModal && <Modal setShowModal={setShowModal} initialBudget={30000} />}
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          initialBudget={budget}
+          setRefresh={setRefresh}
+        />
+      )}
       <Div>
         <ChatbotBtn />
         <Header isBack={false} title="나의 절약 내역" />

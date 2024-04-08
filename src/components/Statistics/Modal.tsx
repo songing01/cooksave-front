@@ -7,9 +7,10 @@ import styled from "styled-components";
 type Props = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   initialBudget: number;
+  setRefresh: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Modal = ({ setShowModal, initialBudget }: Props) => {
+const Modal = ({ setShowModal, initialBudget, setRefresh }: Props) => {
   const [budget, setBudget] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +26,7 @@ const Modal = ({ setShowModal, initialBudget }: Props) => {
       .then(res => {
         alert("한달 에산이 변경되었습니다.");
         setShowModal(false);
+        setRefresh(prev => prev + 1);
       })
       .catch(err => console.log(err));
   };
@@ -101,7 +103,7 @@ const Div = styled.div`
 const InputContainer = styled.div`
   margin: 0 auto;
   display: flex;
-  width: 50%;
+  width: 60%;
   font-size: 20px;
   color: var(--grey2);
 
