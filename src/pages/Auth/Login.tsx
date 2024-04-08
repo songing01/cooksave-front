@@ -29,6 +29,7 @@ const Login = () => {
       postMemberLogin({ cooksaveId: inputs.id, password: inputs.password })
         .then(res => {
           localStorage.setItem("token", res.data.accessToken);
+          localStorage.setItem("refreshToken", res.data.refreshToken);
           //토큰 저장 후 홈 이동
           navigate("/");
           window.location.reload();

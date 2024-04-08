@@ -29,3 +29,13 @@ export const getAnnualHistory = async () => {
     return Promise.reject(error);
   }
 };
+
+//월별 통계 조회
+export const getMonthlyHistory = async (date: string) => {
+  try {
+    const response = await client.get(`/highlight?date=${date}`);
+    return Promise.resolve(response);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

@@ -1,3 +1,4 @@
+import axios from "axios";
 import client from "./client";
 
 //회원가입
@@ -25,7 +26,14 @@ export const postMemberLogin = async (body: Body) => {
 //토큰 리프레시
 export const postMemberRefresh = async () => {
   try {
-    const response = await client.post(`/members/refresh`);
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/members/refresh`,
+      {
+        refreshToken: refreshToken,
+      },
+    );
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);

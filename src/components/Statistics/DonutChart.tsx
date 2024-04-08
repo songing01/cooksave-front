@@ -1,13 +1,13 @@
 import { FontBold } from "@style/font.style";
 import React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-const DonutChart = () => {
+const DonutChart = ({ percentage }: any) => {
   return (
-    <OuterCircle>
+    <OuterCircle percentage={String(percentage)}>
       <InnerCircle>
         <FontBold size="40px" className="num">
-          86
+          {percentage}
         </FontBold>
         <FontBold size="20px" className="percentage">
           %
@@ -19,13 +19,16 @@ const DonutChart = () => {
 
 export default DonutChart;
 
-const OuterCircle = styled.div`
+const OuterCircle = styled.div<{ percentage: string }>`
   width: 150px;
   height: 150px;
   flex-shrink: 0;
   border-radius: 100%;
 
-  background: conic-gradient(var(--blue2) 86%, #fff 0%);
+  background: conic-gradient(
+    var(--blue2) ${props => props.percentage}%,
+    #fff 0%
+  );
 
   filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
 

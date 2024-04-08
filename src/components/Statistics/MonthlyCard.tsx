@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import clip from "@assets/statistics/clip.png";
 import btn from "@assets/statistics/btn.png";
@@ -6,22 +5,78 @@ import { FontBold } from "@style/font.style";
 import DonutChart from "./DonutChart";
 import TextContainer from "./TextContainer";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const MonthlyCard = () => {
+type Props = {
+  data: {
+    average: number;
+    balance: number;
+    budget: number;
+    count: number;
+    //highlightHistoryDtoList: any;
+    monthExpense: number;
+    percentage: number;
+    previousAverage: number;
+  };
+  date: string;
+  setRefresh: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const MonthlyCard = ({ data, date, setRefresh }: Props) => {
+  const { percentage } = data;
   const navigate = useNavigate();
+
+  const moveNextMonth = () => {
+    let year = Number(date.substring(0, 4));
+    let month = Number(date.substring(5, 7));
+
+    if (month == 12) {
+      year += 1;
+      month = 1;
+    } else {
+      month += 1;
+    }
+
+    setRefresh(prev => prev + 1);
+
+    return navigate(
+      `/statistics/${String(year)}-${String(month).padStart(2, "0")}-01`,
+    );
+  };
+
+  const movePrevMonth = () => {
+    let year = Number(date.substring(0, 4));
+    let month = Number(date.substring(5, 7));
+
+    if (month == 1) {
+      year -= 1;
+      month = 12;
+    } else {
+      month -= 1;
+    }
+
+    setRefresh(prev => prev + 1);
+
+    return navigate(
+      `/statistics/${String(year)}-${String(month).padStart(2, "0")}-01`,
+    );
+  };
+
   return (
     <Div>
       <Clip src={clip} />
 
       <Top>
-        <img className="btn prev" src={btn} />
-        <FontBold size="20px">2023.12</FontBold>
-        <img className="btn" src={btn} />
+        <img className="btn prev" src={btn} onClick={movePrevMonth} />
+        <FontBold size="20px">
+          {date.substring(0, 7).replaceAll("-", ".")}
+        </FontBold>
+        <img className="btn" src={btn} onClick={moveNextMonth} />
       </Top>
 
       <Mid>
-        <DonutChart />
-        <TextContainer />
+        <DonutChart percentage={percentage} />
+        <TextContainer data={data} />
       </Mid>
 
       <Bottom>

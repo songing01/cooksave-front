@@ -8,4 +8,6 @@ export type TypeRecipe = {
   heart: boolean;
   ingredients?: TypeIngredient[];
   video?: string;
+  total?: number;
+  createdAt?: string;
 };

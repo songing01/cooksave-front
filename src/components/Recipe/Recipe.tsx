@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Recipe = ({ recipe, isHistory }: Props) => {
-  const { recipeId, name, heart, image, mainIng } = recipe;
+  const { recipeId, name, heart, image, mainIng, total, createdAt } = recipe;
   const navigate = useNavigate();
   const [isHeart, setIsHeart] = useState(heart);
 
@@ -59,7 +59,7 @@ const Recipe = ({ recipe, isHistory }: Props) => {
             </div>
           ) : (
             <div className="gray">
-              <FontMedium size="13px">총 사용 금액: 8900원</FontMedium>
+              <FontMedium size="13px">총 사용 금액: {total}원</FontMedium>
             </div>
           )}
         </Detail>
@@ -78,7 +78,9 @@ const Recipe = ({ recipe, isHistory }: Props) => {
           )
         ) : (
           <div className="date">
-            <FontMedium style={{ color: "#7a7a7a" }}>23/12/02</FontMedium>
+            <FontMedium style={{ color: "#7a7a7a" }}>
+              {createdAt?.substring(2).replaceAll("-", "/")}
+            </FontMedium>
           </div>
         )}
         <img

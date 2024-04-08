@@ -25,6 +25,9 @@ const Confirmation = ({ isHistory }: Props) => {
   const [total, setTotal] = useState(0);
   const { name, id } = useParams();
 
+  const today = new Date();
+  const date = `${today.toISOString().substring(0, 7)}-01`;
+
   useEffect(() => {
     setTotal(calculateTotal());
   }, []);
@@ -47,7 +50,7 @@ const Confirmation = ({ isHistory }: Props) => {
           //수량차감
           patchRecipeIngredients({ list: newList }).then(res => {
             alert("요리 내역이 저장되었습니다.");
-            navigate("/statistics/23-1");
+            navigate(`/statistics/${date}`);
             setNewList([]);
           });
         })
@@ -62,7 +65,7 @@ const Confirmation = ({ isHistory }: Props) => {
           patchRecipeIngredients({ recipeId: Number(id), list: newList }).then(
             res => {
               alert("요리 내역이 저장되었습니다.");
-              navigate("/statistics/23-1");
+              navigate(`/statistics/${date}`);
               setNewList([]);
             },
           );

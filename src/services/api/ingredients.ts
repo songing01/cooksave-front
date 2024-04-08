@@ -5,8 +5,10 @@ import { TypeIngredient } from "type/ingredients";
 export const getIngredients = async () => {
   try {
     const response = await client.get(`/ingredients/list`);
+    console.log("1");
     return Promise.resolve(response);
   } catch (error) {
+    console.log("2");
     return Promise.reject(error);
   }
 };

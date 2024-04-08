@@ -53,7 +53,7 @@ function App() {
       <Route path="/recipes/save" element={<SavedRecipes />} />
 
       {/* 통계 관련 페이지 */}
-      <Route path="/statistics/23-1" element={<Monthly />} />
+      <Route path="/statistics/:date" element={<Monthly />} />
       <Route path="/history/1" element={<Confirmation isHistory={true} />} />
       <Route path="/statistics" element={<Annual />} />
 

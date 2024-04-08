@@ -7,12 +7,18 @@ import save_icon from "@assets/navbar/save_icon.png";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const today = new Date();
+  const date = `${today.toISOString().substring(0, 7)}-01`;
+
   const navigate = useNavigate();
   return (
     <Div>
       <img src={main_icon} onClick={() => navigate("/")} />
       <img src={recipe_icon} onClick={() => navigate("/recipes")} />
-      <img src={analysis_icon} onClick={() => navigate("/statistics/23-1")} />
+      <img
+        src={analysis_icon}
+        onClick={() => navigate(`/statistics/${date}`)}
+      />
       <img src={save_icon} onClick={() => navigate("/recipes/save")} />
     </Div>
   );
