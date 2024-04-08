@@ -1,10 +1,10 @@
 import GuideText from "@components/Common/GuideText";
 import Header from "@components/Header/Header";
 import AnnualCard from "@components/Statistics/AnnualCard";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const Anual = () => {
+const Annual = () => {
   return (
     <Div>
       <Header isBack={true} />
@@ -16,7 +16,7 @@ const Anual = () => {
   );
 };
 
-export default Anual;
+export default Annual;
 
 const Div = styled.div`
   display: flex;
