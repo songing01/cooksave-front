@@ -1,35 +1,51 @@
 import { FontBold } from "@style/font.style";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { TypeBar } from "type/statistics";
 
-const months = [
-  "1월",
-  "2월",
-  "3월",
-  "4월",
-  "5월",
-  "6월",
-  "7월",
-  "8월",
-  "9월",
-  "10월",
-  "11월",
-  "12월",
-];
-const Chart = () => {
+type Props = {
+  list: Array<TypeBar>;
+};
+
+const Chart = ({ list }: Props) => {
+  const navigate = useNavigate();
+
+  const calculateHeight = (data: number) => {
+    if (data == 0) {
+      return 0;
+    }
+    let sum = 0;
+    list.map(bar => {
+      bar.expense && (sum += bar.expense);
+      bar.count && (sum += bar.count);
+    });
+
+    return (data / sum) * 145;
+  };
   return (
     <Div>
       <BarContainer>
-        {months.map(month => {
-          return <Bar />;
+        {list.map(bar => {
+          let data = 0;
+          bar.expense && (data = bar.expense);
+          bar.count && (data = bar.count);
+          const height = calculateHeight(data);
+
+          return (
+            <Bar
+              height={`${height}px`}
+              onClick={() => navigate(`/statistics/${bar.month}-01`)}
+            />
+          );
         })}
       </BarContainer>
       <Line />
       <MonthContainer>
-        {months.map(month => {
+        {list.reverse().map(bar => {
           return (
             <Month style={{ color: "#7a7a7a" }}>
-              <FontBold size="8px">{month}</FontBold>
+              <FontBold size="8px">{Number(bar.month.substr(5, 7))}월</FontBold>
             </Month>
           );
         })}
@@ -55,10 +71,10 @@ const BarContainer = styled.div`
   gap: 2.5%;
 `;
 
-const Bar = styled.div`
+const Bar = styled.div<{ height: string }>`
   width: 5.5%;
   max-height: 145px;
-  height: 145px; //막대 별 높이 설정
+  height: ${props => props.height}; //막대 별 높이 설정
   border-radius: 2px 2px 0px 0px;
   background: rgba(0, 76, 146, 0.5);
 `;

@@ -21,9 +21,9 @@ export const deleteHistory = async (history_id: number) => {
 };
 
 //1년 통계 조회
-export const getAnnualHistory = async () => {
+export const getAnnualHistory = async (date: string) => {
   try {
-    const response = await client.get(`/histories/annual`);
+    const response = await client.get(`/histories?date=${date}`);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);

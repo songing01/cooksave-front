@@ -3,11 +3,13 @@ import styled from "styled-components";
 import clip from "@assets/statistics/clip.png";
 import { FontBold } from "@style/font.style";
 import Chart from "./Chart";
+import { TypeBar } from "type/statistics";
 
 type Props = {
   title: string;
+  list: Array<TypeBar>;
 };
-const AnnualCard = ({ title }: Props) => {
+const AnnualCard = ({ title, list }: Props) => {
   return (
     <Div>
       <Clip src={clip} />
@@ -15,11 +17,11 @@ const AnnualCard = ({ title }: Props) => {
       <Top>
         <FontBold size="14px">{title}</FontBold>
         <FontBold size="12px" style={{ color: "#7a7a7a" }}>
-          2023년 2월 ~ 2024년 1월
+          {list[11].month} ~ {list[0].month}
         </FontBold>
       </Top>
 
-      <Chart />
+      <Chart list={list} />
     </Div>
   );
 };
