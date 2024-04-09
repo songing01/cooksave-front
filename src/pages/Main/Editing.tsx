@@ -15,7 +15,6 @@ const Editing = () => {
   const [newList, setNewList] = useRecoilState(newListState);
 
   const requestChange = () => {
-    console.log(newList);
     patchIngredients(newList).then(res => {
       alert("수정이 완료되었습니다.");
       navigate("/");

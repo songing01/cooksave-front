@@ -21,7 +21,6 @@ const Main = () => {
   useEffect(() => {
     getIngredients()
       .then(res => {
-        console.log("5");
         setMyList(res.data);
         setList(res.data); //로컬스토리지 새로고침 전 업데이트 된 list를 보여주기 위해 list로 상태관리
       })

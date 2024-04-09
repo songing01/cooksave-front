@@ -23,7 +23,6 @@ const Recipe = ({ recipe, isHistory }: Props) => {
       postRecipesHeart(recipeId)
         .then(res => {
           setIsHeart(true);
-          console.log(res);
         })
         .catch(err => console.log(err));
   };
@@ -33,7 +32,6 @@ const Recipe = ({ recipe, isHistory }: Props) => {
       deleteRecipesHeart(recipeId)
         .then(res => {
           setIsHeart(false);
-          console.log(res);
         })
         .catch(err => console.log(err));
   };

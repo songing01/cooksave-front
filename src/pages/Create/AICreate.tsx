@@ -30,7 +30,6 @@ const AICreate = ({ isOCR }: Props) => {
     if (!imgRef.current?.files) return;
     let file = imgRef.current.files[0];
     setImgFile(file);
-    console.log(file);
 
     const reader = new FileReader();
     file && reader.readAsDataURL(file);

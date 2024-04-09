@@ -29,7 +29,6 @@ export const postImagetoClova = async (image: File) => {
       },
     });
 
-    console.log(response);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
