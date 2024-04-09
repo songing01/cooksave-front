@@ -2,9 +2,9 @@ import FitBtn from "@components/Buttons/FitBtn";
 import LongBtn from "@components/Buttons/LongBtn";
 import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
-import { getIngredients } from "@services/api/ingredients";
+import { patchIngredients } from "@services/api/ingredients";
 import { myListState, newListState } from "@services/store/ingredients";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -14,6 +14,13 @@ const Editing = () => {
   const myList = useRecoilValue(myListState);
   const [newList, setNewList] = useRecoilState(newListState);
 
+  const requestChange = () => {
+    console.log(newList);
+    patchIngredients(newList).then(res => {
+      alert("수정이 완료되었습니다.");
+      navigate("/");
+    });
+  };
   useEffect(() => {
     //기존 재료 목록으로 초기화
     setNewList(myList);
@@ -37,12 +44,7 @@ const Editing = () => {
       </div>
 
       <div className="bottom">
-        <LongBtn
-          text="수정 완료"
-          onClick={() => {
-            navigate("/");
-          }}
-        />
+        <LongBtn text="수정 완료" onClick={requestChange} />
       </div>
     </Div>
   );

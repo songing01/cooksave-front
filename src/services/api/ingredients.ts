@@ -24,15 +24,21 @@ export const postIngredientsTyping = async (body: Array<TypeIngredient>) => {
 };
 
 //식재료 목록에서 수정 (history 반영 X)
-type IngredientPatch = {
-  ingredientId: number;
-  iconId: number;
-  amount: number;
-};
 
-export const patchIngredients = async (body: Array<IngredientPatch>) => {
+export const patchIngredients = async (data: Array<TypeIngredient>) => {
+  //서버에 보낼 데이터 형태 조정
+  let ingredients = [] as any[];
+
+  data.map((el: TypeIngredient, index) => {
+    ingredients.push({
+      ingredientId: el.ingredientId,
+      iconId: el.iconId,
+      amount: el.amount,
+    });
+  });
+
   try {
-    const response = await client.patch(`/ingredients/list`, body);
+    const response = await client.patch(`/ingredients/list`, ingredients);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
