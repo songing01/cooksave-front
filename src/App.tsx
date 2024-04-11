@@ -14,6 +14,7 @@ import SavedRecipes from "@pages/Recipe/SavedRecipes";
 import Annual from "@pages/Statistics/Annual";
 import Monthly from "@pages/Statistics/Monthly";
 import { Route, Routes } from "react-router-dom";
+import { PrivateRoute } from "router/PrivateRoute";
 
 function App() {
   return (
@@ -25,39 +26,41 @@ function App() {
       <Route path="auth/login" element={<Login />} />
       <Route path="auth/signup" element={<SignUp />} />
 
-      {/* 메인 페이지 */}
-      <Route path="/" element={<Main />} />
-      <Route path="/edit" element={<Editing />} />
+      <Route element={<PrivateRoute />}>
+        {/* 메인 페이지 */}
+        <Route path="/" element={<Main />} />
+        <Route path="/edit" element={<Editing />} />
 
-      {/* 식재료 등록 페이지 */}
-      <Route path="/create/self" element={<SelfCreate />} />
-      <Route path="/create/ocr" element={<AICreate isOCR={true} />} />
-      <Route
-        path="/create/object-detection"
-        element={<AICreate isOCR={false} />}
-      />
+        {/* 식재료 등록 페이지 */}
+        <Route path="/create/self" element={<SelfCreate />} />
+        <Route path="/create/ocr" element={<AICreate isOCR={true} />} />
+        <Route
+          path="/create/object-detection"
+          element={<AICreate isOCR={false} />}
+        />
 
-      {/* 레시피 관련 페이지 */}
-      <Route path="/recipes" element={<Recipes />} />
-      <Route path="/recipes/:name/ingredients" element={<IngredientList />} />
-      <Route
-        path="/recipes/:name/confirmation"
-        element={<Confirmation isHistory={false} />}
-      />
-      <Route path="/recipes/:id" element={<Detail />} />
-      <Route path="/recipes/:id/ingredients" element={<IngredientList />} />
-      <Route
-        path="/recipes/:id/confirmation"
-        element={<Confirmation isHistory={false} />}
-      />
-      <Route path="/recipes/save" element={<SavedRecipes />} />
+        {/* 레시피 관련 페이지 */}
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:name/ingredients" element={<IngredientList />} />
+        <Route
+          path="/recipes/:name/confirmation"
+          element={<Confirmation isHistory={false} />}
+        />
+        <Route path="/recipes/:id" element={<Detail />} />
+        <Route path="/recipes/:id/ingredients" element={<IngredientList />} />
+        <Route
+          path="/recipes/:id/confirmation"
+          element={<Confirmation isHistory={false} />}
+        />
+        <Route path="/recipes/save" element={<SavedRecipes />} />
 
-      {/* 통계 관련 페이지 */}
-      <Route path="/statistics/:date" element={<Monthly />} />
-      <Route path="/history/1" element={<Confirmation isHistory={true} />} />
-      <Route path="/statistics" element={<Annual />} />
+        {/* 통계 관련 페이지 */}
+        <Route path="/statistics/:date" element={<Monthly />} />
+        <Route path="/history/1" element={<Confirmation isHistory={true} />} />
+        <Route path="/statistics" element={<Annual />} />
 
-      <Route path="/chat" element={<ChatRoom />} />
+        <Route path="/chat" element={<ChatRoom />} />
+      </Route>
     </Routes>
   );
 }
