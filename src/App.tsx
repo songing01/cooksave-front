@@ -14,7 +14,7 @@ import SavedRecipes from "@pages/Recipe/SavedRecipes";
 import Annual from "@pages/Statistics/Annual";
 import Monthly from "@pages/Statistics/Monthly";
 import { Route, Routes } from "react-router-dom";
-import { PrivateRoute } from "router/PrivateRoute";
+import { PrivateRoute } from "@router/PrivateRoute";
 
 function App() {
   return (
