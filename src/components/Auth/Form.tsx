@@ -27,24 +27,29 @@ const Form = ({ isLogin, inputs, setInputs }: Props) => {
 
   return (
     <Div>
-      <input
-        placeholder="아이디"
-        name="id"
-        onChange={handleChange}
-        value={inputs.id}
-      />
-      <Divider />
-      <input
-        placeholder="비밀번호"
-        type="password"
-        name="password"
-        value={inputs.password}
-        onChange={handleChange}
-      />
+      <div className="wrapper">
+        <input
+          placeholder="아이디"
+          name="id"
+          onChange={handleChange}
+          value={inputs.id}
+        />
+        <Divider />
+      </div>
+
+      <div className="wrapper">
+        <input
+          placeholder="비밀번호"
+          type="password"
+          name="password"
+          value={inputs.password}
+          onChange={handleChange}
+        />
+        <Divider />
+      </div>
 
       {!isLogin && (
-        <>
-          <Divider />
+        <div className="wrapper">
           <input
             placeholder="비밀번호 확인"
             type="password"
@@ -52,7 +57,8 @@ const Form = ({ isLogin, inputs, setInputs }: Props) => {
             value={inputs.passwordCheck}
             onChange={handleChange}
           />
-        </>
+          <Divider />
+        </div>
       )}
     </Div>
   );
@@ -65,14 +71,18 @@ const Div = styled.div`
   padding: 20px 14px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 35px;
   border-radius: 8px;
-  background: #f5fbff;
 
   input {
     border: none;
     outline: none;
-    background: #f5fbff;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
