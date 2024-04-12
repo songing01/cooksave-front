@@ -19,6 +19,7 @@ const SelfCreate = () => {
     name: "",
     price: 0,
     amount: 1,
+    ingredientId: 0,
   });
   const navigate = useNavigate();
 
@@ -26,12 +27,17 @@ const SelfCreate = () => {
     if (inputs.name === "" || inputs.price === undefined || inputs.amount === 0)
       return;
 
-    setNewList((prev: TypeIngredient[]) => [...prev, inputs]);
+    setNewList((prev: TypeIngredient[]) => [
+      ...prev,
+      { ...inputs, ingredientId: Math.random() },
+    ]);
+
     setInputs({
       iconId: 1,
       name: "",
       price: 0,
       amount: 1,
+      ingredientId: 0,
     });
   };
 

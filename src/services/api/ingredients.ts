@@ -35,6 +35,8 @@ export const patchIngredients = async (data: Array<TypeIngredient>) => {
     });
   });
 
+  console.log(ingredients);
+
   try {
     const response = await client.patch(`/ingredients/list`, ingredients);
     return Promise.resolve(response);

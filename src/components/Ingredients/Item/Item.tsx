@@ -34,37 +34,44 @@ const Item = ({
     setNewList(initialList);
   }, []);
 
-  const { iconId, name, price, date, amount } = item;
-
-  //수정완료 전 화면에 보여줄 값
-  const [tempAmount, setTempAmount] = useState(amount);
-  const [tempItem, setTempItem] = useState(item);
+  const { name, price, date, ingredientId } = item;
 
   const deleteNewItem = () => {
     let arr = [...newList];
-    arr.splice(index, 1);
-    setNewList(arr);
+
+    setNewList(arr.filter(item => item.ingredientId !== ingredientId));
   };
 
   const handlePlus = () => {
-    if (newList[index].amount === maxAmount) return;
+    if (item.amount === maxAmount) return;
 
     let arr = [...newList];
-    arr.splice(index, 1, { ...arr[index], amount: arr[index].amount + 0.25 });
-    setNewList(arr);
-    setTempAmount((prev: number) => prev + 0.25); //수정완료 전 화면에 보여줄 값
+
+    setNewList(
+      arr.map(item =>
+        item.ingredientId === ingredientId
+          ? { ...item, amount: item.amount + 0.25 }
+          : item,
+      ),
+    );
   };
 
   const handleMinus = () => {
-    if (isDeletable && newList[index].amount === 0.25) {
+    if (isDeletable && item.amount === 0.25) {
       return;
-    } else if (!isDeletable && newList[index].amount === 0) {
+    } else if (!isDeletable && item.amount === 0) {
       return;
     }
+
     let arr = [...newList];
-    arr.splice(index, 1, { ...arr[index], amount: arr[index].amount - 0.25 });
-    setNewList(arr);
-    setTempAmount((prev: number) => prev - 0.25); //수정완료 전 화면에 보여줄 값
+
+    setNewList(
+      arr.map(item =>
+        item.ingredientId === ingredientId
+          ? { ...item, amount: item.amount - 0.25 }
+          : item,
+      ),
+    );
   };
 
   return (
@@ -72,7 +79,7 @@ const Item = ({
       <div className="left-container">
         <img
           className="icon"
-          src={icons[tempItem.iconId - 1]}
+          src={icons[item.iconId - 1]}
           onClick={() => {
             isIconEditable && setIsOpenList(!isOpenList);
           }}
@@ -102,7 +109,7 @@ const Item = ({
           </div>
         )}
         <Count>
-          <FontBold size="12px">{tempAmount}</FontBold>
+          <FontBold size="12px">{item.amount}</FontBold>
         </Count>
         {isEditing && (
           <div className="plus" onClick={handlePlus}>
@@ -118,8 +125,7 @@ const Item = ({
         <div className="icon-list">
           <IconList
             setIsOpenList={setIsOpenList}
-            inputs={tempItem}
-            setInputs={setTempItem}
+            ingredientId={item.ingredientId}
           />
         </div>
       )}

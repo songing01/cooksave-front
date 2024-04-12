@@ -26,6 +26,8 @@ import icon22 from "@assets/ingredients/icon22.png";
 import icon23 from "@assets/ingredients/icon23.png";
 
 import { TypeIngredient } from "type/ingredients";
+import { useRecoilState } from "recoil";
+import { newListState } from "@services/store/ingredients";
 
 export const icons = [
   icon1,
@@ -57,19 +59,39 @@ type Props = {
   setIsOpenList: React.Dispatch<React.SetStateAction<boolean>>;
   inputs?: TypeIngredient;
   setInputs?: React.Dispatch<React.SetStateAction<TypeIngredient>>;
+  ingredientId?: number;
 };
 
-export const IconList = ({ setIsOpenList, inputs, setInputs }: Props) => {
-  const changeIcon = (index: any) => {
-    if (inputs === undefined) return;
+export const IconList = ({
+  setIsOpenList,
+  inputs,
+  setInputs,
+  ingredientId,
+}: Props) => {
+  const [newList, setNewList] = useRecoilState(newListState);
 
-    const nextInputs: TypeIngredient = {
-      ...inputs,
-      iconId: Number(index + 1),
-    };
+  const changeIcon = (iconIndex: any) => {
+    if (inputs) {
+      const nextInputs: TypeIngredient = {
+        ...inputs,
+        iconId: Number(iconIndex + 1),
+      };
 
-    setInputs?.(nextInputs);
-    setIsOpenList(false);
+      setInputs?.(nextInputs);
+      setIsOpenList(false);
+    }
+
+    if (ingredientId !== undefined) {
+      let arr = [...newList];
+      setNewList(
+        arr.map(item =>
+          item.ingredientId === ingredientId
+            ? { ...item, iconId: Number(iconIndex + 1) }
+            : item,
+        ),
+      );
+      setIsOpenList(false);
+    }
   };
 
   return (
