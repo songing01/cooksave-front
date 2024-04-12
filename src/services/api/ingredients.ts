@@ -52,3 +52,16 @@ export const deleteIngredients = async (ingredient_id: number) => {
     return Promise.reject(error);
   }
 };
+
+//식재료 object detection 등록
+export const postObjectDetectionImg = async (file: File) => {
+  const ai_url = `${process.env.REACT_APP_AI_SERVER_URL}`;
+  const formData = new FormData();
+  formData.append("file", file);
+  try {
+    const response = await client.post(ai_url, formData);
+    return Promise.resolve(response);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

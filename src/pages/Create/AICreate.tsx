@@ -8,6 +8,7 @@ import { FontBold, FontMedium } from "@style/font.style";
 import { useRef, useState } from "react";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
 import { TypeIngredient } from "type/ingredients";
+import { postObjectDetectionImg } from "@services/api/ingredients";
 type Props = {
   isOCR: boolean;
 };
@@ -26,16 +27,26 @@ const AICreate = ({ isOCR }: Props) => {
 
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const uploadImage = () => {
-    if (!imgRef.current?.files) return;
-    let file = imgRef.current.files[0];
-    setImgFile(file);
+  const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      let file = e.target.files[0];
+      const newFile = new File([file], `${file.lastModified}`, {
+        type: file.type,
+      });
 
-    const reader = new FileReader();
-    file && reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewImg(reader.result);
-    };
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        setPreviewImg(reader.result);
+
+        console.log(newFile);
+
+        postObjectDetectionImg(file)
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      };
+    }
   };
 
   return (
@@ -83,13 +94,13 @@ const AICreate = ({ isOCR }: Props) => {
           </div>
           <input
             type="file"
-            id="file"
+            id="file-input"
             className="file"
             ref={imgRef}
             accept=".jpg, .jpeg, .png"
             onChange={uploadImage}
           />
-          <Btn htmlFor="file">
+          <Btn htmlFor="file-input">
             <img className="gallery" src={gallery} alt="" />
           </Btn>
         </>
@@ -167,7 +178,6 @@ const Container = styled.div`
 `;
 
 const Btn = styled.label`
-  cursor: pointer;
   width: 90%;
   height: 246px;
   display: flex;
