@@ -118,7 +118,19 @@ const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
       {/* 리스트에서 아이콘 선택 */}
       {isOpenList && (
         <div className="icon-list">
-          <IconList setIsOpenList={setIsOpenList} ingredientId={ingredientId} />
+          {isList ? (
+            <IconList
+              setIsOpenList={setIsOpenList}
+              ingredientId={ingredientId}
+            />
+          ) : (
+            <IconList
+              inputs={inputs}
+              setInputs={setInputs}
+              ingredientId={ingredientId}
+              setIsOpenList={setIsOpenList}
+            />
+          )}
         </div>
       )}
     </Div>
