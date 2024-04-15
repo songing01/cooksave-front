@@ -7,12 +7,14 @@ import { TypeIngredient } from "type/ingredients";
 
 type Props = {
   inputs: TypeIngredient;
-  setInputs: React.Dispatch<React.SetStateAction<TypeIngredient>>;
+  setInputs?: React.Dispatch<React.SetStateAction<TypeIngredient>>;
+  isList?: boolean;
+  setInputList?: React.Dispatch<React.SetStateAction<TypeIngredient[]>>;
 };
 
-const ItemInput = ({ inputs, setInputs }: Props) => {
+const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
-  const { iconId, name, price, amount } = inputs;
+  const { ingredientId, iconId, name, price, amount } = inputs;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,7 +24,15 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
       [name]: value,
     };
 
-    setInputs(nextInputs);
+    if (isList) {
+      setInputList &&
+        setInputList(prev => [
+          ...prev.filter(item => item.ingredientId !== ingredientId),
+          nextInputs,
+        ]);
+    } else {
+      setInputs && setInputs(nextInputs);
+    }
   };
 
   const handlePlus = () => {
@@ -31,7 +41,15 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
       amount: amount + 0.25,
     };
 
-    setInputs(nextInputs);
+    if (isList) {
+      setInputList &&
+        setInputList(prev => [
+          ...prev.filter(item => item.ingredientId !== ingredientId),
+          nextInputs,
+        ]);
+    } else {
+      setInputs && setInputs(nextInputs);
+    }
   };
 
   const handleMinus = () => {
@@ -42,7 +60,14 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
       amount: amount - 0.25,
     };
 
-    setInputs(nextInputs);
+    if (isList) {
+      setInputList &&
+        setInputList(prev => [
+          ...prev.filter(item => item.ingredientId !== ingredientId),
+          nextInputs,
+        ]);
+      setInputs && setInputs(nextInputs);
+    }
   };
 
   return (
@@ -93,11 +118,7 @@ const ItemInput = ({ inputs, setInputs }: Props) => {
       {/* 리스트에서 아이콘 선택 */}
       {isOpenList && (
         <div className="icon-list">
-          <IconList
-            setIsOpenList={setIsOpenList}
-            inputs={inputs}
-            setInputs={setInputs}
-          />
+          <IconList setIsOpenList={setIsOpenList} ingredientId={ingredientId} />
         </div>
       )}
     </Div>

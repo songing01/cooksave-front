@@ -5,4 +5,5 @@ export type TypeIngredient = {
   price: number;
   amount: number;
   createdAt?: string;
+  tag?: string;
 };

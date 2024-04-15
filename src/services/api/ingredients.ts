@@ -55,13 +55,26 @@ export const deleteIngredients = async (ingredient_id: number) => {
   }
 };
 
-//식재료 object detection 등록
+//식재료 object detection 이미지 전송 & 인식 결과 얻기
 export const postObjectDetectionImg = async (file: File) => {
   const ai_url = `${process.env.REACT_APP_AI_SERVER_URL}`;
   const formData = new FormData();
   formData.append("file", file);
   try {
     const response = await client.post(ai_url, formData);
+    return Promise.resolve(response);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+//object detection 인식 결과 등록
+export const postObjectDetectionResult = async (
+  body: Array<TypeIngredient>,
+) => {
+  console.log(body);
+  try {
+    const response = await client.post(`/ingredients/object`, body);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);

@@ -7,8 +7,17 @@ import example2 from "@assets/create/od-eg.png";
 import { FontBold, FontMedium } from "@style/font.style";
 import { useRef, useState } from "react";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
-import { TypeIngredient } from "type/ingredients";
-import { postObjectDetectionImg } from "@services/api/ingredients";
+import {
+  postObjectDetectionImg,
+  postObjectDetectionResult,
+} from "@services/api/ingredients";
+import { useRecoilState } from "recoil";
+import { newListState } from "@services/store/ingredients";
+import LongBtn from "@components/Buttons/LongBtn";
+import loading from "@assets/common/loading.gif";
+import { TypeIngredient } from "../../type/ingredients";
+import { useNavigate } from "react-router-dom";
+
 type Props = {
   isOCR: boolean;
 };
@@ -18,12 +27,11 @@ const AICreate = ({ isOCR }: Props) => {
   const [previewImg, setPreviewImg] = useState<string | ArrayBuffer | null>(
     null,
   );
-  const [inputs, setInputs] = useState<TypeIngredient>({
-    iconId: 1,
-    name: "",
-    price: 0,
-    amount: 1,
-  });
+
+  const [newList, setNewList] = useRecoilState(newListState);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const imgRef = useRef<HTMLInputElement>(null);
 
@@ -40,12 +48,43 @@ const AICreate = ({ isOCR }: Props) => {
       reader.onload = () => {
         setPreviewImg(reader.result);
 
-        console.log(newFile);
-
         postObjectDetectionImg(file)
-          .then(res => console.log(res))
+          .then(res => {
+            let list: any = [];
+            res.data.labels.map((el: any) =>
+              list.push({
+                ingredientId: Math.random(),
+                iconId: 1,
+                name: el,
+                price: undefined,
+                amount: 1,
+                tag: el,
+              }),
+            );
+
+            setIsLoading(false);
+            setNewList(list);
+          })
           .catch(err => console.log(err));
       };
+    }
+  };
+
+  const requestAICreate = () => {
+    newList.map((item: TypeIngredient) => {
+      if (item.price === undefined) alert("가격을 입력하세요");
+    });
+
+    if (isOCR) {
+    } else {
+      //사물인식
+      postObjectDetectionResult(newList)
+        .then(res => {
+          alert("등록이 완료되었습니다.");
+          navigate("/");
+          setNewList([]);
+        })
+        .catch(err => alert("등록 오류"));
     }
   };
 
@@ -110,10 +149,25 @@ const AICreate = ({ isOCR }: Props) => {
             <div className="title">
               <FontBold size="18px">인식 결과</FontBold>
             </div>
-            <div className="result-container">
-              <ItemInput inputs={inputs} setInputs={setInputs} />
-            </div>
+            {isLoading ? (
+              <img src={loading} className="loading" />
+            ) : (
+              <div className="result-container">
+                {newList.map((input: any) => (
+                  <ItemInput
+                    inputs={input}
+                    isList={true}
+                    setInputList={setNewList}
+                  />
+                ))}
+              </div>
+            )}
           </Result>
+          {!isLoading && (
+            <div className="bottom">
+              <LongBtn text="등록 완료" onClick={requestAICreate} />
+            </div>
+          )}
         </>
       )}
     </Div>
@@ -142,6 +196,16 @@ const Div = styled.div`
 
   .preview {
     height: 100%;
+  }
+
+  .bottom {
+    width: 100%;
+    position: fixed; //하단 고정
+    bottom: 0px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
   }
 `;
 
@@ -213,5 +277,10 @@ const Result = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  .loading {
+    margin: 30% auto;
+    width: 50px;
   }
 `;
