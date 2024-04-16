@@ -27,6 +27,11 @@ const Main = () => {
       .catch(err => console.log("err"));
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/greeting");
+  };
+
   return (
     <>
       <Header isBack={false} title="나의 식재료 보유 현황" />
@@ -43,7 +48,7 @@ const Main = () => {
       />
 
       <Footer>
-        <UnderLinedBtn text="로그아웃" />
+        <UnderLinedBtn text="로그아웃" onClick={handleLogout} />
       </Footer>
 
       <FloatingBtn>
