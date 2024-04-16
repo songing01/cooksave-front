@@ -10,4 +10,5 @@ export type TypeRecipe = {
   video?: string;
   total?: number;
   createdAt?: string;
+  historyId?: number;
 };

@@ -14,6 +14,8 @@ import {
   postRecipeInput,
 } from "@services/api/recipes";
 import { TypeIngredient } from "../../type/ingredients";
+import { getHistory } from "@services/api/history";
+import { deleteHistory } from "../../services/api/history";
 
 type Props = {
   isHistory: boolean;
@@ -23,13 +25,20 @@ const Confirmation = ({ isHistory }: Props) => {
   const navigate = useNavigate();
   const [newList, setNewList] = useRecoilState(newListState);
   const [total, setTotal] = useState(0);
-  const { name, id } = useParams();
+  const [list, setList] = useState<TypeIngredient[]>([]);
+  const { name, id, historyId } = useParams();
 
   const today = new Date();
   const date = `${today.toISOString().substring(0, 7)}-01`;
 
   useEffect(() => {
-    setTotal(calculateTotal());
+    !historyId && setTotal(calculateTotal());
+
+    historyId &&
+      getHistory(Number(historyId)).then(res => {
+        setList(res.data.ingredients);
+        setTotal(res.data.total);
+      });
   }, []);
 
   const calculateTotal = () => {
@@ -37,6 +46,7 @@ const Confirmation = ({ isHistory }: Props) => {
     newList.map((el: TypeIngredient) => (total = total + el.price * el.amount));
     return total;
   };
+
   const requestCook = () => {
     //요리 내역 추가
     if (name) {
@@ -72,8 +82,17 @@ const Confirmation = ({ isHistory }: Props) => {
         })
         .catch(err => console.log(err));
     }
-
-    //수량차감 패치 요청 추가
+  };
+  const requestDeleteHistory = () => {
+    historyId &&
+      deleteHistory(Number(historyId))
+        .then(res => {
+          alert("요리 내역이 삭제되었습니다.");
+          const today = new Date();
+          const date = `${today.toISOString().substring(0, 7)}-01`;
+          navigate(`/statistics/${date}`);
+        })
+        .catch(err => alert("삭제 오류"));
   };
   return (
     <Div>
@@ -83,9 +102,9 @@ const Confirmation = ({ isHistory }: Props) => {
         <GuideText text={`총 사용 금액: ${total}원`} />
       </div>
 
-      <ConfirmationTable list={newList} />
+      <ConfirmationTable list={historyId ? list : newList} />
       {isHistory && (
-        <DeleteBtn>
+        <DeleteBtn onClick={requestDeleteHistory}>
           <img src={trashcan} />
         </DeleteBtn>
       )}

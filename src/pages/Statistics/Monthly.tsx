@@ -10,7 +10,6 @@ import ChatbotBtn from "@components/Chat/ChatbotBtn";
 import Modal from "@components/Statistics/Modal";
 import { getMonthlyHistory } from "@services/api/history";
 import { useParams } from "react-router-dom";
-import { TypeRecipe } from "../../type/recipe";
 
 const Monthly = () => {
   const [showModal, setShowModal] = useState(false);

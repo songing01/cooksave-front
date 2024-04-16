@@ -56,7 +56,10 @@ function App() {
 
         {/* 통계 관련 페이지 */}
         <Route path="/statistics/:date" element={<Monthly />} />
-        <Route path="/history/1" element={<Confirmation isHistory={true} />} />
+        <Route
+          path="/history/:historyId"
+          element={<Confirmation isHistory={true} />}
+        />
         <Route path="/statistics" element={<Annual />} />
 
         <Route path="/chat" element={<ChatRoom />} />

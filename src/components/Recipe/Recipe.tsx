@@ -14,7 +14,8 @@ type Props = {
 };
 
 const Recipe = ({ recipe, isHistory }: Props) => {
-  const { recipeId, name, heart, image, mainIng, total, createdAt } = recipe;
+  const { recipeId, name, heart, image, mainIng, total, createdAt, historyId } =
+    recipe;
   const navigate = useNavigate();
   const [isHeart, setIsHeart] = useState(heart);
 
@@ -45,7 +46,7 @@ const Recipe = ({ recipe, isHistory }: Props) => {
           onClick={() => {
             !isHistory
               ? navigate(`/recipes/${recipeId}`)
-              : navigate("/history/1");
+              : navigate(`/history/${historyId}`);
           }}
         >
           <div className="name">
@@ -87,7 +88,7 @@ const Recipe = ({ recipe, isHistory }: Props) => {
           onClick={() => {
             !isHistory
               ? navigate(`/recipes/${recipeId}`)
-              : navigate("/history/1");
+              : navigate(`/history/${historyId}`);
           }}
         />
       </Btns>

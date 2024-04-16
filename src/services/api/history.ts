@@ -1,9 +1,9 @@
 import client from "./client";
 
 //요리 내역 상세 조회
-export const getHistory = async (history_id: number) => {
+export const getHistory = async (historyId: number) => {
   try {
-    const response = await client.get(`/histories/${history_id}`);
+    const response = await client.get(`/histories/${historyId}`);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);
@@ -11,9 +11,9 @@ export const getHistory = async (history_id: number) => {
 };
 
 //요리 내역 삭제
-export const deleteHistory = async (history_id: number) => {
+export const deleteHistory = async (historyId: number) => {
   try {
-    const response = await client.delete(`/histories/${history_id}`);
+    const response = await client.delete(`/histories/${historyId}`);
     return Promise.resolve(response);
   } catch (error) {
     return Promise.reject(error);

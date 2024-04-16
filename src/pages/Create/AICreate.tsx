@@ -263,6 +263,8 @@ const Result = styled.div`
   flex-direction: column;
   gap: 10px;
 
+  margin-bottom: 120px;
+
   .title {
     margin: 0 auto;
     width: 90%;
