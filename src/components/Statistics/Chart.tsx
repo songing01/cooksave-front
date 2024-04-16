@@ -13,7 +13,7 @@ const Chart = ({ list }: Props) => {
 
   const calculateHeight = (data: number) => {
     if (data == 0) {
-      return 0;
+      return 1;
     }
     let sum = 0;
     list.map(bar => {
@@ -26,7 +26,7 @@ const Chart = ({ list }: Props) => {
   return (
     <Div>
       <BarContainer>
-        {list.map(bar => {
+        {list.reverse().map(bar => {
           let data = 0;
           bar.expense && (data = bar.expense);
           bar.count && (data = bar.count);
@@ -34,6 +34,7 @@ const Chart = ({ list }: Props) => {
 
           return (
             <Bar
+              key={bar.month}
               height={`${height}px`}
               onClick={() => navigate(`/statistics/${bar.month}-01`)}
             />
@@ -42,9 +43,9 @@ const Chart = ({ list }: Props) => {
       </BarContainer>
       <Line />
       <MonthContainer>
-        {list.reverse().map(bar => {
+        {list.map(bar => {
           return (
-            <Month style={{ color: "#7a7a7a" }}>
+            <Month key={bar.month} style={{ color: "#7a7a7a" }}>
               <FontBold size="8px">{Number(bar.month.substr(5, 7))}월</FontBold>
             </Month>
           );
@@ -68,6 +69,7 @@ const BarContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: end;
   gap: 2.5%;
 `;
 
