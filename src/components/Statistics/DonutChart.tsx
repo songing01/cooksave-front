@@ -1,61 +1,65 @@
 import { FontBold } from "@style/font.style";
 import React from "react";
 import { styled } from "styled-components";
+import { Doughnut } from "react-chartjs-2";
+import { Chart, ArcElement } from "chart.js";
+import { hover } from "@testing-library/user-event/dist/hover";
+Chart.register(ArcElement);
 
 const DonutChart = ({ percentage }: any) => {
+  const data = {
+    labels: [],
+    datasets: [
+      {
+        data: [percentage, 100 - percentage],
+        backgroundColor: ["#004c92", "#fff"],
+        borderColor: ["#004c92", "#fff"],
+      },
+    ],
+  };
+
   return (
-    <OuterCircle percentage={String(percentage)}>
-      <InnerCircle>
-        <FontBold size="40px" className="num">
-          {percentage}
-        </FontBold>
-        <FontBold size="20px" className="percentage">
-          %
-        </FontBold>
-      </InnerCircle>
-    </OuterCircle>
+    <>
+      <Div>
+        <div className="inner-circle">
+          <FontBold size="40px" className="num">
+            {percentage}
+          </FontBold>
+          <FontBold size="20px" className="percentage">
+            %
+          </FontBold>
+        </div>
+        <Doughnut
+          data={data}
+          options={{
+            events: [],
+            cutout: 48,
+          }}
+        ></Doughnut>
+      </Div>
+    </>
   );
 };
 
 export default DonutChart;
 
-const OuterCircle = styled.div<{ percentage: string }>`
+const Div = styled.div`
   width: 150px;
   height: 150px;
   flex-shrink: 0;
-  border-radius: 100%;
-
-  background: conic-gradient(
-    var(--blue2) ${props => props.percentage}%,
-    #fff 0%
-  );
 
   filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  .inner-circle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-43%, 73%);
+    display: flex;
+    align-items: end;
 
-const InnerCircle = styled.div`
-  background-color: #fff;
-  width: 110px;
-  height: 110px;
-  border-radius: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #f5fbff;
-  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.25) inset;
-
-  .percentage {
-    margin-top: 6px;
-  }
-
-  .num {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    .percentage {
+      margin-bottom: 5px;
+    }
   }
 `;
