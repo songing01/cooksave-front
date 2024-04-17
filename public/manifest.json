@@ -1,0 +1,19 @@
+{
+  "background_color": "#ffffff",
+  "description": "Web site created using create-react-app",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "CookSave",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "CookSave",
+  "start_url": "/",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
