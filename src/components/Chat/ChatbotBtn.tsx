@@ -19,7 +19,7 @@ const Div = styled.div`
   width: 100%;
   max-width: 481px; //position: fixed 로 global style 적용 안됨
   position: fixed;
-  bottom: 58px;
+  bottom: 70px;
   height: 65px;
   padding: 0 10px 0 0;
   box-sizing: border-box;
