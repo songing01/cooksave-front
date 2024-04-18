@@ -33,7 +33,7 @@ const Div = styled.div`
   display: flex;
   width: 100%;
   max-width: 481px; //position: fixed로 인해 global style의 max-width가 적용 안됨
-  padding: 10px 20px 20px 25px;
+  padding: 10px 20px 20px 30px;
   justify-content: space-between;
   box-sizing: border-box;
 
