@@ -54,6 +54,7 @@ const Div = styled.div`
     position: absolute;
     top: 0;
     left: 50%;
+    -webkit-transform: translate(-43%, 73%);
     transform: translate(-43%, 73%);
     display: flex;
     align-items: end;
