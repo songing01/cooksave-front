@@ -50,15 +50,16 @@ const AICreate = ({ isOCR }: Props) => {
 
         postObjectDetectionImg(file)
           .then(res => {
+            console.log(res);
             let list: any = [];
-            res.data.labels.map((el: any) =>
+            res.data.map((el: any) =>
               list.push({
                 ingredientId: Math.random(),
-                iconId: 1,
-                name: el,
+                iconId: el.icon,
+                name: el.label,
                 price: undefined,
-                amount: 1,
-                tag: el,
+                amount: el.count,
+                tag: el.label,
               }),
             );
 
@@ -155,9 +156,11 @@ const AICreate = ({ isOCR }: Props) => {
               <div className="result-container">
                 {newList.map((input: any) => (
                   <ItemInput
+                    key={input.ingredientId}
                     inputs={input}
                     isList={true}
                     setInputList={setNewList}
+                    inputList={newList}
                   />
                 ))}
               </div>

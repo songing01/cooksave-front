@@ -10,9 +10,16 @@ type Props = {
   setInputs?: React.Dispatch<React.SetStateAction<TypeIngredient>>;
   isList?: boolean;
   setInputList?: React.Dispatch<React.SetStateAction<TypeIngredient[]>>;
+  inputList?: TypeIngredient[];
 };
 
-const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
+const ItemInput = ({
+  inputs,
+  setInputs,
+  isList,
+  setInputList,
+  inputList,
+}: Props) => {
   const [isOpenList, setIsOpenList] = useState(false);
   const { ingredientId, iconId, name, price, amount } = inputs;
 
@@ -25,11 +32,18 @@ const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
     };
 
     if (isList) {
-      setInputList &&
-        setInputList(prev => [
-          ...prev.filter(item => item.ingredientId !== ingredientId),
-          nextInputs,
-        ]);
+      if (inputList) {
+        const newArray = [...inputList];
+
+        const indexToModify = newArray.findIndex(
+          item => item.ingredientId === ingredientId,
+        );
+
+        if (indexToModify !== -1) {
+          newArray[indexToModify] = nextInputs;
+          setInputList && setInputList(newArray);
+        }
+      }
     } else {
       setInputs && setInputs(nextInputs);
     }
@@ -42,11 +56,18 @@ const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
     };
 
     if (isList) {
-      setInputList &&
-        setInputList(prev => [
-          ...prev.filter(item => item.ingredientId !== ingredientId),
-          nextInputs,
-        ]);
+      if (inputList) {
+        const newArray = [...inputList];
+
+        const indexToModify = newArray.findIndex(
+          item => item.ingredientId === ingredientId,
+        );
+
+        if (indexToModify !== -1) {
+          newArray[indexToModify] = nextInputs;
+          setInputList && setInputList(newArray);
+        }
+      }
     } else {
       setInputs && setInputs(nextInputs);
     }
@@ -61,11 +82,19 @@ const ItemInput = ({ inputs, setInputs, isList, setInputList }: Props) => {
     };
 
     if (isList) {
-      setInputList &&
-        setInputList(prev => [
-          ...prev.filter(item => item.ingredientId !== ingredientId),
-          nextInputs,
-        ]);
+      if (inputList) {
+        const newArray = [...inputList];
+
+        const indexToModify = newArray.findIndex(
+          item => item.ingredientId === ingredientId,
+        );
+
+        if (indexToModify !== -1) {
+          newArray[indexToModify] = nextInputs;
+          setInputList && setInputList(newArray);
+        }
+      }
+    } else {
       setInputs && setInputs(nextInputs);
     }
   };
