@@ -50,15 +50,13 @@ const Div = styled.div`
 
   filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25));
 
+  -webkit-transform: translate3d(0, 0, 0);
+
   .inner-circle {
     position: absolute;
     top: 0;
     left: 50%;
 
-    -ms-transform: translate(-43%, 73%);
-    -webkit-transform: translate(-43%, 73%);
-    -moz-transform: translate(-43%, 73%);
-    -o-transform: translate(-43%, 73%);
     transform: translate(-43%, 73%);
     display: flex;
     align-items: end;
