@@ -19,7 +19,7 @@ const RecipeInput = () => {
       <img
         className="arrow"
         src={arrow}
-        onClick={() => navigate(`/recipes/${name}/ingredients`)}
+        onClick={() => name && navigate(`/recipes/${name}/ingredients`)}
       />
     </Div>
   );
