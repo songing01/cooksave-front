@@ -74,7 +74,7 @@ const Div = styled.div`
 
   .bottom {
     position: absolute; //하단 고정
-    bottom: 14px;
+    bottom: 30px;
 
     display: flex;
     flex-direction: column;
