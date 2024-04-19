@@ -27,7 +27,7 @@ const List = ({
             item={item}
             index={index}
             initialList={list} //편집시 기본값
-            maxAmount={maxAmountList && maxAmountList[index].amount}
+            maxAmount={maxAmountList && maxAmountList[index]?.amount}
           />
         );
       })}

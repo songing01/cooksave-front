@@ -2,7 +2,7 @@ import LongBtn from "@components/Buttons/LongBtn";
 import GuideText from "@components/Common/GuideText";
 import Header from "@components/Header/Header";
 import List from "@components/Ingredients/List/List";
-import { myListState } from "@services/store/ingredients";
+import { myListState, newListState } from "@services/store/ingredients";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -21,12 +21,14 @@ const IngredientList = () => {
   const myList = useRecoilValue(myListState);
   const [intialList, setInitialList] = useState([]) as any[];
   const [maxAmountList, setMaxAmountList] = useState([]) as any[];
+  const [newList, setNewList] = useRecoilState(newListState);
 
   useEffect(() => {
     //수량을 0으로 초기화
+    setNewList([]);
     myList.map((el: TypeIngredient) => {
       setMaxAmountList((prev: any[]) => [...prev, { amount: el.amount }]);
-      setInitialList((prev: any[]) => [...prev, { ...el, amount: 0 }]);
+      setNewList((prev: any[]) => [...prev, { ...el, amount: 0 }]);
     });
   }, []);
 
@@ -38,7 +40,7 @@ const IngredientList = () => {
       <List
         isEditing={true}
         isDeletable={false}
-        list={intialList}
+        list={newList}
         maxAmountList={maxAmountList}
         isIconEditable={false}
       />
