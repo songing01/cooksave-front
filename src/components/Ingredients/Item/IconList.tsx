@@ -24,6 +24,12 @@ import icon20 from "@assets/ingredients/icon20.png";
 import icon21 from "@assets/ingredients/icon21.png";
 import icon22 from "@assets/ingredients/icon22.png";
 import icon23 from "@assets/ingredients/icon23.png";
+import icon24 from "@assets/ingredients/icon24.png";
+import icon25 from "@assets/ingredients/icon25.png";
+import icon26 from "@assets/ingredients/icon26.png";
+import icon27 from "@assets/ingredients/icon27.png";
+import icon28 from "@assets/ingredients/icon28.png";
+import icon29 from "@assets/ingredients/icon29.png";
 
 import { TypeIngredient } from "type/ingredients";
 import { useRecoilState } from "recoil";
@@ -53,6 +59,12 @@ export const icons = [
   icon21,
   icon22,
   icon23,
+  icon24,
+  icon25,
+  icon26,
+  icon27,
+  icon28,
+  icon29,
 ];
 
 type Props = {
