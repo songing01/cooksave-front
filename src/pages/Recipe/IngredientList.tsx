@@ -19,7 +19,6 @@ const IngredientList = () => {
     param = String(id); //제공된 레시피
   }
   const myList = useRecoilValue(myListState);
-  const [intialList, setInitialList] = useState([]) as any[];
   const [maxAmountList, setMaxAmountList] = useState([]) as any[];
   const [newList, setNewList] = useRecoilState(newListState);
 
