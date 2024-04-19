@@ -28,7 +28,7 @@ const Div = styled.div`
 
   .bottom {
     position: absolute; //하단 고정
-    bottom: 39px;
+    bottom: 55px;
   }
 `;
 
