@@ -48,7 +48,11 @@ const IngredientList = () => {
       <div className="bottom">
         <LongBtn
           text="선택 완료"
-          onClick={() => navigate(`/recipes/${param}/confirmation`)}
+          onClick={() =>
+            name
+              ? navigate(`/recipes/new/${param}/confirmation`)
+              : navigate(`/recipes/${param}/confirmation`)
+          }
         />
       </div>
     </Div>

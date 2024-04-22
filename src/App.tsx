@@ -41,9 +41,12 @@ function App() {
 
         {/* 레시피 관련 페이지 */}
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/recipes/:name/ingredients" element={<IngredientList />} />
         <Route
-          path="/recipes/:name/confirmation"
+          path="/recipes/new/:name/ingredients"
+          element={<IngredientList />}
+        />
+        <Route
+          path="/recipes/new/:name/confirmation"
           element={<Confirmation isHistory={false} />}
         />
         <Route path="/recipes/:id" element={<Detail />} />
