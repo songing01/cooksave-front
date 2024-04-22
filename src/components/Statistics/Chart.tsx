@@ -15,13 +15,14 @@ const Chart = ({ list }: Props) => {
     if (data == 0) {
       return 1;
     }
-    let sum = 0;
+
+    let max = 0;
     list.map(bar => {
-      bar.expense && (sum += bar.expense);
-      bar.count && (sum += bar.count);
+      bar.expense && (max = Math.max(max, bar.expense));
+      bar.count && (max = Math.max(max, bar.count));
     });
 
-    return (data / sum) * 145;
+    return (data / max) * 145;
   };
   return (
     <Div>
