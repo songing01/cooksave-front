@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import chatbot from "@assets/chat/chatbot.svg";
+import chatbot from "@assets/chat/cooksave-character.svg";
 import { FontMedium } from "@style/font.style";
 import loading from "@assets/chat/loading.gif";
 
@@ -45,7 +45,6 @@ const Div = styled.div`
     box-sizing: border-box;
     border-radius: 100%;
 
-    background-color: var(--blue3);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,4 +1,4 @@
-import chatbot from "@assets/chat/chatbot.svg";
+import chatbot from "@assets/chat/cooksave-character.svg";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,7 +19,7 @@ const Div = styled.div`
   width: 100%;
   max-width: 481px; //position: fixed 로 global style 적용 안됨
   position: fixed;
-  bottom: 70px;
+  bottom: 80px;
   height: 65px;
   padding: 0 10px 0 0;
   box-sizing: border-box;
@@ -39,8 +39,8 @@ const Btn = styled.div`
     }
   }
 
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   flex-shrink: 0;
   border-radius: 60px;
   background: #fff;
@@ -52,7 +52,6 @@ const Btn = styled.div`
 
   img {
     width: 45px;
-    height: 45px;
     flex-shrink: 0;
   }
 `;
