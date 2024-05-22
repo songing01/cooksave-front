@@ -5,9 +5,11 @@ import gallery from "@assets/create/gallery.png";
 import example2 from "@assets/create/od-eg.png";
 
 import { FontBold, FontMedium } from "@style/font.style";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ItemInput from "@components/Ingredients/Item/ItemInput";
 import {
+  postIngredientsTyping,
+  postOCRImg,
   postObjectDetectionImg,
   postObjectDetectionResult,
 } from "@services/api/ingredients";
@@ -48,25 +50,46 @@ const AICreate = ({ isOCR }: Props) => {
       reader.onload = () => {
         setPreviewImg(reader.result);
 
-        postObjectDetectionImg(file)
-          .then(res => {
+        if (isOCR) {
+          console.log("ocr");
+          postOCRImg(file).then(res => {
             console.log(res);
             let list: any = [];
+
             res.data.map((el: any) =>
               list.push({
                 ingredientId: Math.random(),
-                iconId: el.icon,
-                name: el.label,
-                price: undefined,
-                amount: el.count,
-                tag: el.label,
+                iconId: 1,
+                name: el.name,
+                price: el.price,
+                amount: el.amount,
               }),
             );
 
             setIsLoading(false);
             setNewList(list);
-          })
-          .catch(err => console.log(err));
+          });
+        } else {
+          postObjectDetectionImg(file)
+            .then(res => {
+              console.log(res);
+              let list: any = [];
+              res.data.map((el: any) =>
+                list.push({
+                  ingredientId: Math.random(),
+                  iconId: el.icon,
+                  name: el.label,
+                  price: undefined,
+                  amount: el.count,
+                  tag: el.label,
+                }),
+              );
+
+              setIsLoading(false);
+              setNewList(list);
+            })
+            .catch(err => console.log(err));
+        }
       };
     }
   };
@@ -77,6 +100,14 @@ const AICreate = ({ isOCR }: Props) => {
     });
 
     if (isOCR) {
+      //OCR
+      postIngredientsTyping(newList)
+        .then(res => {
+          alert("등록이 완료되었습니다.");
+          navigate("/");
+          setNewList([]);
+        })
+        .catch(err => alert("등록오류"));
     } else {
       //사물인식
       postObjectDetectionResult(newList)
@@ -88,6 +119,10 @@ const AICreate = ({ isOCR }: Props) => {
         .catch(err => alert("등록 오류"));
     }
   };
+
+  useEffect(() => {
+    setNewList([{}]);
+  }, []);
 
   return (
     <Div>

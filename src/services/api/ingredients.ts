@@ -80,3 +80,15 @@ export const postObjectDetectionResult = async (
     return Promise.reject(error);
   }
 };
+
+//영수증 OCR 이미지 전송 & 인식 결과 얻기
+export const postOCRImg = async (file: File) => {
+  const formData = new FormData();
+  formData.append("image", file);
+  try {
+    const response = await client.post("/ingredients/text", formData);
+    return Promise.resolve(response);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
