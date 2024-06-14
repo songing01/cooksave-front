@@ -51,23 +51,28 @@ const AICreate = ({ isOCR }: Props) => {
       };
 
       if (isOCR) {
-        postOCRImg(file).then(res => {
-          console.log(res);
-          let list: any = [];
+        postOCRImg(file)
+          .then(res => {
+            console.log(res);
+            let list: any = [];
 
-          res.data.map((el: any) =>
-            list.push({
-              ingredientId: Math.random(),
-              iconId: 1,
-              name: el.name,
-              price: el.price,
-              amount: el.amount,
-            }),
-          );
+            res.data.map((el: any) =>
+              list.push({
+                ingredientId: Math.random(),
+                iconId: 1,
+                name: el.name,
+                price: el.price,
+                amount: el.amount,
+              }),
+            );
 
-          setIsLoading(false);
-          setNewList(list);
-        });
+            setIsLoading(false);
+            setNewList(list);
+          })
+          .catch(err => {
+            alert("이미지의 용량이 너무 큽니다.");
+            window.location.reload();
+          });
       } else {
         postObjectDetectionImg(file)
           .then(res => {
@@ -86,37 +91,47 @@ const AICreate = ({ isOCR }: Props) => {
             setIsLoading(false);
             setNewList(list);
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            alert("이미지의 용량이 너무 큽니다.");
+            window.location.reload();
+          });
       }
     }
   };
 
-  const requestAICreate = () => {
-    newList.map((item: TypeIngredient) => {
+  const isEmptyPrice = () => {
+    const hasEmptyPrice = newList.some((item: TypeIngredient) => {
       if (item.price === undefined) {
         alert("가격을 입력하세요");
-        return 0;
+        return true;
       }
+      return false;
     });
 
-    if (isOCR) {
-      //OCR
-      postIngredientsTyping(newList)
-        .then(res => {
-          alert("등록이 완료되었습니다.");
-          navigate("/");
-          setNewList([]);
-        })
-        .catch(err => alert("등록오류"));
-    } else {
-      //사물인식
-      postObjectDetectionResult(newList)
-        .then(res => {
-          alert("등록이 완료되었습니다.");
-          navigate("/");
-          setNewList([]);
-        })
-        .catch(err => alert("등록 오류"));
+    return hasEmptyPrice;
+  };
+
+  const requestAICreate = () => {
+    if (!isEmptyPrice()) {
+      if (isOCR) {
+        //OCR
+        postIngredientsTyping(newList)
+          .then(res => {
+            alert("등록이 완료되었습니다.");
+            navigate("/");
+            setNewList([]);
+          })
+          .catch(err => alert("등록오류"));
+      } else {
+        //사물인식
+        postObjectDetectionResult(newList)
+          .then(res => {
+            alert("등록이 완료되었습니다.");
+            navigate("/");
+            setNewList([]);
+          })
+          .catch(err => alert("등록 오류"));
+      }
     }
   };
 
