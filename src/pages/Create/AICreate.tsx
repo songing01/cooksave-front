@@ -19,7 +19,6 @@ import LongBtn from "@components/Buttons/LongBtn";
 import loading from "@assets/common/loading.gif";
 import { TypeIngredient } from "../../type/ingredients";
 import { useNavigate } from "react-router-dom";
-import imageCompression from "browser-image-compression";
 
 type Props = {
   isOCR: boolean;
@@ -37,58 +36,12 @@ const AICreate = ({ isOCR }: Props) => {
 
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const handleBase64Data = (dataURI: string) => {
-    const byteString = atob(dataURI.split(",")[1]);
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([ia], {
-      type: "image/png",
-    });
-    const file = new File([blob], "image.png");
-
-    return file;
-  };
-
-  const compressImg = async (file: File) => {
-    //이미지파일 1MB이하로 압축, BASE64로 인코딩한 뒤 전송
-    const options = {
-      maxSizeMB: 0.005,
-      useWebWorker: true,
-    };
-
-    try {
-      const compressedRes = await imageCompression(file, options);
-
-      const compressedreader = new FileReader();
-      compressedreader.readAsDataURL(compressedRes);
-      compressedreader.onloadend = () => {
-        if (typeof compressedreader.result === "string") {
-          const byteString = atob(compressedreader.result.split(",")[1]);
-          const ab = new ArrayBuffer(byteString.length);
-          const ia = new Uint8Array(ab);
-          for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-          }
-          const blob = new Blob([ia], {
-            type: "image/png",
-          });
-          const file = new File([blob], "image.png");
-
-          return Promise.resolve(file);
-        }
-      };
-    } catch (err) {
-      alert("파일 사이즈가 너무 커서 전송할 수 없습니다.");
-      return Promise.reject(err);
-    }
-  };
-
   const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       let file = e.target.files[0];
+      const newFile = new File([file], `${file.lastModified}`, {
+        type: file.type,
+      });
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -97,47 +50,43 @@ const AICreate = ({ isOCR }: Props) => {
         setPreviewImg(reader.result);
       };
 
-      const compressedFile = await compressImg(file);
+      if (isOCR) {
+        postOCRImg(file).then(res => {
+          console.log(res);
+          let list: any = [];
 
-      if (compressedFile) {
-        if (isOCR) {
-          postOCRImg(compressedFile).then(res => {
-            console.log(res);
+          res.data.map((el: any) =>
+            list.push({
+              ingredientId: Math.random(),
+              iconId: 1,
+              name: el.name,
+              price: el.price,
+              amount: el.amount,
+            }),
+          );
+
+          setIsLoading(false);
+          setNewList(list);
+        });
+      } else {
+        postObjectDetectionImg(file)
+          .then(res => {
             let list: any = [];
-
             res.data.map((el: any) =>
               list.push({
                 ingredientId: Math.random(),
-                iconId: 1,
-                name: el.name,
-                price: el.price,
-                amount: el.amount,
+                iconId: el.icon,
+                name: el.label,
+                price: undefined,
+                amount: el.count,
+                tag: el.label,
               }),
             );
 
             setIsLoading(false);
             setNewList(list);
-          });
-        } else {
-          postObjectDetectionImg(compressedFile)
-            .then(res => {
-              let list: any = [];
-              res.data.map((el: any) =>
-                list.push({
-                  ingredientId: Math.random(),
-                  iconId: el.icon,
-                  name: el.label,
-                  price: undefined,
-                  amount: el.count,
-                  tag: el.label,
-                }),
-              );
-
-              setIsLoading(false);
-              setNewList(list);
-            })
-            .catch(err => console.log(err));
-        }
+          })
+          .catch(err => console.log(err));
       }
     }
   };
