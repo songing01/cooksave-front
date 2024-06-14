@@ -19,17 +19,17 @@ import LongBtn from "@components/Buttons/LongBtn";
 import loading from "@assets/common/loading.gif";
 import { TypeIngredient } from "../../type/ingredients";
 import { useNavigate } from "react-router-dom";
+import imageCompression from "browser-image-compression";
 
 type Props = {
   isOCR: boolean;
 };
 
 const AICreate = ({ isOCR }: Props) => {
-  const [imgFile, setImgFile] = useState<File>();
   const [previewImg, setPreviewImg] = useState<string | ArrayBuffer | null>(
     null,
   );
-
+  //const [compressedFile, setCompressedFile] = useState<File>();
   const [newList, setNewList] = useRecoilState(newListState);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,22 +37,71 @@ const AICreate = ({ isOCR }: Props) => {
 
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBase64Data = (dataURI: string) => {
+    const byteString = atob(dataURI.split(",")[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ia], {
+      type: "image/png",
+    });
+    const file = new File([blob], "image.png");
+
+    return file;
+  };
+
+  const compressImg = async (file: File) => {
+    //이미지파일 1MB이하로 압축, BASE64로 인코딩한 뒤 전송
+    const options = {
+      maxSizeMB: 0.005,
+      useWebWorker: true,
+    };
+
+    try {
+      const compressedRes = await imageCompression(file, options);
+
+      const compressedreader = new FileReader();
+      compressedreader.readAsDataURL(compressedRes);
+      compressedreader.onloadend = () => {
+        if (typeof compressedreader.result === "string") {
+          const byteString = atob(compressedreader.result.split(",")[1]);
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+          const blob = new Blob([ia], {
+            type: "image/png",
+          });
+          const file = new File([blob], "image.png");
+
+          return Promise.resolve(file);
+        }
+      };
+    } catch (err) {
+      alert("파일 사이즈가 너무 커서 전송할 수 없습니다.");
+      return Promise.reject(err);
+    }
+  };
+
+  const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       let file = e.target.files[0];
-      const newFile = new File([file], `${file.lastModified}`, {
-        type: file.type,
-      });
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
 
       reader.onload = () => {
         setPreviewImg(reader.result);
+      };
 
+      const compressedFile = await compressImg(file);
+
+      if (compressedFile) {
         if (isOCR) {
-          console.log("ocr");
-          postOCRImg(file).then(res => {
+          postOCRImg(compressedFile).then(res => {
             console.log(res);
             let list: any = [];
 
@@ -70,9 +119,8 @@ const AICreate = ({ isOCR }: Props) => {
             setNewList(list);
           });
         } else {
-          postObjectDetectionImg(file)
+          postObjectDetectionImg(compressedFile)
             .then(res => {
-              console.log(res);
               let list: any = [];
               res.data.map((el: any) =>
                 list.push({
@@ -90,13 +138,16 @@ const AICreate = ({ isOCR }: Props) => {
             })
             .catch(err => console.log(err));
         }
-      };
+      }
     }
   };
 
   const requestAICreate = () => {
     newList.map((item: TypeIngredient) => {
-      if (item.price === undefined) alert("가격을 입력하세요");
+      if (item.price === undefined) {
+        alert("가격을 입력하세요");
+        return 0;
+      }
     });
 
     if (isOCR) {
