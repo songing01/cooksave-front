@@ -1,4 +1,4 @@
-# COOK-SAVE
+# 쿡세이브 (COOK-SAVE)
 식재료 관리를 통한 1인 가구의 식비 절감 지원 웹앱 서비스
 https://www.cooksave.co.kr/
 
