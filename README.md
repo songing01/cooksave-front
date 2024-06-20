@@ -108,7 +108,7 @@ python app.py <br/><br/>
 위의 환경 설치방법에 따라 서비스를 시작한뒤, 테스트 계정으로 로그인합니다. <br/>
 ID: cookingmama PW: 1234 <br/>
 아래 첨부한 서비스 사용 설명서를 참조하여 각 기능을 테스트해봅니다.
-//파일첨부
+![123](https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front/assets/79829662/d0404be0-1d2d-493a-8a7a-9feef6f041f2)
 
 ## 💚 DESCRIPTION OF SAMPLE DATA 
 
