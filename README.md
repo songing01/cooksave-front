@@ -45,13 +45,14 @@ app/src/main/java/com/example/cooksave_webview/MainActivity.kt - 디바이스로
 
 
 ## 💚 HOW TO BUILD
-1. 프론트엔드 repo
+#### 1. 프론트엔드 repo
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front 으로 프로젝트 폴더를 로컬에 다운로드합니다.
 - 다운받은 폴더를 에디터에서 열고, npm i 를 입력하여 필요한 패키지를 설치합니다.
 - npm start로 로컬에서 프로젝트를 실행합니다.
 
-2. 백엔드 repo
-3.  AI repo 
+#### 2. 백엔드 repo
+
+#### 3.  AI repo 
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-ai.git <br/>
 
 [GPU 사용시] <br/>
@@ -75,7 +76,7 @@ python app.py <br/><br/>
 
 
 
-4. 프론트엔드 안드로이드 웹뷰 repo
+#### 4. 프론트엔드 안드로이드 웹뷰 repo
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-webview 으로 프로젝트 폴더를 로컬에 다운로드합니다.
 - 안드로이드 스튜디오에서 다운 받은 프로젝트 파일을 엽니다.
 - Run 'app' 버튼을 통해 에뮬레이터를 실행합니다.
@@ -100,6 +101,25 @@ ID: cookingmama PW: 1234 <br/>
 
 
 ## 💚 DESCRIPTION OF OPEN SOURCE
+### 1. Object Detection <br/>
+[🚀Yolo Model Github](https://github.com/ultralytics/ultralytics)
+![image](https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front/assets/63354176/04ddb78e-c4c9-4181-8b94-2f60fe8bc226)
+
+YOLO(You Only Look Once) 모델은 객체 탐지를 위해 사용되는 유명한 딥러닝 모델로, 매우 빠르고 정확하게 이미지를 분석하여 객체를 탐지할 수 있습니다. YOLO 모델은 크게 세 가지 특징을 가지고 있습니다:
+1) End-to-End 학습: YOLO는 이미지를 입력받아 단 한 번의 전방 패스를 통해 객체를 탐지합니다. 이는 다른 객체 탐지 모델들과 비교했을 때 매우 빠르며, 실시간 객체 탐지에 적합합니다.
+2) 전체 이미지 고려: YOLO는 이미지를 전체적으로 보고 예측을 하기 때문에 문맥을 잘 파악할 수 있습니다. 이는 작은 객체를 탐지하는 데 유리하며, 객체 간의 상호작용을 더 잘 이해할 수 있습니다.
+3) 단일 신경망: YOLO는 단일 신경망을 사용하여 경계 상자와 클래스 확률을 동시에 예측합니다. 이로 인해 모델이 간단하고 효율적입니다.
+<br/>
+저희는 그 중 yolov5와 yolov8 모델을 custom dataset 비교 학습을 진행하였고, 학습 속도와 정확도가 더 높은 버전 8로 식재료 인식 기능을 개발하였습니다.
+<br/><br/>
+
+### 2. OCR <br/>
+[🍀Naver Clova AI](https://clova.ai/ocr/)
+![image](https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front/assets/63354176/33e624a3-3aea-4d22-af8f-29c8b86014be)
+
+네이버 클로바 영수증 모델은 영수증의 유형과 패턴을 자동 분석하여 매장 정보, 결제 내역, 지불 방식 등 영수증의 기재된 정보를 추출합니다.<br/>
+클로바 ocr 모델 이외에도 easyocr, tesseractocr 등 다양한 ocr 모델을 비교하였고 한국어에 높은 정확도를 보이는 네이버 클로바 OCR을 선택하여 영수증 및 구매내역 인식 식재료 등록 기능을 개발하였습니다.<br/>
+<br/><br/>
 
 
 ## 💚 팀원 소개 
