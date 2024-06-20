@@ -15,7 +15,7 @@ https://www.cooksave.co.kr/
 
 | BE | FE | AI |
 |:---:|:---:|:---:|
-| - Spring Boot <br/> - MySQL <br/> - EC2 <br/> - RDS <br/> - ELB | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components |
+| - Spring Boot <br/> - MySQL <br/> - EC2 <br/> - RDS <br/> - ELB | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - flask <br/> - yolov8 <br/> - opencv <br/> - tencent-cloud |
 
 ## 💚 ABOUT SOURCE CODE
 ### FE
