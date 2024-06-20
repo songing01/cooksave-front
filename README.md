@@ -31,6 +31,13 @@ src/type - 오브젝트 별 타입 지정 <br/>
 ### BE
 
 ### AI
+weights/ - best weight checkpoints이 저장되는 폴더 <br/>
+app.py - flask sever에 대한 코드 <br/>
+requirement.txt - pip install로 설치해야하는 라이브러리 모음 <br/>
+train.py - 모델 학습 코드  <br/>
+uwsgi - flask server connection을 위한 코드 <br/>
+yolov8n.pt - pre-trained model <br/>
+
 
 ### web-view
 안드로이드 웹뷰를 통해 구현한 웹을 안드로이드 앱 내에서 실행할 수 있도록 합니다.<br/>
@@ -44,7 +51,30 @@ app/src/main/java/com/example/cooksave_webview/MainActivity.kt - 디바이스로
 - npm start로 로컬에서 프로젝트를 실행합니다.
 
 2. 백엔드 repo
-3.  AI repo
+3.  AI repo 
+- git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-ai.git <br/>
+
+[GPU 사용시] <br/>
+
+(1) 가상환경 세팅 <br/>
+cd {가상환경을 설치할 경로} <br/>
+python -m venv {가상환경이름} <br/>
+source ./venv/bin/activate <br/><br/>
+
+(2) 필요한 라이브러리 설치<br/>
+pip install requirement.txt <br/><br/>
+
+(3) 데이터 셋 다운로드 <br/>
+(recommended) roboflow에서 costom data 제작 후 yolo format으로 불러오기 <br/><br/>
+
+(4) 모델 학습 진행 <br/>
+python train.py <br/><br/>
+
+(5) AI flask server 실행 <br/>
+python app.py <br/><br/>
+
+
+
 4. 프론트엔드 안드로이드 웹뷰 repo
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-webview 으로 프로젝트 폴더를 로컬에 다운로드합니다.
 - 안드로이드 스튜디오에서 다운 받은 프로젝트 파일을 엽니다.
