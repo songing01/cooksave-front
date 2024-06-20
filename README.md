@@ -29,7 +29,7 @@ src/style - 글로벌 스타일 및 CSS 기본 설정 <br/>
 src/type - 오브젝트 별 타입 지정 <br/>
 
 ### BE
-scripts - 베포 스크립트 <br/>
+scripts - 배포 스크립트 <br/>
 src/main/java/CookSave/CookSaveback/Heart - 레시피 저장 기능 코드 <br/>
 src/main/java/CookSave/CookSaveback/History - 요리 내역 관련 기능 코드 <br/>
 src/main/java/CookSave/CookSaveback/HistoryIngredient - 요리 내역의 재료 관련 기능 코드 <br/>
