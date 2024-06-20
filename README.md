@@ -97,7 +97,13 @@ ID: cookingmama PW: 1234 <br/>
 아래 첨부한 서비스 사용 설명서를 참조하여 각 기능을 테스트해봅니다.
 //파일첨부
 
-## 💚 DESCRIPTION OF SAMPLE DATA
+## 💚 DESCRIPTION OF SAMPLE DATA 
+
+![image](https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front/assets/63354176/4120f37f-7cda-4681-8351-9ed32a231e01)  
+저희는 직접 식재료 데이터를 구글 이미지 검색 및 대형 온라인 몰에서 크롤링하여 제작하였습니다. <br/>
+20가지의 식재료를 100장씩 크롤링 한 후 flip, 90 rotate, shear 등의 data augmentation을 통해 전체 20,000장으로 데이터를 증강시켰습니다. <br/>
+![image](https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-front/assets/63354176/5cd0d88d-1c43-4e7e-857d-4b7964297981)
+sample data로 양파와 당근이 함께 있는 사진을 input으로 주었을 때, 다음과 같이 잘 인식됨을 확인할 수 있습니다. <br/><br/>
 
 
 ## 💚 DESCRIPTION OF OPEN SOURCE
