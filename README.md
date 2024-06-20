@@ -15,7 +15,7 @@ https://www.cooksave.co.kr/
 
 | BE | FE | AI |
 |:---:|:---:|:---:|
-| - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components |
+| - Spring Boot <br/> - MySQL <br/> - EC2 <br/> - RDS <br/> - ELB | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components |
 
 ## 💚 ABOUT SOURCE CODE
 ### FE
@@ -29,6 +29,17 @@ src/style - 글로벌 스타일 및 CSS 기본 설정 <br/>
 src/type - 오브젝트 별 타입 지정 <br/>
 
 ### BE
+scripts - 베포 스크립트 <br/>
+src/main/java/CookSave/CookSaveback/Heart - 레시피 저장 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/History - 요리 내역 관련 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/HistoryIngredient - 요리 내역의 재료 관련 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/Ingredient - 재료 관련 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/Member - 회원 관련 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/Recipe - 레시피 관련 기능 코드 <br/>
+src/main/java/CookSave/CookSaveback/RecipeTag - 레시피 재료 태그 관련 코드 <br/>
+src/main/java/CookSave/CookSaveback/Tag - 재료 태그 관련 코드 <br/>
+src/main/java/CookSave/CookSaveback/global - 기능에서 참고하는 코드 <br/>
+src/main/java/CookSave/CookSaveback/utils - jwt 관련 코드 <br/>
 
 ### AI
 weights/ - best weight checkpoints이 저장되는 폴더 <br/>
@@ -51,11 +62,15 @@ app/src/main/java/com/example/cooksave_webview/MainActivity.kt - 디바이스로
 - npm start로 로컬에서 프로젝트를 실행합니다.
 
 #### 2. 백엔드 repo
+- git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-back 으로 프로젝트 폴더를 로컬에 다운로드합니다.
+- 다운로드 받은 폴더의 build.gradle 파일을 에디터에서 열고 build 하여 필요한 라이브러리들을 다운로드합니다.
+- 필요한 정보를 application.yml 파일에 작성합니다.
+- run으로 로컬에서 프로젝트를 실행합니다.
 
 #### 3.  AI repo 
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-ai.git <br/>
 
-[GPU 사용시] <br/>
+[GPU 사용 시] <br/>
 
 (1) 가상환경 세팅 <br/>
 cd {가상환경을 설치할 경로} <br/>
@@ -74,8 +89,6 @@ python train.py <br/><br/>
 (5) AI flask server 실행 <br/>
 python app.py <br/><br/>
 
-
-
 #### 4. 프론트엔드 안드로이드 웹뷰 repo
 - git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-webview 으로 프로젝트 폴더를 로컬에 다운로드합니다.
 - 안드로이드 스튜디오에서 다운 받은 프로젝트 파일을 엽니다.
@@ -83,12 +96,12 @@ python app.py <br/><br/>
 
 
 ## 💚 HOW TO INSTALL
-#### 웹 사용시
+#### 웹 사용 시
   - 브라우저를 통해 https://www.cooksave.co.kr/ 에 접속합니다.
-#### 프로그레시브 웹앱 사용시
+#### 프로그레시브 웹앱 사용 시
 - iOS - 브라우저에서 https://www.cooksave.co.kr/ 에 접속한 뒤 '홈화면에 추가'를 누르면 앱으로 설치됩니다.
 - And - 브라우저에서 https://www.cooksave.co.kr/ 에 접속한 뒤 '설치'를 누르면 앱으로 설치됩니다.
-#### 안드로이드 앱 사용시
+#### 안드로이드 앱 사용 시
 - APK 파일을 다운로드하여 안드로이드 디바이스에 설치합니다.
 
 ## 💚 HOW TO TEST
