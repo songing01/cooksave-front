@@ -18,6 +18,24 @@ https://www.cooksave.co.kr/
 | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components | - TypeScript + React <br/> - Recoil <br/> - Axios <br/> - react-router-dom <br/> - styled-components |
 
 ## 💚 ABOUT SOURCE CODE
+### FE
+src/assets - 이미지 파일 모음 <br/>
+src/components - UI 컴포넌트 모음 <br/>
+src/pages - 화면별 레이아웃 모음 <br/>
+src/router - 비로그인 유저 접근 제한 등의 라우팅 관련 코드 <br/>
+src/services/api - API 요청 함수 모음 <br/>
+src/services/store - Recoil 전역 상태 관리 함수 모음 <br/>
+src/style - 글로벌 스타일 및 CSS 기본 설정 <br/>
+src/type - 오브젝트 별 타입 지정 <br/>
+
+### BE
+
+### AI
+
+### web-view
+안드로이드 웹뷰를 통해 구현한 웹을 안드로이드 앱 내에서 실행할 수 있도록 합니다.<br/>
+app/src/main/java/com/example/cooksave_webview/MainActivity.kt - 디바이스로부터 이미지 업로드, 메타태그, 로컬 저장소 허용 등 관련 코드
+
 
 ## 💚 HOW TO BUILD
 1. 프론트엔드 repo
@@ -26,6 +44,11 @@ https://www.cooksave.co.kr/
 - npm start로 로컬에서 프로젝트를 실행합니다.
 
 2. 백엔드 repo
+3.  AI repo
+4. 프론트엔드 안드로이드 웹뷰 repo
+- git clone https://github.com/EWHA-CAPSTONE-COOKSAVE/cooksave-webview 으로 프로젝트 폴더를 로컬에 다운로드합니다.
+- 안드로이드 스튜디오에서 다운 받은 프로젝트 파일을 엽니다.
+- Run 'app' 버튼을 통해 에뮬레이터를 실행합니다.
 
 
 ## 💚 HOW TO INSTALL
@@ -38,8 +61,14 @@ https://www.cooksave.co.kr/
 - APK 파일을 다운로드하여 안드로이드 디바이스에 설치합니다.
 
 ## 💚 HOW TO TEST
+위의 환경 설치방법에 따라 서비스를 시작한뒤, 테스트 계정으로 로그인합니다. <br/>
+ID: cookingmama PW: 1234 <br/>
+아래 첨부한 서비스 사용 설명서를 참조하여 각 기능을 테스트해봅니다.
+//파일첨부
 
 ## 💚 DESCRIPTION OF SAMPLE DATA
+
+
 ## 💚 DESCRIPTION OF OPEN SOURCE
 
 
